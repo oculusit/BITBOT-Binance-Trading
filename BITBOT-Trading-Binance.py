@@ -1,0 +1,328 @@
+#!/usr/local/bin/python3.10
+####!/usr/bin/env python
+# This is my btc.py script.
+import configparser
+import requests
+import time
+import json
+#import sys
+#from pynput import keyboard
+from datetime import datetime
+from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
+
+
+
+api = ''
+sek = ''
+testnet = 1
+
+try:
+ client = Client(api, sek)
+ if testnet = 1:
+  client.API_URL = 'https://testnet.binance.vision/api'
+except:
+ print("Problema 1")
+ quit()
+
+try:
+ client.get_account()
+except:
+ print("Problema")
+ quit()
+
+class colore:
+  verde = '\033[92m'
+  rosso = '\033[91m'
+  giall = '\033[93m'
+  reset = '\033[0m'
+
+def on_press(key):
+  tasto = key
+#  try:
+    #print('Tasto {0}', format(key.char))
+#  except AttributeError:
+    #print('Speciale {0}'. format(key))
+    
+def on_release(key):
+  print(key)
+  tasto = format(key)
+#  print(tasto)
+  if tasto == "'m'":
+    print('Menu:')
+    print('Q - Quit')
+    return True
+  if tasto == "'q'":
+    print('Termino il programma tra pochi secondi')
+    number = maxloop + 1
+    return True
+    
+def Saldo():
+ # get balance for a specific asset only (BTC)
+ #print("\nclient.get_asset_balance(asset='USDT')")
+ print("USDT DISPONIBILI: " + str(client.get_asset_balance(asset='USDT')['free']), end='')
+ print(" - BTC  DISPONIBILI: " + str(client.get_asset_balance(asset="BTC")['free']), end='')
+ print(" - BNB  DISPONIBILI: " + str(client.get_asset_balance(asset="BNB")['free']))
+ 
+def sell(q):
+ tentativi = 0
+ while True:
+  try:
+   print("Provo a vendere " + str(q))
+   order = client.order_market_sell(symbol='BTCUSDT', quantity=q)
+   return order
+  except:
+   print("Tentativo #",end='')
+   print(tentativi)
+   time.sleep(1)
+   tentativi +=1
+   order = "Errore"
+   if tentativi > 5:
+    return order
+
+def buy(q):
+ tentativi = 0
+ while True:
+  try:
+   print("Provo a comprare " + str(q))
+   order = client.order_market_buy(symbol='BTCUSDT', quantity=q)
+   return order
+  except:
+   print("Tentativo #",end='')
+   print(tentativi)
+   time.sleep(1)
+   tentativi +=1
+   order = "Errore"
+   if tentativi > 5:
+    return order
+
+
+def vendi():
+  global venduto, totalebitacquistati, attuale, guadagno, comprato, guadagnototale, totalebitacquistati, numerobitacquistati, prezzomedio, media, up, down, compro, comprato, numeroacquisti
+  print(colore.rosso + "\nVENDERE\n" + colore.reset)
+#  q = round(float(totalebitacquistati),8)
+  q = float(round(totalebitacquistati,6))
+#  order = client.order_market_sell(symbol='BTCUSDT', quantity=q)
+  esito = sell(q)
+  if q == "Errore":
+   print("C'è stato un errore durante la vendita. Controlla manualmente per favore!")
+  else:
+   #print(esito)
+   attuale = float(esito["fills"][0]["price"])
+   
+  Saldo()
+   
+  #print(type(q))
+  venduto = totalebitacquistati * attuale
+  print(f"Venduto a € {attuale} e ricavato {venduto}")
+  guadagno = venduto - comprato
+  guadagnototale = guadagnototale + guadagno
+  print(f"Guadagno: {guadagno}  Guadagno totale: {guadagnototale}   -  ", end='')
+  c = 100
+  x = lambda a, b: (a * c / b) - c
+  r = x(venduto, comprato)
+  print("%.4f" %(r), end='')
+  print("%")
+  print(f"\nAzzeramento contatori")
+  totalebitacquistati = 0
+  numeroacquisti = 0
+  prezzomedio = 0
+  media = 0
+  up = 0
+  down = 0
+  compro = 0
+  comprato = 0
+  #print(f"\n\ntotalebitacquistati: {totalebitacquistati} - numeroacquisti: {numeroacquisti} - prezzomedio: {prezzomedio} - media: {media}")
+  #print(f"up: {up} - down: {down} - compro: {compro} - comprato: {comprato}")
+  if ferma == 1:
+   quit()
+   
+  return True
+
+def compra():
+  global bitcoin, fiat, attuale, comprato, temporanea, numeroacquisti, totalebitacquistati, prezzomedio, up, down
+  print(colore.verde + "\nCOMPRO\n" + colore.reset)
+  bitcoin = fiat / attuale
+  print(bitcoin)
+#  q=round(float(bitcoin),8)
+  q = float(round(bitcoin,6))
+  print("Compro ", end='')
+  print(q)
+  #print(type(q))
+  #order = client.order_market_buy(symbol='BTCUSDT', quantity=q)
+  esito = buy(q)
+  if esito == "Errore":
+   print("C'è stato un errore durante l'acquisto. Controlla manualmente per favore!")
+  else:
+   #print(esito)
+   attuale = float(esito["fills"][0]["price"])
+   bitcoin = float(esito["fills"][0]["qty"])
+   if bitcoin * attuale < fiat:
+     print("Attualmente hai comprato %.8f al prezzo di %.2f per un totale di %.2f ma risulta minore rispetto a %.2f" %(bitcoin, attuale, bitcoin * attuale, fiat))
+     print(esito)
+   
+  Saldo()
+  comprato = bitcoin * attuale + comprato
+  temporanea = bitcoin * attuale
+  numeroacquisti = numeroacquisti + 1
+  totalebitacquistati = totalebitacquistati + bitcoin
+  prezzomedio = prezzomedio + attuale
+  print(f"{colore.reset}", end='')
+  print("A - %s - UP: %.0f  DOWN: %.0f  BTC ATTUALE: %.2f  UG: %.2f  GT: %.2f  BITCOMPRATI: %.8f  VAL.COMPRATO: %.2f" %(dt_string, up, down, attuale, guadagno, guadagnototale, totalebitacquistati, comprato))
+#  print(f"Comprato a € {attuale} per un valore di {temporanea}")
+  up = 0
+  down = 0
+  return True
+        
+print(colore.verde + "\n\nBBBBBBB   II  TTTTTTTT   BBBBBBB     OOOOO   TTTTTTTT")
+print("BB    BB  II     TT      BB    BB   OO   OO     TT")
+print("BBBBBBB   II     TT      BBBBBBB   OO     OO    TT")
+print("BB    BB  II     TT      BB    BB  OO     OO    TT")
+print("BB     BB II     TT      BB     BB OO     OO    TT")
+print("BB    BB  II     TT      BB    BB   OO   OO     TT")
+print("BBBBBBB   II     TT      BBBBBBB     OOOOO      TT          S I M U L A T O R     by Oculus.it" + colore.reset)
+print("")
+
+
+numeroacquisti = 0                # Quanti acquisti sono stati effettuati per calcolare il valore medio di acquisto
+totalebitacquistati = 0           # Totale dei BITCOIN acquistati (in BTC)
+prezzomedio = 0
+comprato = 0
+guadagnototale = 0
+guadagno = 0
+compro = 0
+fiat = 500
+maxfiat = 2500
+maxloop = 1000000
+limite = 3
+up = 0
+down = 0
+pausa = 120
+precedente = 0
+attuale = 0
+number = 0
+media = 0
+scrypto = "BTC"
+sfiat   = "USDT"
+symbol  = scrypto + sfiat
+rel = "0.6 binance trading test"
+nonvendo = 0                      # Numero di tentativi falliti nella vendita per media troppo bassa
+maxnonvendo = 3                   # Numero massimo di tentativi falliti prima di abbassare il numero LIMITE che non deve scendere sotto a: 1
+ferma = 0                         # Ferma il BOT TRADING alla prima vendita disponibile 1=STOP 0=NON STOP
+
+
+print(colore.giall + "Rel " + rel + " - "+ symbol + " by Oculus.it\n\n" + colore.reset)
+
+
+#with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
+#  print("Premi M per MENU")
+while True:
+   
+  
+  while number < maxloop:
+    config = configparser.ConfigParser()
+    config.read_file(open(r'BITBOT.ini'))
+    fiat = int(config.get('Var', 'fiat'))
+    ferma = int(config.get('Var', 'ferma'))
+    maxfiat = int(config.get('Var', 'maxfiat'))
+    limite = int(config.get('Var', 'limite'))
+    pausa = int(config.get('Var', 'pausa'))
+    maxnonvendo = int(config.get('Var', 'maxnonvendo'))
+    
+    if ferma == 1:
+      print("Alla prima vendita disponibile il programma verrà terminato!")
+  
+  
+    try:
+      #print(symbol)
+      response = client.get_symbol_ticker(symbol=symbol)
+      #response = client.get_asset_balance(asset='BTC')
+      #print(response['price'])
+      attuale = float(response['price'])
+      valoreattuale = totalebitacquistati * attuale
+    except:
+      print("Errore durante la connessione!")
+    
+    if numeroacquisti > 0:
+      media = prezzomedio / numeroacquisti
+      
+    now = datetime.now()    
+    dt_string = now.strftime("%d-%m-%Y %H:%M:%S")
+      
+      
+    if precedente == attuale:
+      print(f"{colore.giall}", end='')
+      print("= - %s - UP: %.0f  DOWN: %.0f  BTC ATTUALE: %.2f  UG: %.2f  GT: %.2f  BITCOMPRATI: %.8f  VAL.COMPRATO: %.2f  VAL.ATTUALE: %.2f  MEDIA: %.2f" %(dt_string, up, down, attuale, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, media))
+
+    if precedente < attuale:
+      up = up + 1
+      if up == 2:
+        down = 0 
+
+      print(f"{colore.verde}", end='')
+      print("^ - %s - UP: %.0f  DOWN: %.0f  BTC ATTUALE: %.2f  UG: %.2f  GT: %.2f  BITCOMPRATI: %.8f  VAL.COMPRATO: %.2f  VAL.ATTUALE: %.2f  MEDIA: %.2f" %(dt_string, up, down, attuale, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, media))
+    
+    if precedente > attuale:
+      down = down + 1
+      if down == 2:
+        up = 0
+      print(f"{colore.rosso}", end='')
+      print("v - %s - UP: %.0f  DOWN: %.0f  BTC ATTUALE: %.2f  UG: %.2f  GT: %.2f  BITCOMPRATI: %.8f  VAL.COMPRATO: %.2f  VAL.ATTUALE: %.2f  MEDIA: %.2f" %(dt_string, up, down, attuale, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, media))
+
+    if up > limite:
+      if down > 0:
+        if comprato > 0:
+          #if (attuale * totalebitacquistati) > comprato:
+          if numeroacquisti > 0:
+            confronto = prezzomedio / numeroacquisti
+            if attuale > confronto:
+              vendi()
+              compra()
+            else:
+              print(f"\nDovrei vendere ma lo farei in perdita BITCOIN ORA: {attuale}  MEDIA ACQUISTO: {confronto}\n")
+              nonvendo = nonvendo + 1
+              if nonvendo > maxnonvendo:
+                limite = limite -1
+                if limite < 1:
+                  limite = 1
+                print("Abbasso il limite di guadagni e perdite a " + str(limite))
+        else:
+          print("\nNon ci sono crypto da vendere\n")
+          compro = compro + 1
+        #up = 0
+        #down = 0
+        
+    if down > limite:
+      if up > 0:
+        print(colore.verde + "\nCOMPRARE\n" + colore.reset)
+        if comprato > 0:
+          if comprato >= maxfiat:
+            print(colore.rosso + "Non ho comprato ulteriori crypto, ho terminato i fondi a disposizione!" + colore.reset)
+          else:
+            compra()
+            print(f"Comprato ulteriori crypto a € {attuale} per un valore di {temporanea}")
+        else:
+          compra()
+          print(f"Comprato a € {attuale} per un valore di {comprato}")
+        up = 0
+        down = 0  
+
+    if number == 0:
+      compro = limite + 1
+            
+    if compro > limite:
+      if number == 0:
+        print(colore.verde+ "\nIniziamo comprando un po' di crypto! COMPROOOO!!\n" + colore.reset)
+      else:
+        print(colore.verde + "\nSembra che il mercato vada bene, COMPRO!\n" + colore.reset)
+
+      compra()        
+      compro = 0
+      #up = 0
+      #down = 0
+      #prezzomedio = prezzomedio + attuale
+    
+    time.sleep(pausa)
+    number = number + 1
+    precedente = attuale  
+    
+#    listener.join()
