@@ -1,6 +1,12 @@
 #!/usr/local/bin/python3.10
-####!/usr/bin/env python
-# This is my btc.py script.
+# Modify the previous line with your own python settings
+
+# BITBOT - Open Source Crypto Bot Trading Binance Api Based
+# Software Released as GPL 3
+# If you want to contribute please contact me at oculus@oculus.it 
+#
+# DON'T USE THIS SOFTWARE WITH REAL CRYPTOS, IT IS IN PRE-PRE-PRE-ALPHA TESTING
+
 import configparser
 import requests
 import time
@@ -11,9 +17,12 @@ from datetime import datetime
 from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
-
+# Edit api and sek variables with your BINANCE TESTING APIs
 api = ''
 sek = ''
+
+# To use the real BINANCE API TRADING change testnet to zero
+# DURING THE TEST PLEASE DON'T USE REAL BINANCE API TRADING WITH REAL CRYPTOS.
 testnet = 1
 
 try:
