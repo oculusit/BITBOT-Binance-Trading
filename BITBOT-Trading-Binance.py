@@ -25,18 +25,23 @@ sek = ''
 # DURING THE TEST PLEASE DON'T USE REAL BINANCE API TRADING WITH REAL CRYPTOS.
 testnet = 1
 
+# Perform SIMULATIONS only
+# If simulate = 1 the BOT will not trade any crypto. If simulate = 0 the BOT will trade cryptos in test o real mode.
+simulate = 1
+# SIMULATIONS NOT AVAILABLE AT THIS MOMENT
+
 try:
  client = Client(api, sek)
- if testnet = 1:
+ if testnet == 1:
   client.API_URL = 'https://testnet.binance.vision/api'
 except:
- print("Problema 1")
+ print("ERRORE: Non riesco a connettermi alle API di Binance. Controlla la connessione e che le chiavi siano corrette.")
  quit()
 
 try:
  client.get_account()
 except:
- print("Problema")
+ print("ERRORE: Non riesco a recuperare i dati del tuo account su Binance. Controlla che le chiavi siano corrette.")
  quit()
 
 class colore:
@@ -111,13 +116,16 @@ def vendi():
 #  q = round(float(totalebitacquistati),8)
   q = float(round(totalebitacquistati,6))
 #  order = client.order_market_sell(symbol='BTCUSDT', quantity=q)
-  esito = sell(q)
-  if q == "Errore":
-   print("C'è stato un errore durante la vendita. Controlla manualmente per favore!")
+  if simulate == 0:
+   esito = sell(q)
+   if q == "Errore":
+    print("C'è stato un errore durante la vendita. Controlla manualmente per favore!")
+   else:
+    #print(esito)
+    attuale = float(esito["fills"][0]["price"])
   else:
-   #print(esito)
-   attuale = float(esito["fills"][0]["price"])
-   
+    print("Simulazione non disponibile ora")
+    
   Saldo()
    
   #print(type(q))
@@ -158,17 +166,20 @@ def compra():
   print(q)
   #print(type(q))
   #order = client.order_market_buy(symbol='BTCUSDT', quantity=q)
-  esito = buy(q)
-  if esito == "Errore":
-   print("C'è stato un errore durante l'acquisto. Controlla manualmente per favore!")
+  if simulate == 0:
+   esito = buy(q)
+   if esito == "Errore":
+    print("C'è stato un errore durante l'acquisto. Controlla manualmente per favore!")
+   else:
+    #print(esito)
+    attuale = float(esito["fills"][0]["price"])
+    bitcoin = float(esito["fills"][0]["qty"])
+    if bitcoin * attuale < fiat:
+      print("Attualmente hai comprato %.8f al prezzo di %.2f per un totale di %.2f ma risulta minore rispetto a %.2f" %(bitcoin, attuale, bitcoin * attuale, fiat))
+      print(esito)
   else:
-   #print(esito)
-   attuale = float(esito["fills"][0]["price"])
-   bitcoin = float(esito["fills"][0]["qty"])
-   if bitcoin * attuale < fiat:
-     print("Attualmente hai comprato %.8f al prezzo di %.2f per un totale di %.2f ma risulta minore rispetto a %.2f" %(bitcoin, attuale, bitcoin * attuale, fiat))
-     print(esito)
-   
+   print("Simulazione non disponibile al momento!")
+      
   Saldo()
   comprato = bitcoin * attuale + comprato
   temporanea = bitcoin * attuale
