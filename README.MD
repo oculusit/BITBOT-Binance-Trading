@@ -18,7 +18,7 @@ Do not use with your real crypto.
 - Download sources from **python.org**
 - Decompress in a folder and, with the terminal, enter in the folder Python-3.10.x (where x is sub version if present)
 - Check system configuration with *./configure --enable-optimizations*
-- Compile with *make* command and ***take a coffee***, a ***beer*** or better a ***japanese green tea***
+- Compile with *make* command and ***take a coffee***, a ***beer*** or better a ***japanese green tea***. If your PC is very slow you can have your japanese green tea in Japan!
 - Install with *sudo make install* command
 - You'll find your Python 3 installation in /usr/local/bin 
 - 
