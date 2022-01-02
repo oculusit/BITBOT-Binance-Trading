@@ -6,7 +6,7 @@ Do not use with your real crypto.
 
 ### You can lost all of your cryptos using this **UNSTABLE TESTING RELEASE.**
 > I'm not responsible of yout cryptos and money!
->> USE ONLY IF YOU UNDERSTAND IT
+>> USE ONLY IF YOU UNDERSTAND IT. NOT TESTED ON REAL BINANCE ACCOUNT.
 
 ## HOW TO START
 - Download and compile Python 3 or install it from your distro's repository
@@ -18,7 +18,7 @@ Do not use with your real crypto.
 - Download sources from **python.org**
 - Decompress in a folder and, with the terminal, enter in the folder Python-3.10.x (where x is sub version if present)
 - Check system configuration with *./configure --enable-optimizations*
-- Compile with *make* command and ***take a coffee***
+- Compile with *make* command and ***take a coffee***, a ***beer*** or better a ***japanese green tea***
 - Install with *sudo make install* command
 - You'll find your Python 3 installation in /usr/local/bin 
 - 
