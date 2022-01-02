@@ -9,4 +9,5 @@ Do not use with your real crypto.
 
 ## HOW TO START
 - Configure the first line of BITBOT-Trading-Binance.py with your Python settings. Minimun Python 3 required.
+- Install requirements with "pip install" command
 - Configure api & key varables with yours from BINANCE TESTING API MODE
