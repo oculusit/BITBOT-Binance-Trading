@@ -6,7 +6,7 @@ Do not use with your real crypto.
 
 ### You can lost all of your cryptos using this **UNSTABLE TESTING RELEASE.**
 > I'm not responsible of yout cryptos and money!
->> USE ONLY IF YOU UNDERSTAND IT. NOT TESTED ON REAL BINANCE ACCOUNT.
+>> **USE ONLY IF YOU UNDERSTAND IT.** ***NOT TESTED ON REAL BINANCE ACCOUNT***.
 
 ## HOW TO START
 - Download and compile Python 3 or install it from your distro's repository
