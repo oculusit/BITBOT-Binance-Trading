@@ -159,10 +159,13 @@ def compra():
   down = 0
   return True
   
-def LeggiConfig()
- global api, sek, fiat, maxfiat, limite, pausa, ferma, nonvendo, configfile
+def LeggiConfig():
+ global api, sek, fiat, maxfiat, limite, pausa, ferma, nonvendo, configfile, testneturl
  config = configparser.ConfigParser()
- config.read_file(open(r'{configfile}'))
+ config.read_file(open(r''+configfile))
+ api = config.get('binance', 'api')
+ sek = config.get('binance', 'sek')
+ testneturl = config.get('binance', 'testneturl')
  fiat = int(config.get('Var', 'fiat'))
  ferma = int(config.get('Var', 'ferma'))
  maxfiat = int(config.get('Var', 'maxfiat'))
@@ -170,11 +173,13 @@ def LeggiConfig()
  pausa = int(config.get('Var', 'pausa'))
  maxnonvendo = int(config.get('Var', 'maxnonvendo'))
 
+rel = "0.6 binance trading test"
+
 scrypto = "BTC"
 sfiat   = "USDT"
 symbol  = scrypto + sfiat
-rel = "0.6 binance trading test"
-configfile = "/etc/bitbot/symbol.config"
+
+configfile = "/etc/bitbot/"+symbol+".config"
  
 LeggiConfig()
 
@@ -194,7 +199,8 @@ simulate = 1
 try:
  client = Client(api, sek)
  if testnet == 1:
-  client.API_URL = 'https://testnet.binance.vision/api'
+  client.API_URL = testneturl 
+  #'https://testnet.binance.vision/api'
 except:
  print("ERRORE: Non riesco a connettermi alle API di Binance. Controlla la connessione e che le chiavi siano corrette.")
  quit()
@@ -254,7 +260,7 @@ while True:
    
   
   while number < maxloop:
-	LeggiConfig()
+    LeggiConfig()
     
     if ferma == 1:
       print("Alla prima vendita disponibile il programma verrà terminato!")
