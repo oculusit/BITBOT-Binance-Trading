@@ -16,40 +16,6 @@ import json
 from datetime import datetime
 from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
-
-# Edit api and sek variables with your BINANCE TESTING APIs
-api = ''
-sek = ''
-
-# To use the real BINANCE API TRADING change testnet to zero
-# DURING THE TEST PLEASE DON'T USE REAL BINANCE API TRADING WITH REAL CRYPTOS.
-testnet = 1
-
-# Perform SIMULATIONS only
-# If simulate = 1 the BOT will not trade any crypto. If simulate = 0 the BOT will trade cryptos in test o real mode.
-simulate = 1
-# SIMULATIONS NOT AVAILABLE AT THIS MOMENT
-
-try:
- client = Client(api, sek)
- if testnet == 1:
-  client.API_URL = 'https://testnet.binance.vision/api'
-except:
- print("ERRORE: Non riesco a connettermi alle API di Binance. Controlla la connessione e che le chiavi siano corrette.")
- quit()
-
-try:
- client.get_account()
-except:
- print("ERRORE: Non riesco a recuperare i dati del tuo account su Binance. Controlla che le chiavi siano corrette.")
- quit()
-
-class colore:
-  verde = '\033[92m'
-  rosso = '\033[91m'
-  giall = '\033[93m'
-  reset = '\033[0m'
-
 def on_press(key):
   tasto = key
 #  try:
@@ -192,6 +158,59 @@ def compra():
   up = 0
   down = 0
   return True
+  
+def LeggiConfig()
+ global api, sek, fiat, maxfiat, limite, pausa, ferma, nonvendo, configfile
+ config = configparser.ConfigParser()
+ config.read_file(open(r'{configfile}'))
+ fiat = int(config.get('Var', 'fiat'))
+ ferma = int(config.get('Var', 'ferma'))
+ maxfiat = int(config.get('Var', 'maxfiat'))
+ limite = int(config.get('Var', 'limite'))
+ pausa = int(config.get('Var', 'pausa'))
+ maxnonvendo = int(config.get('Var', 'maxnonvendo'))
+
+scrypto = "BTC"
+sfiat   = "USDT"
+symbol  = scrypto + sfiat
+rel = "0.6 binance trading test"
+configfile = "/etc/bitbot/symbol.config"
+ 
+LeggiConfig()
+
+# Edit api and sek variables with your BINANCE TESTING APIs
+#api = ''
+#sek = ''
+
+# To use the real BINANCE API TRADING change testnet to zero
+# DURING THE TEST PLEASE DON'T USE REAL BINANCE API TRADING WITH REAL CRYPTOS.
+testnet = 1
+
+# Perform SIMULATIONS only
+# If simulate = 1 the BOT will not trade any crypto. If simulate = 0 the BOT will trade cryptos in test o real mode.
+simulate = 1
+# SIMULATIONS NOT AVAILABLE AT THIS MOMENT
+
+try:
+ client = Client(api, sek)
+ if testnet == 1:
+  client.API_URL = 'https://testnet.binance.vision/api'
+except:
+ print("ERRORE: Non riesco a connettermi alle API di Binance. Controlla la connessione e che le chiavi siano corrette.")
+ quit()
+
+try:
+ client.get_account()
+except:
+ print("ERRORE: Non riesco a recuperare i dati del tuo account su Binance. Controlla che le chiavi siano corrette.")
+ quit()
+
+class colore:
+  verde = '\033[92m'
+  rosso = '\033[91m'
+  giall = '\033[93m'
+  reset = '\033[0m'
+ 
         
 print(colore.verde + "\n\nBBBBBBB   II  TTTTTTTT   BBBBBBB     OOOOO   TTTTTTTT")
 print("BB    BB  II     TT      BB    BB   OO   OO     TT")
@@ -221,10 +240,6 @@ precedente = 0
 attuale = 0
 number = 0
 media = 0
-scrypto = "BTC"
-sfiat   = "USDT"
-symbol  = scrypto + sfiat
-rel = "0.6 binance trading test"
 nonvendo = 0                      # Numero di tentativi falliti nella vendita per media troppo bassa
 maxnonvendo = 3                   # Numero massimo di tentativi falliti prima di abbassare il numero LIMITE che non deve scendere sotto a: 1
 ferma = 0                         # Ferma il BOT TRADING alla prima vendita disponibile 1=STOP 0=NON STOP
@@ -239,14 +254,7 @@ while True:
    
   
   while number < maxloop:
-    config = configparser.ConfigParser()
-    config.read_file(open(r'BITBOT.ini'))
-    fiat = int(config.get('Var', 'fiat'))
-    ferma = int(config.get('Var', 'ferma'))
-    maxfiat = int(config.get('Var', 'maxfiat'))
-    limite = int(config.get('Var', 'limite'))
-    pausa = int(config.get('Var', 'pausa'))
-    maxnonvendo = int(config.get('Var', 'maxnonvendo'))
+	LeggiConfig()
     
     if ferma == 1:
       print("Alla prima vendita disponibile il programma verrà terminato!")
