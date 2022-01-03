@@ -193,7 +193,7 @@ testnet = 1
 
 # Perform SIMULATIONS only
 # If simulate = 1 the BOT will not trade any crypto. If simulate = 0 the BOT will trade cryptos in test o real mode.
-simulate = 1
+simulate = 0
 # SIMULATIONS NOT AVAILABLE AT THIS MOMENT
 
 try:
