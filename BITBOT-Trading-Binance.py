@@ -159,19 +159,28 @@ def compra():
   down = 0
   return True
   
-def LeggiConfig():
+def LeggiConfig(modo):
  global api, sek, fiat, maxfiat, limite, pausa, ferma, nonvendo, configfile, testneturl
  config = configparser.ConfigParser()
  config.read_file(open(r''+configfile))
- api = config.get('binance', 'api')
- sek = config.get('binance', 'sek')
- testneturl = config.get('binance', 'testneturl')
- fiat = int(config.get('Var', 'fiat'))
- ferma = int(config.get('Var', 'ferma'))
- maxfiat = int(config.get('Var', 'maxfiat'))
- limite = int(config.get('Var', 'limite'))
- pausa = int(config.get('Var', 'pausa'))
- maxnonvendo = int(config.get('Var', 'maxnonvendo'))
+ if modo == 1:
+  api = config.get('binance', 'api')
+  sek = config.get('binance', 'sek')
+  testneturl = config.get('binance', 'testneturl')
+  maxnonvendo = int(config.get('Var', 'maxnonvendo'))
+ if modo == 2:
+  fiat = int(config.get('Var', 'fiat'))
+  ferma = int(config.get('Var', 'ferma'))
+  maxfiat = int(config.get('Var', 'maxfiat'))
+  limite = int(config.get('Var', 'limite'))
+  pausa = int(config.get('Var', 'pausa'))
+ if modo == 3:
+  fiat = int(config.get('Var', 'fiat'))
+  ferma = int(config.get('Var', 'ferma'))
+  maxfiat = int(config.get('Var', 'maxfiat'))
+  limite = int(config.get('Var', 'limite'))
+  pausa = int(config.get('Var', 'pausa'))
+  maxnonvendo = int(config.get('Var', 'maxnonvendo'))
 
 rel = "0.6 binance trading test"
 
@@ -181,7 +190,7 @@ symbol  = scrypto + sfiat
 
 configfile = "/etc/bitbot/"+symbol+".config"
  
-LeggiConfig()
+LeggiConfig(1)
 
 # Edit api and sek variables with your BINANCE TESTING APIs
 #api = ''
@@ -260,7 +269,7 @@ while True:
    
   
   while number < maxloop:
-    LeggiConfig()
+    LeggiConfig(2)
     
     if ferma == 1:
       print("Alla prima vendita disponibile il programma verrà terminato!")
