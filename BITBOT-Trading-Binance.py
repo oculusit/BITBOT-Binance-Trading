@@ -331,7 +331,7 @@ while True:
               vendi()
               compra()
             else:
-              print(f"\nI cannot sell now because {scrypto} is actually: {attuale}  Average Buy: {confronto}\n")
+              print(f"\nI cannot sell now because {scrypto} is actually: {attuale}  lower than the Average Buy of {scrypto}: {confronto}\n")
               nonvendo = nonvendo + 1
               if nonvendo > maxnonvendo:
                 limite = limite -1
