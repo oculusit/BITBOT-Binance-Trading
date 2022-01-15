@@ -327,6 +327,7 @@ while True:
           #if (attuale * totalebitacquistati) > comprato:
           if numeroacquisti > 0:
             confronto = prezzomedio / numeroacquisti
+            print("DEBUG!! " + str(confronto-attuale))
             if attuale > confronto:
               vendi()
               compra()
