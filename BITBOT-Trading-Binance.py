@@ -134,7 +134,7 @@ def compra():
   #print(q)
   #print(type(q))
   #order = client.order_market_buy(symbol='BTCUSDT', quantity=q)
-  print("Values before buying")
+  print("Values before buying: ", end='')
   Saldo()
   if simulate == 0:
    esito = buy(q)
@@ -151,7 +151,7 @@ def compra():
   else:
    print("Simulation not available at the moment!")
    
-  print("Values after buying")   
+  print("Values after buying  ", end='')   
   Saldo()
   comprato = bitcoin * attuale + comprato
   temporanea = bitcoin * attuale
