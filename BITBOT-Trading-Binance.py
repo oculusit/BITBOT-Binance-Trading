@@ -143,7 +143,8 @@ def compra():
     bitcoin = float(esito["fills"][0]["qty"])
     if bitcoin * attuale < fiat:
       print("Now you buy %.8f at price of %.2f and the total is %.2f but is less than %.2f" %(bitcoin, attuale, bitcoin * attuale, fiat))
-      print(esito)
+      if debug == 1:
+       print(esito)
   else:
    print("Simulation not available at the moment!")
       

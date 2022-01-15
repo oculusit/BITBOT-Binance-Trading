@@ -42,6 +42,7 @@ The content is:
 	pausa = 120
 	ferma = 0
 	maxnonvendo = 0
+	debug = 0
 
 In the *[binance]* block you have to place the API (api) and the Secret (sek) passphrase that you can find, or create, in your *Binance API Section*.
 The *testneturl* can be blank if you operate on the official *Trading API* or you can fill with the testnet URL ***https://testnet.binance.vision/api***.
@@ -51,8 +52,9 @@ In the *[Var]* block you can specify the **BOT RULES**:
 - *maxfiat* is the maximum amount of *stable coin* that the bot can use.
 - *limite*  is the maximum number of times that the crypto gain or loss.
 - *pausa* is the time between a price check and another
-. *ferma* is 0 if the bot will allways operate. If *ferma* is 1 the bot will stop operating at next gain and selling of cryptos.
-. *maxnonvendo* ...
+- *ferma* is 0 if the bot will allways operate. If *ferma* is 1 the bot will stop operating at next gain and selling of cryptos.
+- *maxnonvendo* ...
+- *debug* is 1 if you want some additional debug message or 0 if you don't want it
 
 For each *BOT* you can copy a script with the name of the crypto pair. So you can run more than one *BOT* simultaneously.
 
