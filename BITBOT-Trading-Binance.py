@@ -48,7 +48,7 @@ def sell(q):
  while True:
   try:
    print("Provo a vendere " + str(q))
-   order = client.order_market_sell(symbol='BTCUSDT', quantity=q)
+   order = client.order_market_sell(symbol=symbol, quantity=q)
    return order
   except:
    print("Tentativo #",end='')
@@ -62,9 +62,9 @@ def sell(q):
 def buy(q):
  tentativi = 0
  while True:
+  print("Provo a comprare " + str(q))
   try:
-   print("Provo a comprare " + str(q))
-   order = client.order_market_buy(symbol='BTCUSDT', quantity=q)
+   order = client.order_market_buy(symbol=symbol, quantity=q)
    return order
   except:
    print("Tentativo #",end='')
