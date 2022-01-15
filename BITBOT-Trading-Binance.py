@@ -283,7 +283,7 @@ while True:
     LeggiConfig(2)
     
     if ferma == 1:
-      print("Stop at first crypto selling with gain!")
+      print(colore.reset + "Stop at first crypto selling with gain!")
   
   
     try:
@@ -294,7 +294,7 @@ while True:
       attuale = float(response['price'])
       valoreattuale = totalebitacquistati * attuale
     except:
-      print("Connection error!")
+      print(colore.reset + "Connection error!")
     
     if numeroacquisti > 0:
       media = prezzomedio / numeroacquisti
@@ -339,9 +339,9 @@ while True:
                 limite = limite -1
                 if limite < 1:
                   limite = 1
-                print("I lower the gain/loss limit at " + str(limite))
+                print(colore.reset + "I lower the gain/loss limit at " + str(limite))
         else:
-          print("\nThere are no crypto to sell\n")
+          print(colore.reset + "\nThere are no crypto to sell\n")
           compro = compro + 1
         #up = 0
         #down = 0
