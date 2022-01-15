@@ -29,6 +29,7 @@ For example, if you need to operate on the BTC/USDT pair, you need to create the
 You can start from the *BITBOT.ini* file that you can find in this repository.
 
 The content is:
+
 	[binance]
 	api = 
 	sek = 
