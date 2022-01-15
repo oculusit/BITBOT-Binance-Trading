@@ -130,7 +130,7 @@ def compra():
   print(bitcoin)
 #  q=round(float(bitcoin),8)
   q = float(round(bitcoin,6))
-  print("Buying {scrypto} ", end='')
+  print("Buying " + scrypto, end='')
   print(q)
   #print(type(q))
   #order = client.order_market_buy(symbol='BTCUSDT', quantity=q)
@@ -172,12 +172,14 @@ def LeggiConfig(modo):
   sek = config.get('binance', 'sek')
   testneturl = config.get('binance', 'testneturl')
   maxnonvendo = int(config.get('Var', 'maxsell'))
+  debug = int(config.get('Var', 'debug'))
  if modo == 2:
   fiat = int(config.get('Var', 'fiat'))
   ferma = int(config.get('Var', 'stop'))
   maxfiat = int(config.get('Var', 'maxfiat'))
   limite = int(config.get('Var', 'limit'))
   pausa = int(config.get('Var', 'pause'))
+  debug = int(config.get('Var', 'debug'))
  if modo == 3:
   fiat = int(config.get('Var', 'fiat'))
   ferma = int(config.get('Var', 'stop'))
@@ -185,6 +187,7 @@ def LeggiConfig(modo):
   limite = int(config.get('Var', 'limit'))
   pausa = int(config.get('Var', 'pause'))
   maxnonvendo = int(config.get('Var', 'maxsell'))
+  debug = int(config.get('Var', 'debug'))
 
 rel = "0.7 binance trading test"
 
