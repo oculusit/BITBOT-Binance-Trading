@@ -134,6 +134,7 @@ def compra():
   print(q)
   #print(type(q))
   #order = client.order_market_buy(symbol='BTCUSDT', quantity=q)
+  Saldo()
   if simulate == 0:
    esito = buy(q)
    if esito == "Errore":
