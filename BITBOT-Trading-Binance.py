@@ -159,7 +159,7 @@ def compra():
   totalebitacquistati = totalebitacquistati + bitcoin
   prezzomedio = prezzomedio + attuale
   print(f"{colore.reset}", end='')
-  print("\nB - %s - UP: %.0f  DOWN: %.0f  ACTUAL CRYPTO VALUE: %.2f  LG: %.2f  TG: %.2f  \nTOTAL CRYPTO BUYED: %.8f  TOTAL VALUE BUYED: %.2f" %(dt_string, up, down, attuale, guadagno, guadagnototale, totalebitacquistati, comprato))
+  print("\nB - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  \nTOTAL CRYPTO BUYED: %.8f  TOTAL VALUE BUYED: %.2f  ACTUAL CRYPTO VALUE: %.2f  " %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, attuale))
 #  print(f"Comprato a € {attuale} per un valore di {temporanea}")
   up = 0
   down = 0
@@ -305,7 +305,7 @@ while True:
       
     if precedente == attuale:
       print(f"{colore.giall}", end='')
-      print("\n= - %s - UP: %.0f  DOWN: %.0f  ACTUAL CRYPTO VALUE: %.2f  LG: %.2f  TG: %.2f  \nTOTAL CRYPTO BUYED: %.8f  TOTAL VALUE BUYED: %.2f  ACTUAL VALUE: %.2f  AVERAGE: %.2f" %(dt_string, up, down, attuale, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, media))
+      print("\n= - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  \nTOTAL CRYPTO BUYED: %.8f  TOTAL VALUE BUYED: %.2f  ACTUAL VALUE: %.2f  ACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media))
 
     if precedente < attuale:
       up = up + 1
@@ -313,14 +313,14 @@ while True:
         down = 0 
 
       print(f"{colore.verde}", end='')
-      print("\n^ - %s - UP: %.0f  DOWN: %.0f  ACTUAL CRYPTO VALUE: %.2f  LG: %.2f  TG: %.2f  \nTOTAL CRYPTO BUYED: %.8f  TOTAL VALUE BUYED: %.2f  ACTUAL VALUE: %.2f  AVERAGE: %.2f" %(dt_string, up, down, attuale, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, media))
+      print("\n^ - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  \nTOTAL CRYPTO BUYED: %.8f  TOTAL VALUE BUYED: %.2f  ACTUAL VALUE: %.2f  ACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media))
     
     if precedente > attuale:
       down = down + 1
       if down == 2:
         up = 0
       print(f"{colore.rosso}", end='')
-      print("\nv - %s - UP: %.0f  DOWN: %.0f  ACTUAL CRYPTO VALUE: %.2f  LG: %.2f  TG: %.2f  \nTOTAL CRYPTO BUYED: %.8f  TOTAL VALUE BUYED: %.2f  ACTUAL VALUE: %.2f  AVERAGE: %.2f" %(dt_string, up, down, attuale, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, media))
+      print("\nv - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  \nTOTAL CRYPTO BUYED: %.8f  TOTAL VALUE BUYED: %.2f  ACTUAL VALUE: %.2f  ACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media))
 
     if up > limite:
       if down > 0:
