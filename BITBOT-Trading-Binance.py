@@ -186,7 +186,7 @@ def LeggiConfig(modo):
   pausa = int(config.get('Var', 'pause'))
   maxnonvendo = int(config.get('Var', 'maxsell'))
 
-rel = "0.6 binance trading test"
+rel = "0.7 binance trading test"
 
 scrypto = "BTC"
 sfiat   = "USDT"
