@@ -48,4 +48,7 @@ The *testneturl* can be blank if you operate on the official *Trading API* or yo
 In the *[Var]* block you can specify the **BOT RULES**:
 - *fiat* is the amount of *stable coin* to buy each time the bot want to buy a crypto asset.
 - *maxfiat* is the maximum amount of *stable coin* that the bot can use.
-- *limite*  is the maximum 
+- *limite*  is the maximum number of times that the crypto gain or loss.
+- *pausa* is the time between a price check and another
+. *ferma* is 0 if the bot will allways operate. If *ferma* is 1 the bot will stop operating at next gain and selling of cryptos.
+. *maxnonvendo* ...
