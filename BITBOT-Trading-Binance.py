@@ -348,7 +348,7 @@ while True:
         
     if down > limite:
       if up > 0:
-        print(colore.verde + "\nB U Y\n" + colore.reset)
+        #print(colore.verde + "\nB U Y\n" + colore.reset)
         if comprato > 0:
           if comprato >= maxfiat:
             print(colore.rosso + "No {sfiat} available to buy cryptos!" + colore.reset)
