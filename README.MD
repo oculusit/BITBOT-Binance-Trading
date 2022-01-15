@@ -52,3 +52,6 @@ In the *[Var]* block you can specify the **BOT RULES**:
 - *pausa* is the time between a price check and another
 . *ferma* is 0 if the bot will allways operate. If *ferma* is 1 the bot will stop operating at next gain and selling of cryptos.
 . *maxnonvendo* ...
+
+For each *BOT* you can copy a script with the name of the crypto pair. So you can run more than one *BOT* simultaneously.
+
