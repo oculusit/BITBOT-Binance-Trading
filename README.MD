@@ -29,18 +29,18 @@ For example, if you need to operate on the BTC/USDT pair, you need to create the
 You can start from the *BITBOT.ini* file that you can find in this repository.
 
 The content is:
->[binance]
->api = 
->sek = 
->testneturl = 
->
->[Var]
->fiat = 25
->maxfiat = 2500
->limite = 3
->pausa = 120
->ferma = 0
->maxnonvendo = 0
+	[binance]
+	api = 
+	sek = 
+	testneturl = 
+	
+	[Var]
+	fiat = 25
+	maxfiat = 2500
+	limite = 3
+	pausa = 120
+	ferma = 0
+	maxnonvendo = 0
 
 In the *[binance]* block you have to place the API (api) and the Secret (sek) passphrase that you can find, or create, in your *Binance API Section*.
 The *testneturl* can be blank if you operate on the official *Trading API* or you can fill with the testnet URL ***https://testnet.binance.vision/api***.
@@ -55,3 +55,4 @@ In the *[Var]* block you can specify the **BOT RULES**:
 
 For each *BOT* you can copy a script with the name of the crypto pair. So you can run more than one *BOT* simultaneously.
 
+You can run each bot manually in a dedicated terminal window.
