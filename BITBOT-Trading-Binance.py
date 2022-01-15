@@ -242,7 +242,8 @@ print("BBBBBBB   II     TT      BBBBBBB   OO     OO    TT")
 print("BB    BB  II     TT      BB    BB  OO     OO    TT")
 print("BB     BB II     TT      BB     BB OO     OO    TT")
 print("BB    BB  II     TT      BB    BB   OO   OO     TT")
-print("BBBBBBB   II     TT      BBBBBBB     OOOOO      TT          C R Y P T O - A U T O T R A D E R     by Oculus.it" + colore.reset)
+print("BBBBBBB   II     TT      BBBBBBB     OOOOO      TT          C R Y P T O - A U T O T R A D E R ")
+print("                                                                       by Oculus.it" + colore.reset)
 print("")
 
 
