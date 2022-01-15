@@ -127,8 +127,8 @@ def compra():
   global bitcoin, fiat, attuale, comprato, temporanea, numeroacquisti, totalebitacquistati, prezzomedio, up, down
   print(colore.verde + "\nB U Y\n" + colore.reset)
   bitcoin = fiat / attuale
-  print(bitcoin)
-#  q=round(float(bitcoin),8)
+  #print(bitcoin)
+  #q=round(float(bitcoin),8)
   q = float(round(bitcoin,6))
   #print("Buying " + scrypto, end='')
   #print(q)
