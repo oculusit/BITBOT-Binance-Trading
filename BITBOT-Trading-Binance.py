@@ -337,16 +337,16 @@ while True:
         
     if down > limite:
       if up > 0:
-        print(colore.verde + "\nCOMPRARE\n" + colore.reset)
+        print(colore.verde + "\nB U Y\n" + colore.reset)
         if comprato > 0:
           if comprato >= maxfiat:
-            print(colore.rosso + "Non ho comprato ulteriori crypto, ho terminato i fondi a disposizione!" + colore.reset)
+            print(colore.rosso + "No {sfiat} available to buy cryptos!" + colore.reset)
           else:
             compra()
-            print(f"Comprato ulteriori crypto a € {attuale} per un valore di {temporanea}")
+            print(f"Buyed {scrypto} at {sfiat} {attuale} - Total value {temporanea}")
         else:
           compra()
-          print(f"Comprato a € {attuale} per un valore di {comprato}")
+          print(f"Buyed {scrypto} at {sfiat} {attuale} - Total value {comprato}")
         up = 0
         down = 0  
 
@@ -355,9 +355,9 @@ while True:
             
     if compro > limite:
       if number == 0:
-        print(colore.verde+ "\nIniziamo comprando un po' di crypto! COMPROOOO!!\n" + colore.reset)
+        print(colore.verde+ "\nStarting buying some {scrypto}! B U Y!!\n" + colore.reset)
       else:
-        print(colore.verde + "\nSembra che il mercato vada bene, COMPRO!\n" + colore.reset)
+        print(colore.verde + "\nMarket is good now, B U Y!!\n" + colore.reset)
 
       compra()        
       compro = 0
