@@ -37,21 +37,22 @@ def on_release(key):
     return True
     
 def Saldo():
+ global sfiat, scrypto
  # get balance for a specific asset only (BTC)
  #print("\nclient.get_asset_balance(asset='USDT')")
- print("USDT DISPONIBILI: " + str(client.get_asset_balance(asset='USDT')['free']), end='')
- print(" - BTC  DISPONIBILI: " + str(client.get_asset_balance(asset="BTC")['free']), end='')
- print(" - BNB  DISPONIBILI: " + str(client.get_asset_balance(asset="BNB")['free']))
+ print("USDT AVAILABLE: " + str(client.get_asset_balance(asset=sfiat)['free']), end='')
+ print(" - BTC  AVAILABLE: " + str(client.get_asset_balance(asset=scrypto)['free']), end='')
+ print(" - BNB  AVAILABLE: " + str(client.get_asset_balance(asset="BNB")['free']))
  
 def sell(q):
  tentativi = 0
  while True:
   try:
-   print("Provo a vendere " + str(q))
+   print("Selling " + scrypto + " " + str(q))
    order = client.order_market_sell(symbol=symbol, quantity=q)
    return order
   except:
-   print("Tentativo #",end='')
+   print("Error Selling - Try #",end='')
    print(tentativi)
    time.sleep(1)
    tentativi +=1
@@ -62,12 +63,12 @@ def sell(q):
 def buy(q):
  tentativi = 0
  while True:
-  print("Provo a comprare " + str(q))
+  print("Buying " + scrypto + " " + str(q))
   try:
    order = client.order_market_buy(symbol=symbol, quantity=q)
    return order
   except:
-   print("Tentativo #",end='')
+   print("Error Buying - Try #",end='')
    print(tentativi)
    time.sleep(1)
    tentativi +=1
@@ -78,34 +79,34 @@ def buy(q):
 
 def vendi():
   global venduto, totalebitacquistati, attuale, guadagno, comprato, guadagnototale, totalebitacquistati, numerobitacquistati, prezzomedio, media, up, down, compro, comprato, numeroacquisti
-  print(colore.rosso + "\nVENDERE\n" + colore.reset)
+  print(colore.rosso + "\nS E L L I N G\n" + colore.reset)
 #  q = round(float(totalebitacquistati),8)
   q = float(round(totalebitacquistati,6))
 #  order = client.order_market_sell(symbol='BTCUSDT', quantity=q)
   if simulate == 0:
    esito = sell(q)
    if q == "Errore":
-    print("C'è stato un errore durante la vendita. Controlla manualmente per favore!")
+    print("Error during selling. Please, perform a manual check!!")
    else:
     #print(esito)
     attuale = float(esito["fills"][0]["price"])
   else:
-    print("Simulazione non disponibile ora")
+    print("Simulation not available at the moment!")
     
   Saldo()
    
   #print(type(q))
   venduto = totalebitacquistati * attuale
-  print(f"Venduto a € {attuale} e ricavato {venduto}")
+  print(f"Selled at {sfiat} {attuale} and gained {venduto}")
   guadagno = venduto - comprato
   guadagnototale = guadagnototale + guadagno
-  print(f"Guadagno: {guadagno}  Guadagno totale: {guadagnototale}   -  ", end='')
+  print(f"Actual Gain: {sfiat} {guadagno}  Total Gain: {sfiat} {guadagnototale}   -  ", end='')
   c = 100
   x = lambda a, b: (a * c / b) - c
   r = x(venduto, comprato)
   print("%.4f" %(r), end='')
   print("%")
-  print(f"\nAzzeramento contatori")
+  print(f"\nResetting counters")
   totalebitacquistati = 0
   numeroacquisti = 0
   prezzomedio = 0
@@ -123,28 +124,28 @@ def vendi():
 
 def compra():
   global bitcoin, fiat, attuale, comprato, temporanea, numeroacquisti, totalebitacquistati, prezzomedio, up, down
-  print(colore.verde + "\nCOMPRO\n" + colore.reset)
+  print(colore.verde + "\nB U Y\n" + colore.reset)
   bitcoin = fiat / attuale
   print(bitcoin)
 #  q=round(float(bitcoin),8)
   q = float(round(bitcoin,6))
-  print("Compro ", end='')
+  print("Buying {scrypto} ", end='')
   print(q)
   #print(type(q))
   #order = client.order_market_buy(symbol='BTCUSDT', quantity=q)
   if simulate == 0:
    esito = buy(q)
    if esito == "Errore":
-    print("C'è stato un errore durante l'acquisto. Controlla manualmente per favore!")
+    print("Error during buying. Please perform a manual check!!")
    else:
     #print(esito)
     attuale = float(esito["fills"][0]["price"])
     bitcoin = float(esito["fills"][0]["qty"])
     if bitcoin * attuale < fiat:
-      print("Attualmente hai comprato %.8f al prezzo di %.2f per un totale di %.2f ma risulta minore rispetto a %.2f" %(bitcoin, attuale, bitcoin * attuale, fiat))
+      print("Now you buy %.8f at price of %.2f and the total is %.2f but is less than %.2f" %(bitcoin, attuale, bitcoin * attuale, fiat))
       print(esito)
   else:
-   print("Simulazione non disponibile al momento!")
+   print("Simulation not available at the moment!")
       
   Saldo()
   comprato = bitcoin * attuale + comprato
@@ -153,7 +154,7 @@ def compra():
   totalebitacquistati = totalebitacquistati + bitcoin
   prezzomedio = prezzomedio + attuale
   print(f"{colore.reset}", end='')
-  print("A - %s - UP: %.0f  DOWN: %.0f  BTC ATTUALE: %.2f  UG: %.2f  GT: %.2f  BITCOMPRATI: %.8f  VAL.COMPRATO: %.2f" %(dt_string, up, down, attuale, guadagno, guadagnototale, totalebitacquistati, comprato))
+  print("B - %s - UP: %.0f  DOWN: %.0f  NOW CRYPTO: %.2f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BUYED: %.8f  TOTAL VALUE BUYED: %.2f" %(dt_string, up, down, attuale, guadagno, guadagnototale, totalebitacquistati, comprato))
 #  print(f"Comprato a € {attuale} per un valore di {temporanea}")
   up = 0
   down = 0
@@ -211,13 +212,13 @@ try:
   client.API_URL = testneturl 
   #'https://testnet.binance.vision/api'
 except:
- print("ERRORE: Non riesco a connettermi alle API di Binance. Controlla la connessione e che le chiavi siano corrette.")
+ print("ERROR: Cannot connect to Binance APIs. Check your internet connection and your keys activation.")
  quit()
 
 try:
  client.get_account()
 except:
- print("ERRORE: Non riesco a recuperare i dati del tuo account su Binance. Controlla che le chiavi siano corrette.")
+ print("ERROR: Cannot connect to Binance APIs. Check your internet connection and your keys activation.")
  quit()
 
 class colore:
@@ -233,7 +234,7 @@ print("BBBBBBB   II     TT      BBBBBBB   OO     OO    TT")
 print("BB    BB  II     TT      BB    BB  OO     OO    TT")
 print("BB     BB II     TT      BB     BB OO     OO    TT")
 print("BB    BB  II     TT      BB    BB   OO   OO     TT")
-print("BBBBBBB   II     TT      BBBBBBB     OOOOO      TT          S I M U L A T O R     by Oculus.it" + colore.reset)
+print("BBBBBBB   II     TT      BBBBBBB     OOOOO      TT          C R Y P T O - A U T O T R A D E R     by Oculus.it" + colore.reset)
 print("")
 
 
@@ -272,7 +273,7 @@ while True:
     LeggiConfig(2)
     
     if ferma == 1:
-      print("Alla prima vendita disponibile il programma verrà terminato!")
+      print("Stop at first crypto selling with gain!")
   
   
     try:
@@ -283,7 +284,7 @@ while True:
       attuale = float(response['price'])
       valoreattuale = totalebitacquistati * attuale
     except:
-      print("Errore durante la connessione!")
+      print("Connection error!")
     
     if numeroacquisti > 0:
       media = prezzomedio / numeroacquisti
@@ -294,7 +295,7 @@ while True:
       
     if precedente == attuale:
       print(f"{colore.giall}", end='')
-      print("= - %s - UP: %.0f  DOWN: %.0f  BTC ATTUALE: %.2f  UG: %.2f  GT: %.2f  BITCOMPRATI: %.8f  VAL.COMPRATO: %.2f  VAL.ATTUALE: %.2f  MEDIA: %.2f" %(dt_string, up, down, attuale, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, media))
+      print("= - %s - UP: %.0f  DOWN: %.0f  ACTUAL CRYPTO VALUE: %.2f  UG: %.2f  GT: %.2f  TOTAL CRYPTO BUYED: %.8f  TOTAL VALUE BUYED: %.2f  ACTUAL VALUE: %.2f  AVERAGE: %.2f" %(dt_string, up, down, attuale, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, media))
 
     if precedente < attuale:
       up = up + 1
@@ -302,14 +303,14 @@ while True:
         down = 0 
 
       print(f"{colore.verde}", end='')
-      print("^ - %s - UP: %.0f  DOWN: %.0f  BTC ATTUALE: %.2f  UG: %.2f  GT: %.2f  BITCOMPRATI: %.8f  VAL.COMPRATO: %.2f  VAL.ATTUALE: %.2f  MEDIA: %.2f" %(dt_string, up, down, attuale, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, media))
+      print("^ - %s - UP: %.0f  DOWN: %.0f  ACTUAL CRYPTO VALUE: %.2f  UG: %.2f  GT: %.2f  TOTAL CRYPTO BUYED: %.8f  TOTAL VALUE BUYED: %.2f  ACTUAL VALUE: %.2f  AVERAGE: %.2f" %(dt_string, up, down, attuale, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, media))
     
     if precedente > attuale:
       down = down + 1
       if down == 2:
         up = 0
       print(f"{colore.rosso}", end='')
-      print("v - %s - UP: %.0f  DOWN: %.0f  BTC ATTUALE: %.2f  UG: %.2f  GT: %.2f  BITCOMPRATI: %.8f  VAL.COMPRATO: %.2f  VAL.ATTUALE: %.2f  MEDIA: %.2f" %(dt_string, up, down, attuale, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, media))
+      print("v - %s - UP: %.0f  DOWN: %.0f  ACTUAL CRYPTO VALUE: %.2f  UG: %.2f  GT: %.2f  TOTAL CRYPTO BUYED: %.8f  TOTAL VALUE BUYED: %.2f  ACTUAL VALUE: %.2f  AVERAGE: %.2f" %(dt_string, up, down, attuale, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, media))
 
     if up > limite:
       if down > 0:
@@ -321,15 +322,15 @@ while True:
               vendi()
               compra()
             else:
-              print(f"\nDovrei vendere ma lo farei in perdita BITCOIN ORA: {attuale}  MEDIA ACQUISTO: {confronto}\n")
+              print(f"\nI cannot sell now because {scrypto} is actually: {attuale}  Average Buy: {confronto}\n")
               nonvendo = nonvendo + 1
               if nonvendo > maxnonvendo:
                 limite = limite -1
                 if limite < 1:
                   limite = 1
-                print("Abbasso il limite di guadagni e perdite a " + str(limite))
+                print("I lower the gain/loss limit at " + str(limite))
         else:
-          print("\nNon ci sono crypto da vendere\n")
+          print("\nThere are no crypto to sell\n")
           compro = compro + 1
         #up = 0
         #down = 0
