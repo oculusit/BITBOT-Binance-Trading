@@ -3,6 +3,7 @@
 
 # BITBOT - Open Source Crypto Bot Trading Binance Api Based
 # Software Released as GPL 3
+#
 # If you want to contribute please contact me at oculus@oculus.it 
 #
 # DON'T USE THIS SOFTWARE WITH REAL CRYPTOS, IT IS IN PRE-PRE-PRE-ALPHA TESTING
@@ -142,7 +143,7 @@ def compra():
     attuale = float(esito["fills"][0]["price"])
     bitcoin = float(esito["fills"][0]["qty"])
     if bitcoin * attuale < fiat:
-      print("Now you buy %.8f at price of %.2f and the total is %.2f but is less than %.2f" %(bitcoin, attuale, bitcoin * attuale, fiat))
+      print("Now buying %.8f at price of %.2f and the total is %.2f but is less than %.2f" %(bitcoin, attuale, bitcoin * attuale, fiat))
       if debug == 1:
        print(esito)
   else:
