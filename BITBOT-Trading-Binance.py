@@ -130,10 +130,11 @@ def compra():
   print(bitcoin)
 #  q=round(float(bitcoin),8)
   q = float(round(bitcoin,6))
-  print("Buying " + scrypto, end='')
-  print(q)
+  #print("Buying " + scrypto, end='')
+  #print(q)
   #print(type(q))
   #order = client.order_market_buy(symbol='BTCUSDT', quantity=q)
+  print("Values before buying")
   Saldo()
   if simulate == 0:
    esito = buy(q)
@@ -149,7 +150,8 @@ def compra():
        print(esito)
   else:
    print("Simulation not available at the moment!")
-      
+   
+  print("Values after buying")   
   Saldo()
   comprato = bitcoin * attuale + comprato
   temporanea = bitcoin * attuale
@@ -265,6 +267,7 @@ media = 0                         # Average
 nonvendo = 0                      # Numero di tentativi falliti nella vendita per media troppo bassa
 maxnonvendo = 3                   # Numero massimo di tentativi falliti prima di abbassare il numero LIMITE che non deve scendere sotto a: 1
 ferma = 0                         # Ferma il BOT TRADING alla prima vendita disponibile 1=STOP 0=NON STOP
+debug = 0						  # Enable (1) or disable (0) debug messages
 
 
 print(colore.giall + "Rel " + rel + " - "+ symbol + " by Oculus.it\n\n" + colore.reset)
