@@ -167,20 +167,20 @@ def LeggiConfig(modo):
   api = config.get('binance', 'api')
   sek = config.get('binance', 'sek')
   testneturl = config.get('binance', 'testneturl')
-  maxnonvendo = int(config.get('Var', 'maxnonvendo'))
+  maxnonvendo = int(config.get('Var', 'maxsell'))
  if modo == 2:
   fiat = int(config.get('Var', 'fiat'))
-  ferma = int(config.get('Var', 'ferma'))
+  ferma = int(config.get('Var', 'stop'))
   maxfiat = int(config.get('Var', 'maxfiat'))
-  limite = int(config.get('Var', 'limite'))
-  pausa = int(config.get('Var', 'pausa'))
+  limite = int(config.get('Var', 'limit'))
+  pausa = int(config.get('Var', 'pause'))
  if modo == 3:
   fiat = int(config.get('Var', 'fiat'))
-  ferma = int(config.get('Var', 'ferma'))
+  ferma = int(config.get('Var', 'stop'))
   maxfiat = int(config.get('Var', 'maxfiat'))
-  limite = int(config.get('Var', 'limite'))
-  pausa = int(config.get('Var', 'pausa'))
-  maxnonvendo = int(config.get('Var', 'maxnonvendo'))
+  limite = int(config.get('Var', 'limit'))
+  pausa = int(config.get('Var', 'pause'))
+  maxnonvendo = int(config.get('Var', 'maxsell'))
 
 rel = "0.6 binance trading test"
 
