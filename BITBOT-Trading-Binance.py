@@ -179,7 +179,7 @@ def LeggiConfig(modo):
   fiat = int(config.get('Var', 'fiat'))
   ferma = int(config.get('Var', 'stop'))
   maxfiat = int(config.get('Var', 'maxfiat'))
-  limite = int(config.get('Var', 'limit'))
+  #limite = int(config.get('Var', 'limit'))
   pausa = int(config.get('Var', 'pause'))
   debug = int(config.get('Var', 'debug'))
  if modo == 3:
@@ -336,7 +336,7 @@ while True:
               print(f"\nI cannot sell now because {scrypto} is actually: {attuale}  lower than the Average Buy of {scrypto}: {confronto}\n")
               nonvendo = nonvendo + 1
               if nonvendo > maxnonvendo:
-                limite = limite -1
+                limite = limite - 1
                 if limite < 1:
                   limite = 1
                 print(colore.reset + "I lower the gain/loss limit at " + str(limite))
