@@ -151,7 +151,7 @@ def compra():
   else:
    print("Simulation not available at the moment!")
    
-  print("Values after buying  ", end='')   
+  print("Values after buying:  ", end='')   
   Saldo()
   comprato = bitcoin * attuale + comprato
   temporanea = bitcoin * attuale
