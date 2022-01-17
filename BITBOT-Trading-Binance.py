@@ -247,9 +247,9 @@ print("                                                                       by
 print("")
 
 
-numeroacquisti = 0                # Quanti acquisti sono stati effettuati per calcolare il valore medio di acquisto
-totalebitacquistati = 0           # Totale dei BITCOIN acquistati (in BTC)
-prezzomedio = 0                   # Prezzo medio di acquisto delle Crypto
+numeroacquisti = 0                # How many buying to calcolate the average
+totalebitacquistati = 0           # Total crypto bought
+prezzomedio = 0                   # Crypto average value
 comprato = 0                      #
 guadagnototale = 0                # Total gained
 guadagno = 0                      # Actual gain
@@ -322,11 +322,10 @@ while True:
       print(f"{colore.rosso}", end='')
       print("\nv - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL VALUE: %.2f  ACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media))
 
-    if up > limite:
-      if down > 0:
-        if comprato > 0:
-          #if (attuale * totalebitacquistati) > comprato:
-          if numeroacquisti > 0:
+    if up > limite:                                               # Controlla se il numero di UP supera il LIMITE impostato
+      if down > 0:                                                # Controlla che ci sia stato almeno un DOWN ad indicare che il mercato era salito ed ora scende 
+        if comprato > 0:                                          # Controlla che siano stati comprate crypto
+          if numeroacquisti > 0:                                  # Check if numeroacquisti is 
             confronto = prezzomedio / numeroacquisti
             print("DEBUG!! " + str(confronto-attuale))
             if attuale > confronto:
