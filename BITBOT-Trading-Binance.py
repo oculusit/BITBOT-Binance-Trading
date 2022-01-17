@@ -191,7 +191,7 @@ def LeggiConfig(modo):
   maxnonvendo = int(config.get('Var', 'maxsell'))
   debug = int(config.get('Var', 'debug'))
 
-rel = "0.7 binance trading test"
+rel = "0.8 binance trading test"
 
 scrypto = "BTC"
 sfiat   = "USDT"
@@ -332,7 +332,7 @@ while True:
         vendi()
         compra()
         
-    if actualgain < 0.1:
+    if actualgain < -0.1:
         compra()
         
     if up > limite:                                               # Controlla se il numero di UP supera il LIMITE impostato
