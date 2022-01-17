@@ -340,11 +340,11 @@ while True:
     else:
      actualgain = 0
     
-    if actualgain > 0.5:
+    if actualgain > gainpc:
         vendi()
         compra()
         
-    if actualgain < -0.8:
+    if actualgain < losspc:
         compra()
         
     if up > limite:                                               # Controlla se il numero di UP supera il LIMITE impostato
