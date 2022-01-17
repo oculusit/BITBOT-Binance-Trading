@@ -322,6 +322,16 @@ while True:
       print(f"{colore.rosso}", end='')
       print("\nv - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL VALUE: %.2f  ACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media))
 
+    actualgain = 100 - ((valoreattuale*100)/comprato)
+    print("\nActual Gain: {actualgain} %")
+    
+    if actualgain > 0.05:
+        vendi()
+        compra()
+        
+    if actualgain < 0.1:
+        compra()
+        
     if up > limite:                                               # Controlla se il numero di UP supera il LIMITE impostato
       if down > 0:                                                # Controlla che ci sia stato almeno un DOWN ad indicare che il mercato era salito ed ora scende 
         if comprato > 0:                                          # Controlla che siano stati comprate crypto
