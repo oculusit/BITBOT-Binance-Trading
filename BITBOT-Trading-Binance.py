@@ -175,6 +175,16 @@ def LeggiConfig(modo):
   testneturl = config.get('binance', 'testneturl')
   maxnonvendo = int(config.get('Var', 'maxsell'))
   debug = int(config.get('Var', 'debug'))
+  fiat = int(config.get('Var', 'fiat'))
+  ferma = int(config.get('Var', 'stop'))
+  maxfiat = int(config.get('Var', 'maxfiat'))
+  limite = int(config.get('Var', 'limit'))
+  pausa = int(config.get('Var', 'pause'))
+  maxnonvendo = int(config.get('Var', 'maxsell'))
+  debug = int(config.get('Var', 'debug'))
+  gainpc = int(config.get('Var', 'gainpc'))
+  losspc = int(config.get('Var', 'losspc'))
+
  if modo == 2:
   fiat = int(config.get('Var', 'fiat'))
   ferma = int(config.get('Var', 'stop'))
@@ -190,7 +200,9 @@ def LeggiConfig(modo):
   pausa = int(config.get('Var', 'pause'))
   maxnonvendo = int(config.get('Var', 'maxsell'))
   debug = int(config.get('Var', 'debug'))
-
+  gainpc = int(config.get('Var', 'gainpc'))
+  losspc = int(config.get('Var', 'losspc'))
+  
 rel = "0.8 binance trading test"
 
 scrypto = "BTC"
@@ -328,11 +340,11 @@ while True:
     else:
      actualgain = 0
     
-    if actualgain > 0.05:
+    if actualgain > 0.5:
         vendi()
         compra()
         
-    if actualgain < -0.1:
+    if actualgain < -0.8:
         compra()
         
     if up > limite:                                               # Controlla se il numero di UP supera il LIMITE impostato
