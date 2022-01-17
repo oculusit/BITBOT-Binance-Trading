@@ -324,7 +324,7 @@ while True:
 
     if comprato > 0:                                      # if there are crypto bought then...
      actualgain = 100 - ((valoreattuale*100)/comprato)
-     print("\nActual Gain: {actualgain} %")
+     print(f"\nActual Gain: {actualgain} %")
     else:
      actualgain = 0
     
