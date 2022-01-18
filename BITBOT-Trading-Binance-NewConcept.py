@@ -316,14 +316,6 @@ while True:
     #   Se il guadagno sarà maggiore di "gainpc" venderò e comprerò di nuovo
     #   Se il guadagno sarà minore di   "losspc" acquisterò ancora per mediare il prezzo
           
-    if comprato > 0:                                      # if there are crypto bought then...
-     actualgain = ((valoreattuale*100)/comprato) - 100
-     print(f"\n- ACTUAL +G/-L: {actualgain} %")
-    else:
-     actualgain = 0
-     compra()
-     up = 0
-     down = 0
 
     if actualgain > 0:
      gainsm = gainsm + actualgain
@@ -334,20 +326,21 @@ while True:
      losscn = losscn + 1
      lossav = losssm / losscn      
     
-    print(f"- GAIN AVERAGE: {gainav} %\n- LOSS AVERAGE: {lossav} %\n- GAIN LIMIT  : {gainpc}\n- LOSS LIMIT  : {losspc}")
-
     if actualgain > gainpc:
         vendi()
         compra()
-        up = 0
-        down = 0
         
     if actualgain < losspc:
         compra()
-        up = 0
-        down = 0
+
+    if comprato > 0:                                      # if there are crypto bought then...
+     actualgain = ((valoreattuale*100)/comprato) - 100
+     print(f"\n- ACTUAL +G/-L: {actualgain} %")
+    else:
+     actualgain = 0
+     compra()
         
-      
+    print(f"- GAIN AVERAGE: {gainav} %\n- LOSS AVERAGE: {lossav} %\n- GAIN LIMIT  : {gainpc}\n- LOSS LIMIT  : {losspc}")      
       
       
     # Stampo a video le variazioni attuali  
