@@ -354,56 +354,7 @@ while True:
       print(f"==========> Changing LOSS % to {lossav}")
       down = 0
       
-    #if up > limite:
-	#  up = 0
-		
-	#if down > limite:
-	#  down = 0
-    
-        
-    #if up > limite and down > 0 and numeroacquisti > 0:
-    #  confronto = prezzomedio / numeroacquisti
-    #  if debug == 1:
-    #    print("DEBUG!! " + str(attuale-confronto))
-      
-    #  if attuale > confronto:
-    #    vendi()
-    #    compra()
-    #    down = 0
-    #    up = 0
-    #  else:
-    #   print(f"\nI cannot sell now because {scrypto} is actually: {attuale}  lower than the Average Buy of {scrypto}: {confronto}\n")
-    #   nonvendo = nonvendo + 1
-    #   if nonvendo > maxnonvendo:
-    #    limite = limite - 1
-    #    if limite < 1:
-    #     limite = 1
-    #     print(colore.reset + "I lower the gain/loss limit at " + str(limite))
-
-    #if down > limite and up > 0 and comprato > 0:
-    # if comprato >= maxfiat:
-    #  print(colore.rosso + f"No {sfiat} available to buy cryptos!" + colore.reset)
-    # else:
-    #  compra()
-    #  print(f"Bought {scrypto} at {sfiat} {attuale} - Total value {temporanea}")
-    #else:
-    # compra()
-    # print(f"Bought {scrypto} at {sfiat} {attuale} - Total value {comprato}")
-    # up = 0
-    # down = 0  
-
-    #if number == 0:
-    # compro = limite + 1
-            
-    #if compro > limite:
-    # if number == 0:
-    #  print(colore.verde+ "\nStarting buying some crypto! B U Y!!\n" + colore.reset)
-    # else:
-    #  print(colore.verde + "\nMarket is good now, B U Y!!\n" + colore.reset)
-
-    #  compra()        
-    #  compro = 0
-    
+    # Pause, increase counter and swap the previous crypto value with the actual one    
     time.sleep(pausa)
     number = number + 1
     precedente = attuale  
