@@ -349,16 +349,18 @@ while True:
 
     
     if up > limite:	
-      gainpc = gainav
-      print(f"==========> Changing GAIN % to {gainav}")
-      up = 0
-      down = 0
+	  if gainav > 0:
+        gainpc = gainav
+        print(f"==========> Changing GAIN % to {gainav}")
+        up = 0
+        down = 0
       
     if down > limite:
-      losspc = lossav
-      print(f"==========> Changing LOSS % to {lossav}")
-      down = 0
-      up = 0
+	  if lossav > =:
+        losspc = lossav
+        print(f"==========> Changing LOSS % to {lossav}")
+        down = 0
+        up = 0
       
     # Pause, increase counter and swap the previous crypto value with the actual one    
     time.sleep(pausa)
