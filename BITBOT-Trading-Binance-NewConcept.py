@@ -51,6 +51,7 @@ def sell(q):
   try:
    print("Selling " + scrypto + " " + str(q))
    order = client.order_market_sell(symbol=symbol, quantity=q)
+   print(order["status"])
    return order
   except:
    print("Error Selling - Try #",end='')
@@ -67,6 +68,7 @@ def buy(q):
   print("Buying " + scrypto + " " + str(q))
   try:
    order = client.order_market_buy(symbol=symbol, quantity=q)
+   print(order["status"])
    return order
   except:
    print("Error Buying - Try #",end='')
@@ -127,16 +129,10 @@ def compra():
   global bitcoin, fiat, attuale, comprato, temporanea, numeroacquisti, totalebitacquistati, prezzomedio, up, down
   print(colore.verde + "\nB U Y\n" + colore.reset)
   bitcoin = fiat / attuale
-  #print(bitcoin)
-  #q=round(float(bitcoin),8)
   q = float(round(bitcoin,6))
-  #print("Buying " + scrypto, end='')
-  #print(q)
-  #print(type(q))
-  #order = client.order_market_buy(symbol='BTCUSDT', quantity=q)
   print("Values before buying: ", end='')
   Saldo()
-  if simulate == 0:
+  if simulate == 0:                                                      # Se NON è attiva la sola simulazione
    esito = buy(q)
    if esito == "Errore":
     print("Error during buying. Please perform a manual check!!")
@@ -148,7 +144,7 @@ def compra():
       print("Now buying %.8f at price of %.2f and the total is %.2f but is less than %.2f" %(bitcoin, attuale, bitcoin * attuale, fiat))
       if debug == 1:
        print(esito)
-  else:
+  else:                                                                  # Altrimenti se la simulazione FOSSE ATTIVA
    print("Simulation not available at the moment!")
    
   print("Values after buying:  ", end='')   
@@ -158,9 +154,9 @@ def compra():
   numeroacquisti = numeroacquisti + 1
   totalebitacquistati = totalebitacquistati + bitcoin
   prezzomedio = prezzomedio + attuale
+  # guadagnototale = guadagnototale + 
   print(f"{colore.reset}", end='')
   print("\nB - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL CRYPTO VALUE: %.2f  " %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, attuale))
-#  print(f"Comprato a € {attuale} per un valore di {temporanea}")
   up = 0
   down = 0
   return True
@@ -222,13 +218,13 @@ try:
   client.API_URL = testneturl 
   #'https://testnet.binance.vision/api'
 except:
- print("ERROR: Cannot connect to Binance APIs. Check your internet connection and your keys activation.")
+ print("ERROR: Cannot connect to Binance APIs phase 1. Check your internet connection and your keys activation.")
  quit()
 
 try:
  client.get_account()
 except:
- print("ERROR: Cannot connect to Binance APIs. Check your internet connection and your keys activation.")
+ print("ERROR: Cannot connect to Binance APIs phase 2. Check your internet connection and your keys activation.")
  quit()
 
 class colore:
