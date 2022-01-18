@@ -8,7 +8,7 @@
 #
 # DON'T USE THIS SOFTWARE WITH REAL CRYPTOS, IT IS IN PRE-PRE-PRE-ALPHA TESTING
 
-## TO DO ##          Controllare il massimo disponibile quando si fa un acquisto
+## TO DO ##    Nothing
 
 import configparser
 import requests
