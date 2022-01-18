@@ -322,7 +322,7 @@ while True:
      actualgain = 0
      compra()
         
-    print(f"- GAIN AVERAGE: {gainav} %\n- LOSS AVERAGE: {lossav} %\n- GAIN LIMIT  : {gainpc}\n- LOSS LIMIT  : {losspc}")      
+    print(f"- GAIN AVERAGE: {gainav} %\n- LOSS AVERAGE: {lossav} %\n- GAIN LIMIT  : {gainpc} %\n- LOSS LIMIT  : {losspc} %")      
       
       
     # Stampo a video le variazioni attuali  
@@ -351,6 +351,12 @@ while True:
       print(f"==========> Changing GAIN % to {gainav}")
       losspc = lossav
       print(f"==========> Changing LOSS % to {lossav}")
+      
+    if up > limite:
+		up = 0
+		
+	if down > limite:
+		down = 0
     
         
     #if up > limite and down > 0 and numeroacquisti > 0:
