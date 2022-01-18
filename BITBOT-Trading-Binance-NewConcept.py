@@ -141,9 +141,9 @@ def compra():
    
   print("Values after buying:  ", end='')   
   Saldo()
-  comprato = bitcoin * attuale + comprato
+  comprato = (bitcoin * attuale) + comprato
   temporanea = bitcoin * attuale
-  valoreattuale = temporanea
+  valoreattuale = comprato
   numeroacquisti = numeroacquisti + 1
   totalebitacquistati = totalebitacquistati + bitcoin
   prezzomedio = prezzomedio + attuale
@@ -349,14 +349,16 @@ while True:
     if up > limite or down > limite:
       gainpc = gainav
       print(f"==========> Changing GAIN % to {gainav}")
+      up = 0
       losspc = lossav
       print(f"==========> Changing LOSS % to {lossav}")
+      down = 0
       
-    if up > limite:
-		up = 0
+    #if up > limite:
+	#  up = 0
 		
-	if down > limite:
-		down = 0
+	#if down > limite:
+	#  down = 0
     
         
     #if up > limite and down > 0 and numeroacquisti > 0:
