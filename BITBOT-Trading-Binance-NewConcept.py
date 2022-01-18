@@ -346,13 +346,12 @@ while True:
       print("\nv - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL VALUE: %.2f  ACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media))
 
     
-    if up > limite:
+    if up > limite or down > limite:
       gainpc = gainav
-      print(f"Changing GAIN % to {gainav}")
-    
-    if down > limite:
+      print(f"==========> Changing GAIN % to {gainav}")
       losspc = lossav
-      print(f"Changing LOSS % to {lossav}")
+      print(f"==========> Changing LOSS % to {lossav}")
+    
         
     #if up > limite and down > 0 and numeroacquisti > 0:
     #  confronto = prezzomedio / numeroacquisti
