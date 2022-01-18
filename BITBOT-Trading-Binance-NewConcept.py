@@ -40,7 +40,6 @@ def on_release(key):
 def Saldo():
  global sfiat, scrypto
  # get balance for a specific asset only (BTC)
- #print("\nclient.get_asset_balance(asset='USDT')")
  print("USDT AVAILABLE: " + str(client.get_asset_balance(asset=sfiat)['free']), end='')
  print(" - BTC  AVAILABLE: " + str(client.get_asset_balance(asset=scrypto)['free']), end='')
  print(" - BNB  AVAILABLE: " + str(client.get_asset_balance(asset="BNB")['free']))
@@ -83,22 +82,18 @@ def buy(q):
 def vendi():
   global venduto, totalebitacquistati, attuale, guadagno, comprato, guadagnototale, totalebitacquistati, numerobitacquistati, prezzomedio, media, up, down, compro, comprato, numeroacquisti
   print(colore.rosso + "\nS E L L I N G\n" + colore.reset)
-#  q = round(float(totalebitacquistati),8)
   q = float(round(totalebitacquistati,6))
-#  order = client.order_market_sell(symbol='BTCUSDT', quantity=q)
   if simulate == 0:
    esito = sell(q)
    if q == "Errore":
     print("Error during selling. Please, perform a manual check!!")
    else:
-    #print(esito)
     attuale = float(esito["fills"][0]["price"])
   else:
     print("Simulation not available at the moment!")
     
   Saldo()
    
-  #print(type(q))
   venduto = totalebitacquistati * attuale
   print(f"Selled at {sfiat} {attuale} and gained {venduto}")
   guadagno = venduto - comprato
@@ -118,15 +113,13 @@ def vendi():
   down = 0
   compro = 0
   comprato = 0
-  #print(f"\n\ntotalebitacquistati: {totalebitacquistati} - numeroacquisti: {numeroacquisti} - prezzomedio: {prezzomedio} - media: {media}")
-  #print(f"up: {up} - down: {down} - compro: {compro} - comprato: {comprato}")
   if ferma == 1:
    quit()
    
   return True
 
 def compra():
-  global bitcoin, fiat, attuale, comprato, temporanea, numeroacquisti, totalebitacquistati, prezzomedio, up, down
+  global bitcoin, fiat, attuale, comprato, temporanea, numeroacquisti, totalebitacquistati, prezzomedio, up, down, guadagnototale, valoreattuale
   print(colore.verde + "\nB U Y\n" + colore.reset)
   bitcoin = fiat / attuale
   q = float(round(bitcoin,6))
@@ -137,7 +130,6 @@ def compra():
    if esito == "Errore":
     print("Error during buying. Please perform a manual check!!")
    else:
-    #print(esito)
     attuale = float(esito["fills"][0]["price"])
     bitcoin = float(esito["fills"][0]["qty"])
     if bitcoin * attuale < fiat:
@@ -151,10 +143,11 @@ def compra():
   Saldo()
   comprato = bitcoin * attuale + comprato
   temporanea = bitcoin * attuale
+  valoreattuale = temporanea
   numeroacquisti = numeroacquisti + 1
   totalebitacquistati = totalebitacquistati + bitcoin
   prezzomedio = prezzomedio + attuale
-  # guadagnototale = guadagnototale + 
+  guadagnototale = guadagnototale + temporanea
   print(f"{colore.reset}", end='')
   print("\nB - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL CRYPTO VALUE: %.2f  " %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, attuale))
   up = 0
@@ -175,7 +168,6 @@ def LeggiConfig(modo):
   fiat = int(config.get('Var', 'fiat'))
   ferma = int(config.get('Var', 'stop'))
   maxfiat = int(config.get('Var', 'maxfiat'))
-  #limite = int(config.get('Var', 'limit'))
   pausa = int(config.get('Var', 'pause'))
   debug = int(config.get('Var', 'debug'))
  if modo == 3:
@@ -199,10 +191,6 @@ configfile = "/etc/bitbot/"+symbol+".config"
  
 LeggiConfig(1)
 
-# Edit api and sek variables with your BINANCE TESTING APIs
-#api = ''
-#sek = ''
-
 # To use the real BINANCE API TRADING change testnet to zero
 # DURING THE TEST PLEASE DON'T USE REAL BINANCE API TRADING WITH REAL CRYPTOS.
 testnet = 1
@@ -216,7 +204,7 @@ try:
  client = Client(api, sek)
  if testnet == 1:
   client.API_URL = testneturl 
-  #'https://testnet.binance.vision/api'
+
 except:
  print("ERROR: Cannot connect to Binance APIs phase 1. Check your internet connection and your keys activation.")
  quit()
@@ -275,6 +263,7 @@ gainav = 0                        # Gain Average
 lossav = 0                        # Loss Average
 gaincn = 0                        # Gain Counter
 losscn = 0                        # Loss Counter
+actualgain = 0                    # Actual gain
 
 LeggiConfig(3)
 print(colore.giall + "Rel " + rel + " - "+ symbol + " by Oculus.it\n\n" + colore.reset)
@@ -293,10 +282,7 @@ while True:
   
   
     try:
-      #print(symbol)
       response = client.get_symbol_ticker(symbol=symbol)
-      #response = client.get_asset_balance(asset='BTC')
-      #print(response['price'])
       attuale = float(response['price'])
       valoreattuale = totalebitacquistati * attuale
     except:
