@@ -123,6 +123,11 @@ def vendi():
 def compra():
   global bitcoin, fiat, attuale, comprato, temporanea, numeroacquisti, totalebitacquistati, prezzomedio, up, down, guadagnototale, valoreattuale
   print(colore.verde + "\nB U Y\n" + colore.reset)
+  
+  if comprato + fiat > maxfiat:
+    print(f"Max {sfiat} reached.")
+    return True
+    
   bitcoin = fiat / attuale
   q = float(round(bitcoin,6))
   print("Values before buying: ", end='')
