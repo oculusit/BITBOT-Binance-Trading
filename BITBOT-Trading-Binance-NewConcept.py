@@ -193,7 +193,7 @@ def LeggiConfig(modo):
   gainpc = float(config.get('Var', 'gainpc'))
   losspc = float(config.get('Var', 'losspc'))
   
-rel = "0.8 binance trading test"
+rel = "0.8 binance trading test NEW CONCEPT"
 
 scrypto = "BTC"
 sfiat   = "USDT"
@@ -318,7 +318,7 @@ while True:
           
     if comprato > 0:                                      # if there are crypto bought then...
      actualgain = ((valoreattuale*100)/comprato) - 100
-     print(f"\nACTUAL GAIN : {actualgain} %")
+     print(f"\n- ACTUAL +G/-L: {actualgain} %")
     else:
      actualgain = 0
      compra()
