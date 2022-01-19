@@ -141,7 +141,7 @@ def compra():
     bitcoin = float(esito["fills"][0]["qty"])
     if bitcoin * attuale < fiat:
       print("Now buying %.8f at price of %.2f and the total is %.2f but is less than %.2f" %(bitcoin, attuale, bitcoin * attuale, fiat))
-      if debug == 1:
+      if debugge == 1:
        print(esito)
   else:                                                                  # Altrimenti se la simulazione FOSSE ATTIVA
    print("Simulation not available at the moment!")
@@ -170,13 +170,13 @@ def LeggiConfig(modo):
   sek = config.get('binance', 'sek')
   testneturl = config.get('binance', 'testneturl')
   maxnonvendo = int(config.get('Var', 'maxsell'))
-  debug = int(config.get('Var', 'debug'))
+  debugge = int(config.get('Var', 'debug'))
  if modo == 2:
   fiat = int(config.get('Var', 'fiat'))
   ferma = int(config.get('Var', 'stop'))
   maxfiat = int(config.get('Var', 'maxfiat'))
   pausa = int(config.get('Var', 'pause'))
-  debug = int(config.get('Var', 'debug'))
+  debugge = int(config.get('Var', 'debug'))
  if modo == 3:
   fiat = int(config.get('Var', 'fiat'))
   ferma = int(config.get('Var', 'stop'))
@@ -184,7 +184,7 @@ def LeggiConfig(modo):
   limite = int(config.get('Var', 'limit'))
   pausa = int(config.get('Var', 'pause'))
   maxnonvendo = int(config.get('Var', 'maxsell'))
-  debug = int(config.get('Var', 'debug'))
+  debugge = int(config.get('Var', 'debug'))
   gainpc = float(config.get('Var', 'gainpc'))
   losspc = float(config.get('Var', 'losspc'))
   
@@ -261,7 +261,7 @@ media = 0                         # Average
 nonvendo = 0                      # Numero di tentativi falliti nella vendita per media troppo bassa
 maxnonvendo = 3                   # Numero massimo di tentativi falliti prima di abbassare il numero LIMITE che non deve scendere sotto a: 1
 ferma = 0                         # Ferma il BOT TRADING alla prima vendita disponibile 1=STOP 0=NON STOP
-debug = 0						              # Eable (1) or disable (0) debug messages
+debugge = 0						              # Eable (1) or disable (0) debug messages
 gainpc = 0                        # Gain %
 losspc = 0                        # Loss %
 gainsm = 0                        # Gain Sum for Average computing
@@ -352,8 +352,9 @@ while True:
       print(f"{colore.rosso}", end='')
       print("\nv - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL VALUE: %.2f  ACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media))
 
-    if debug == 1:
-      print(f"UP {up} - DOWN {down} - LIMIT {limite}")
+    print(debugge)
+    if debugge == 1:
+      print(f"DEBUG: UP {up} - DOWN {down} - LIMIT {limite}    |    GAINAV {gainav} - LOSSAV {lossav}")
     
     if up > limite and gainav > 0:	
       gainpc = gainav
