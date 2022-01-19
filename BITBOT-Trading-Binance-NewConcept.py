@@ -291,8 +291,10 @@ losscn = 0                        # Loss Counter
 actualgain = 0                    # Actual gain
 
 LeggiConfig(3)
-print(colore.giall + "Rel " + rel + " - "+ symbol + " by Oculus.it\n\n" + colore.reset)
+gainav = gainpc
+lossav = losspc
 
+print(colore.giall + "Rel " + rel + " - "+ symbol + " by Oculus.it\n\n" + colore.reset)
 
 #with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
 #  print("Premi M per MENU")
@@ -335,7 +337,7 @@ while True:
      gainsm = gainsm + actualgain
      gaincn = gaincn + 1
      gainav = gainsm / gaincn
-    else:
+    if actualgain < 0:
      losssm = losssm + actualgain
      losscn = losscn + 1
      lossav = losssm / losscn      
