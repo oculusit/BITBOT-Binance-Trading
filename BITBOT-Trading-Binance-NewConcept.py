@@ -104,7 +104,7 @@ def vendi():
   c = 100
   x = lambda a, b: (a * c / b) - c
   r = x(venduto, comprato)
-  log = open(symbol + "log","a")
+  log = open(symbol + ".log","a")
   log.write("SELL;" + dt_string + ";" + str(q) + ";" + str(attuale) + ";" + str(q * attuale) + ";" + str(venduto) + ";" + str(guadagno) + ";" + str(guadagnototale) + "\n")
   log.close
   print("%.4f" %(r), end='')
