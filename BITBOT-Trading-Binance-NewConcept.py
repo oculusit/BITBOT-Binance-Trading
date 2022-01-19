@@ -1,14 +1,19 @@
 #!/usr/local/bin/python3.10
+######## FIRST THING TO DO ############################################
 # Modify the previous line with your own python settings
-
+#######################################################################
 # BITBOT - Open Source Crypto Bot Trading Binance Api Based
 # Software Released as GPL 3
 #
 # If you want to contribute please contact me at oculus@oculus.it 
-#
-# DON'T USE THIS SOFTWARE WITH REAL CRYPTOS, IT IS IN PRE-PRE-PRE-ALPHA TESTING
+#######################################################################
+# DON'T USE THIS SOFTWARE WITH REAL CRYPTOS, IT IS IN PRE-PRE-PRE-ALPHA 
+# TESTING
 
-## TO DO ##    Nothing
+
+######## TO DO ########################################################
+## nothing to check
+#######################################################################
 
 import configparser
 import requests
