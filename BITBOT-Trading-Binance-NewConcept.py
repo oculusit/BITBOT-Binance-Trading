@@ -69,16 +69,23 @@ def buy(q):
   print("Buying " + scrypto + " " + str(q))
   try:
    order = client.order_market_buy(symbol=symbol, quantity=q)
-   print(order["status"])
-   return order
+   esitooperazione = order["status"]
   except:
-   print("Error Buying - Try #",end='')
-   print(tentativi)
-   time.sleep(1)
-   tentativi +=1
-   order = "Errore"
-   if tentativi > 5:
-    return order
+   esitooperazione = "ERROR"  
+  finally:
+    if esitooperazione == "FILLED":
+     return order
+    if esitooperazione == "ERROR":
+     print("Error Buying - Try #",end='')
+     print(tentativi)
+     time.sleep(1)
+     tentativi +=1
+     order = "Errore"
+     if tentativi > 5:
+      return order
+    else:
+     return order
+
 
 
 def vendi():
@@ -128,10 +135,6 @@ def compra():
   global dt_string, bitcoin, fiat, attuale, comprato, temporanea, numeroacquisti, totalebitacquistati, prezzomedio, up, down, guadagnototale, valoreattuale
   print(colore.verde + "\nB U Y\n" + colore.reset)
   
-  if comprato + fiat > maxfiat:
-    print(f"Max {sfiat} reached.")
-    return True
-    
   bitcoin = fiat / attuale
   q = float(round(bitcoin,6))
   print("Values before buying: ", end='')
@@ -310,6 +313,13 @@ while True:
     # Inizio ad elaborare i dati e calcolo il guadagno % attuale
     #   Se il guadagno sarà maggiore di "gainpc" venderò e comprerò di nuovo
     #   Se il guadagno sarà minore di   "losspc" acquisterò ancora per mediare il prezzo
+
+    if comprato > 0:                                      # if there are crypto bought then...
+     actualgain = ((valoreattuale*100)/comprato) - 100
+     print(f"{colore.giall}\n- ACTUAL +G/-L: {actualgain} %")
+    else:
+     actualgain = 0
+     compra()
           
 
     if actualgain > 0:
@@ -330,15 +340,12 @@ while True:
       if debugge == 1:
         print(f"actualgain {actualgain} - gainpc {gainpc}")
 
-    if actualgain < losspc:
-        compra()
+    if actualgain < losspc and down > limite:
+     if comprato + fiat > maxfiat:
+      print(f"Max {sfiat} reached.")
+     else:
+      compra()
 
-    if comprato > 0:                                      # if there are crypto bought then...
-     actualgain = ((valoreattuale*100)/comprato) - 100
-     print(f"{colore.giall}\n- ACTUAL +G/-L: {actualgain} %")
-    else:
-     actualgain = 0
-     compra()
         
     print(f"- GAIN AVERAGE: {gainav} %\n- LOSS AVERAGE: {lossav} %\n- GAIN LIMIT  : {gainpc} %\n- LOSS LIMIT  : {losspc} %")      
       
