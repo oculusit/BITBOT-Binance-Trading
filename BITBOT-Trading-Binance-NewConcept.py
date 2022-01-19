@@ -349,7 +349,7 @@ while True:
       if debugge == 1:
         print(f"actualgain {actualgain} - gainpc {gainpc}")
 
-    if actualgain < losspc and down > limite:
+    if actualgain < losspc:
      if comprato + fiat > maxfiat:
       print(f"Max {sfiat} reached.")
      else:
