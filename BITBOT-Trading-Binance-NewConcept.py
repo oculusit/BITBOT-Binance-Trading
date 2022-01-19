@@ -105,7 +105,7 @@ def vendi():
   x = lambda a, b: (a * c / b) - c
   r = x(venduto, comprato)
   log = open(symbol,"a")
-  log.write("SELL;" + dt_string + ";" + q + ";" + attuale + ";" + q * attuale + ";" + venduto + ";" + guadagno + ";" + guadagnototale)
+  log.write("SELL;" + dt_string + ";" + str(q) + ";" + str(attuale) + ";" + str(q * attuale) + ";" + str(venduto) + ";" + str(guadagno) + ";" + str(guadagnototale) + "\n")
   log.close
   print("%.4f" %(r), end='')
   print("%")
@@ -158,7 +158,7 @@ def compra():
   totalebitacquistati = totalebitacquistati + bitcoin
   prezzomedio = prezzomedio + attuale
   log = open(symbol,"a")
-  log.write("BUY;" + dt_string + ";" + bitcoin + ";" + attuale + ";" + bitcoin * attuale + ";" + comprato + ";" + valoreattuale + ";0")
+  log.write("BUY;" + dt_string + ";" + str(bitcoin) + ";" + str(attuale) + ";" + str(bitcoin * attuale) + ";" + str(comprato) + ";" + str(valoreattuale) + ";0\n")
   log.close
   print(f"{colore.reset}", end='')
   print("\nB - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL CRYPTO VALUE: %.2f  " %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, attuale))
