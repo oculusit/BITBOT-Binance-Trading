@@ -321,11 +321,11 @@ while True:
      losscn = losscn + 1
      lossav = losssm / losscn      
     
-    if actualgain > gainpc and up > limite:
+    if actualgain > gainpc:
         vendi()
         compra()
         
-    if actualgain < losspc and down > limite:
+    if actualgain < losspc:
         compra()
 
     if comprato > 0:                                      # if there are crypto bought then...
