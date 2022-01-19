@@ -320,11 +320,16 @@ while True:
      losssm = losssm + actualgain
      losscn = losscn + 1
      lossav = losssm / losscn      
-    
+
+    if debugge == 1:
+      print("Controllo se posso vendere:")
     if actualgain > gainpc:
-        vendi()
-        compra()
-        
+      vendi()
+      compra()
+    else:
+      if debugge == 1:
+        print(f"actualgain {actualgain} - gainpc {gainpc}")
+
     if actualgain < losspc:
         compra()
 
