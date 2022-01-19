@@ -104,6 +104,9 @@ def vendi():
   c = 100
   x = lambda a, b: (a * c / b) - c
   r = x(venduto, comprato)
+  log = open(symbol,"a")
+  log.write("SELL;" + q + ";" + attuale + ";" + q * attuale + ";" + venduto + ";" + guadagno + ";" + guadagnototale)
+  log.close
   print("%.4f" %(r), end='')
   print("%")
   print(f"\nResetting counters")
@@ -154,7 +157,9 @@ def compra():
   numeroacquisti = numeroacquisti + 1
   totalebitacquistati = totalebitacquistati + bitcoin
   prezzomedio = prezzomedio + attuale
-  #guadagnototale = guadagnototale + temporanea
+  log = open(symbol,"a")
+  log.write("BUY;" + bitcoin + ";" + attuale + ";" + bitcoin * attuale + ";" + comprato + ";" + valoreattuale + ";0")
+  log.close
   print(f"{colore.reset}", end='')
   print("\nB - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL CRYPTO VALUE: %.2f  " %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, attuale))
   up = 0
@@ -188,7 +193,7 @@ def LeggiConfig(modo):
   gainpc = float(config.get('Var', 'gainpc'))
   losspc = float(config.get('Var', 'losspc'))
   
-rel = "0.8 binance trading test NEW CONCEPT"
+rel = "0.8.1 binance trading test NEW CONCEPT"
 
 scrypto = "BTC"
 sfiat   = "USDT"
@@ -283,7 +288,7 @@ while True:
   
   while number < maxloop:
     LeggiConfig(2)
-    print(f"DEBUG: {debugge}")
+    
     if ferma == 1:
       print(colore.reset + "Stop at first crypto selling with gain!")
   
@@ -352,7 +357,7 @@ while True:
       print(f"{colore.rosso}", end='')
       print("\nv - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL VALUE: %.2f  ACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media))
 
-    print(f"DEBUG: {debugge}")
+    
     if debugge == 1:
       print(f"DEBUG: UP {up} - DOWN {down} - LIMIT {limite}    |    GAINAV {gainav} - LOSSAV {lossav}")
     
