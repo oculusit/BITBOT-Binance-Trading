@@ -119,6 +119,7 @@ def vendi():
   compro = 0
   comprato = 0
   if ferma == 1:
+   time.sleep(1)	  
    quit()
    
   return True
@@ -329,7 +330,7 @@ while True:
 
     if comprato > 0:                                      # if there are crypto bought then...
      actualgain = ((valoreattuale*100)/comprato) - 100
-     print(f"\n- ACTUAL +G/-L: {actualgain} %")
+     print(f"{colore.giall}\n- ACTUAL +G/-L: {actualgain} %")
     else:
      actualgain = 0
      compra()
