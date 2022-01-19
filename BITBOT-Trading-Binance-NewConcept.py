@@ -8,7 +8,8 @@
 # If you want to contribute please contact me at oculus@oculus.it 
 #######################################################################
 # DON'T USE THIS SOFTWARE WITH REAL CRYPTOS, IT IS IN PRE-PRE-PRE-ALPHA 
-# TESTING
+# TESTING. YOU CAN LOSE YOUR MONEY.
+#######################################################################
 
 
 ######## TO DO ########################################################
@@ -221,37 +222,46 @@ def LeggiConfig(modo):
  
 LeggiConfig(1)
 
+######## TESTNET ######################################################
 # To use the real BINANCE API TRADING change testnet to zero
-# DURING THE TEST PLEASE DON'T USE REAL BINANCE API TRADING WITH REAL CRYPTOS.
+# DURING THE TEST PLEASE DON'T USE REAL BINANCE API TRADING WITH REAL
+# CRYPTOS.
+#######################################################################
 testnet = 1
 
+######## SIMULATION ###################################################
 # Perform SIMULATIONS only
-# If simulate = 1 the BOT will not trade any crypto. If simulate = 0 the BOT will trade cryptos in test o real mode.
+# If simulate = 1 the BOT will not trade any crypto. 
+# If simulate = 0 the BOT will trade cryptos in test o real mode.
+#######################################################################
 simulate = 0
-# SIMULATIONS NOT AVAILABLE AT THIS MOMENT
+######## SIMULATIONS NOT AVAILABLE AT THIS MOMENT #####################
 
+######## CONNECT TO BINANCE ###########################################
 try:
  client = Client(api, sek)
  if testnet == 1:
   client.API_URL = testneturl 
-
 except:
  print("ERROR: Cannot connect to Binance APIs phase 1. Check your internet connection and your keys activation.")
  quit()
 
+######## CONNECT TO THE ACCOUNT #######################################
 try:
  client.get_account()
 except:
  print("ERROR: Cannot connect to Binance APIs phase 2. Check your internet connection and your keys activation.")
  quit()
 
+######## DEFINING COLOURS #############################################
 class colore:
   verde = '\033[92m'
   rosso = '\033[91m'
   giall = '\033[93m'
   reset = '\033[0m'
  
-        
+
+######## STARTING THE BITBOT TRADING PROGRAM ##########################
 print(colore.verde + "\n\nBBBBBBB   II  TTTTTTTT   BBBBBBB     OOOOO   TTTTTTTT")
 print("BB    BB  II     TT      BB    BB   OO   OO     TT")
 print("BBBBBBB   II     TT      BBBBBBB   OO     OO    TT")
@@ -262,7 +272,7 @@ print("BBBBBBB   II     TT      BBBBBBB     OOOOO      TT          C R Y P T O -
 print("                                                                       by Oculus.it" + colore.reset)
 print("")
 
-
+######## DEFINING VARIABLES ###########################################
 numeroacquisti = 0                # How many buying to calcolate the average
 totalebitacquistati = 0           # Total crypto bought
 prezzomedio = 0                   # Crypto average value
@@ -295,6 +305,7 @@ gaincn = 0                        # Gain Counter
 losscn = 0                        # Loss Counter
 actualgain = 0                    # Actual gain
 
+######## READ CONFIGURATION MODE 3 AND SET GAIN AND LOSS AVERAGES #####
 LeggiConfig(3)
 gainav = gainpc
 lossav = losspc
@@ -303,16 +314,16 @@ print(colore.giall + "Rel " + rel + " - "+ symbol + " by Oculus.it\n\n" + colore
 
 #with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
 #  print("Premi M per MENU")
-while True:
-   
-  
-  while number < maxloop:
+while True:                        # MAIN LOOP
+  number = 0                       # RESTART WITH LOOPS
+  while number < maxloop:          # COUNT MAX LOOP DEPRECATED
     LeggiConfig(2)
-    
+
+    ######## CHECK IF THE BOT STOPS AT FIRST SELL #####################    
     if ferma == 1:
       print(colore.reset + "Stop at first crypto selling with gain!")
-  
-  
+
+    ######## CHECK THE PRICE OF THE CRYPTO ############################
     try:
       response = client.get_symbol_ticker(symbol=symbol)
       attuale = float(response['price'])
@@ -320,6 +331,7 @@ while True:
     except:
       print(colore.reset + "Connection error!")
     
+    ######## CALCULATE AVERAGE PRICE ##################################
     if numeroacquisti > 0:
       media = prezzomedio / numeroacquisti
       
