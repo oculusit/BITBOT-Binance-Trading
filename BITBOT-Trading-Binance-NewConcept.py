@@ -104,7 +104,7 @@ def vendi():
   c = 100
   x = lambda a, b: (a * c / b) - c
   r = x(venduto, comprato)
-  log = open(symbol,"a")
+  log = open(symbol + "log","a")
   log.write("SELL;" + dt_string + ";" + str(q) + ";" + str(attuale) + ";" + str(q * attuale) + ";" + str(venduto) + ";" + str(guadagno) + ";" + str(guadagnototale) + "\n")
   log.close
   print("%.4f" %(r), end='')
@@ -157,7 +157,7 @@ def compra():
   numeroacquisti = numeroacquisti + 1
   totalebitacquistati = totalebitacquistati + bitcoin
   prezzomedio = prezzomedio + attuale
-  log = open(symbol,"a")
+  log = open(symbol + ".log","a")
   log.write("BUY;" + dt_string + ";" + str(bitcoin) + ";" + str(attuale) + ";" + str(bitcoin * attuale) + ";" + str(comprato) + ";" + str(valoreattuale) + ";0\n")
   log.close
   print(f"{colore.reset}", end='')
@@ -320,11 +320,11 @@ while True:
      losscn = losscn + 1
      lossav = losssm / losscn      
     
-    if actualgain > gainpc:
+    if actualgain > gainpc and up > limite:
         vendi()
         compra()
         
-    if actualgain < losspc:
+    if actualgain < losspc and down > limite:
         compra()
 
     if comprato > 0:                                      # if there are crypto bought then...
