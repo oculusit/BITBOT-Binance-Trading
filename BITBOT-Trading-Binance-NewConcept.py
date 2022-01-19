@@ -19,6 +19,21 @@ import json
 from datetime import datetime
 from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
+
+######## RELEASE VERSION ##############################################
+rel = "0.8.2 binance trading test NEW CONCEPT"
+
+#######################################################################
+######## CONFIGURATION VARIABLES ######################################
+#######################################################################
+scrypto = "BTC"
+sfiat   = "USDT"
+symbol  = scrypto + sfiat
+configfile = "/etc/bitbot/"+symbol+".config"
+#######################################################################
+
+
+
 def on_press(key):
   tasto = key
 #  try:
@@ -197,13 +212,7 @@ def LeggiConfig(modo):
   gainpc = float(config.get('Var', 'gainpc'))
   losspc = float(config.get('Var', 'losspc'))
   
-rel = "0.8.1 binance trading test NEW CONCEPT"
 
-scrypto = "BTC"
-sfiat   = "USDT"
-symbol  = scrypto + sfiat
-
-configfile = "/etc/bitbot/"+symbol+".config"
  
 LeggiConfig(1)
 
