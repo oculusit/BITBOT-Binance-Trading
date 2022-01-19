@@ -352,6 +352,8 @@ while True:
       print(f"{colore.rosso}", end='')
       print("\nv - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL VALUE: %.2f  ACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media))
 
+    if debug == 1:
+      print(f"UP {up} - DOWN {down} - LIMIT {limite}")
     
     if up > limite and gainav > 0:	
       gainpc = gainav
@@ -359,7 +361,7 @@ while True:
       up = 0
       down = 0
       
-    if down > limite and lossav > 0:
+    if down > limite and lossav < 0:
       losspc = lossav
       print(f"==========> Changing LOSS % to {lossav}")
       down = 0
