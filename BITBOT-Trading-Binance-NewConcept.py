@@ -162,7 +162,7 @@ def compra():
   return True
   
 def LeggiConfig(modo):
- global api, sek, fiat, maxfiat, limite, pausa, ferma, nonvendo, configfile, testneturl, gainpc, losspc
+ global api, sek, fiat, maxfiat, limite, pausa, ferma, nonvendo, configfile, testneturl, gainpc, losspc, debugge, maxnonvendo
  config = configparser.ConfigParser()
  config.read_file(open(r''+configfile))
  if modo == 1:
@@ -283,7 +283,7 @@ while True:
   
   while number < maxloop:
     LeggiConfig(2)
-    
+    print(f"DEBUG: {debugge}")
     if ferma == 1:
       print(colore.reset + "Stop at first crypto selling with gain!")
   
@@ -352,7 +352,7 @@ while True:
       print(f"{colore.rosso}", end='')
       print("\nv - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL VALUE: %.2f  ACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media))
 
-    print(debugge)
+    print(f"DEBUG: {debugge}")
     if debugge == 1:
       print(f"DEBUG: UP {up} - DOWN {down} - LIMIT {limite}    |    GAINAV {gainav} - LOSSAV {lossav}")
     
