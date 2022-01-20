@@ -339,7 +339,7 @@ while True:                        # MAIN LOOP
     
     ######## CHECK IF THE BOT STOPS AT FIRST SELL #####################    
     if ferma == 1:
-      print(colore.reset + "Stop at first crypto selling with gain!")
+      print(colore.lightgrey + "Stop at first crypto selling with gain!" + colore.reset)
 
     ######## CHECK THE PRICE OF THE CRYPTO ############################
     try:
