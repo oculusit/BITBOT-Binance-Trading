@@ -420,7 +420,8 @@ while True:                        # MAIN LOOP
       print(f"==========> Changing LOSS % to {lossav}")
       down = 0
       up = 0
-      
+    
+    print("--------------------==========#######################==========--------------------\n")  
     # Pause, increase counter and swap the previous crypto value with the actual one    
     time.sleep(pausa)
     number = number + 1
