@@ -261,6 +261,21 @@ class colore:
   rosso = '\033[91m'
   giall = '\033[93m'
   reset = '\033[0m'
+  black='\033[30m'
+  red='\033[31m'
+  green='\033[32m'
+  orange='\033[33m'
+  blue='\033[34m'
+  purple='\033[35m'
+  cyan='\033[36m'
+  lightgrey='\033[37m'
+  darkgrey='\033[90m'
+  lightred='\033[91m'
+  lightgreen='\033[92m'
+  yellow='\033[93m'
+  lightblue='\033[94m'
+  pink='\033[95m'
+  lightcyan='\033[96m'
  
 
 ######## STARTING THE BITBOT TRADING PROGRAM ##########################
@@ -320,7 +335,7 @@ while True:                        # MAIN LOOP
   number = 0                       # RESTART WITH LOOPS
   while number < maxloop:          # COUNT MAX LOOP DEPRECATED
     LeggiConfig(2)
-    print("--------------------========== CHECKING CRYPTO VALUE ==========--------------------")
+    print(colore.pink + "--------------------========== CHECKING CRYPTO VALUE ==========--------------------" + colore.reset)
     
     ######## CHECK IF THE BOT STOPS AT FIRST SELL #####################    
     if ferma == 1:
@@ -357,6 +372,9 @@ while True:                        # MAIN LOOP
      gainsm = gainsm + actualgain
      gaincn = gaincn + 1
      gainav = gainsm / gaincn
+     if gainav < 0.1:
+		 gainav = 0.1
+		 
     if actualgain < 0:
      losssm = losssm + actualgain
      losscn = losscn + 1
@@ -411,17 +429,17 @@ while True:                        # MAIN LOOP
     
     if up > limite and gainav > 0:	
       gainpc = gainav
-      print(f"==========> Changing GAIN % to {gainav}")
+      print(f"{colore.lightgreen}==========> Changing GAIN % to {gainav} {colore.reset}")
       up = 0
       down = 0
       
     if down > limite and lossav < 0:
       losspc = lossav
-      print(f"==========> Changing LOSS % to {lossav}")
+      print(f"{colore.lightred}==========> Changing LOSS % to {lossav} {colore.reset}")
       down = 0
       up = 0
     
-    print("--------------------==========#######################==========--------------------\n")  
+    print(colore.pink + "--------------------==========#######################==========--------------------\n" + colore.reset)
     # Pause, increase counter and swap the previous crypto value with the actual one    
     time.sleep(pausa)
     number = number + 1
