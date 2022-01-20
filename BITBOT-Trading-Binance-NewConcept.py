@@ -110,7 +110,7 @@ def buy(q):
 
 
 def vendi():
-  global dt_string, venduto, totalebitacquistati, attuale, guadagno, comprato, guadagnototale, totalebitacquistati, numerobitacquistati, prezzomedio, media, up, down, compro, comprato, numeroacquisti, valoreattuale
+  global dt_string, venduto, totalebitacquistati, attuale, guadagno, comprato, guadagnototale, totalebitacquistati, numerobitacquistati, prezzomedio, media, up, down, compro, comprato, numeroacquisti, valoreattuale, losspc, gainpc
   print(colore.rosso + "\nS E L L I N G\n" + colore.reset)
 
   q = float(round(totalebitacquistati,6))
@@ -125,7 +125,7 @@ def vendi():
     
   Saldo()
   log = open(symbol + ".log","a")
-  log.write("EXPECT;" + dt_string + ";" + str(q) + ";" + str(valoreattuale) + ";" + str(q * valoreattuale) + ";0;0;0\n") 
+  log.write("EXPECT;" + dt_string + ";Crypto Qty: " + str(q) + ";Actual Crypto Value: " + str(attuale) + ";Total: " + str(q * attuale) + ";Gain %: " + str(gainpc) +";Loss %: " + str(losspc) +";0\n") 
   venduto = totalebitacquistati * attuale
   print(f"Selled at {sfiat} {attuale} and gained {venduto}")
   guadagno = venduto - comprato
@@ -320,7 +320,8 @@ while True:                        # MAIN LOOP
   number = 0                       # RESTART WITH LOOPS
   while number < maxloop:          # COUNT MAX LOOP DEPRECATED
     LeggiConfig(2)
-
+    print("--------------------========== CHECKING CRYPTO VALUE ==========--------------------")
+    
     ######## CHECK IF THE BOT STOPS AT FIRST SELL #####################    
     if ferma == 1:
       print(colore.reset + "Stop at first crypto selling with gain!")
