@@ -110,8 +110,9 @@ def buy(q):
 
 
 def vendi():
-  global dt_string, venduto, totalebitacquistati, attuale, guadagno, comprato, guadagnototale, totalebitacquistati, numerobitacquistati, prezzomedio, media, up, down, compro, comprato, numeroacquisti
+  global dt_string, venduto, totalebitacquistati, attuale, guadagno, comprato, guadagnototale, totalebitacquistati, numerobitacquistati, prezzomedio, media, up, down, compro, comprato, numeroacquisti, valoreattuale
   print(colore.rosso + "\nS E L L I N G\n" + colore.reset)
+
   q = float(round(totalebitacquistati,6))
   if simulate == 0:
    esito = sell(q)
@@ -123,7 +124,8 @@ def vendi():
     print("Simulation not available at the moment!")
     
   Saldo()
-   
+  log = open(symbol + ".log","a")
+  log.write("EXPECT;" + dt_string + ";" + str(q) + ";" + str(valoreattuale) + ";" + str(q * valoreattuale) + ";0;0;0\n") 
   venduto = totalebitacquistati * attuale
   print(f"Selled at {sfiat} {attuale} and gained {venduto}")
   guadagno = venduto - comprato
@@ -132,7 +134,7 @@ def vendi():
   c = 100
   x = lambda a, b: (a * c / b) - c
   r = x(venduto, comprato)
-  log = open(symbol + ".log","a")
+  
   log.write("SELL;" + dt_string + ";" + str(q) + ";" + str(attuale) + ";" + str(q * attuale) + ";" + str(venduto) + ";" + str(guadagno) + ";" + str(guadagnototale) + "\n")
   log.close
   print("%.4f" %(r), end='')
