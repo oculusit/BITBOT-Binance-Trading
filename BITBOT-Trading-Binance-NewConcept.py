@@ -368,7 +368,9 @@ while True:                        # MAIN LOOP
       vendi()
       compra()
       gainav = gainsm / gaincn
+      print(f"==========> Changing GAIN % to {gainav}")
       lossav = losssm / losscn
+      print(f"==========> Changing LOSS % to {lossav}")
     else:
       if debugge == 1:
         print(f"actualgain {actualgain} - gainpc {gainpc}")
