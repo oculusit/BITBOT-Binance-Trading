@@ -283,14 +283,26 @@ class colore:
  
 
 ######## STARTING THE BITBOT TRADING PROGRAM ##########################
-print(colore.verde + "\n\nBBBBBBB   II  TTTTTTTT   BBBBBBB     OOOOO   TTTTTTTT")
-print("BB    BB  II     TT      BB    BB   OO   OO     TT")
-print("BBBBBBB   II     TT      BBBBBBB   OO     OO    TT")
-print("BB    BB  II     TT      BB    BB  OO     OO    TT")
-print("BB     BB II     TT      BB     BB OO     OO    TT")
-print("BB    BB  II     TT      BB    BB   OO   OO     TT")
-print("BBBBBBB   II     TT      BBBBBBB     OOOOO      TT          C R Y P T O - A U T O T R A D E R ")
-print("                                                                       by Oculus.it" + colore.reset)
+print(colore.verde) 
+print(" _______    ___   _______   _______    _______   _______   ")
+print("|   _   \  |   | |       | |   _   \  |   _   | |       |  ")
+print("|.  1   /  |.  | |.|   | | |.  1   /  |.  |   | |.|   | |  ")
+print("|.  _   \  |.  | `-|.  |-' |.  _   \  |.  |   | `-|.  |-'  ")
+print("|:  1    \ |:  |   |:  |   |:  1    \ |:  1   |   |:  |    ")
+print("|::.. .  / |::.|   |::.|   |::.. .  / |::.. . |   |::.|    ")
+print("`-------'  `---'   `---'   `-------'  `-------'   `---'    ")
+print("            C R Y P T O - A U T O T R A D E R              ")
+print("                       by Oculus.it                        ")
+print(colore.reset + "\n")
+
+#print(colore.verde + "\n\nBBBBBBB   II  TTTTTTTT   BBBBBBB     OOOOO   TTTTTTTT")
+#print("BB    BB  II     TT      BB    BB   OO   OO     TT")
+#print("BBBBBBB   II     TT      BBBBBBB   OO     OO    TT")
+#print("BB    BB  II     TT      BB    BB  OO     OO    TT")
+#print("BB     BB II     TT      BB     BB OO     OO    TT")
+#print("BB    BB  II     TT      BB    BB   OO   OO     TT")
+#print("BBBBBBB   II     TT      BBBBBBB     OOOOO      TT          C R Y P T O - A U T O T R A D E R ")
+#print("                                                                       by Oculus.it" + colore.reset)
 print("")
 
 ######## DEFINING VARIABLES ###########################################
