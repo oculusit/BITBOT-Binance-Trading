@@ -27,7 +27,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.8.2 binance trading test NEW CONCEPT"
+rel = "0.8.3 Binance Trading ** TEST NEW CONCEPT **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -203,12 +203,14 @@ def LeggiConfig(modo):
   testneturl = config.get('binance', 'testneturl')
   maxnonvendo = int(config.get('Var', 'maxsell'))
   debugge = int(config.get('Var', 'debug'))
+  mingain = float(config.get('Var', 'mingain'))
  if modo == 2:
   fiat = int(config.get('Var', 'fiat'))
   ferma = int(config.get('Var', 'stop'))
   maxfiat = int(config.get('Var', 'maxfiat'))
   pausa = int(config.get('Var', 'pause'))
   debugge = int(config.get('Var', 'debug'))
+  mingain = float(config.get('Var', 'mingain'))
  if modo == 3:
   fiat = int(config.get('Var', 'fiat'))
   ferma = int(config.get('Var', 'stop'))
@@ -219,6 +221,7 @@ def LeggiConfig(modo):
   debugge = int(config.get('Var', 'debug'))
   gainpc = float(config.get('Var', 'gainpc'))
   losspc = float(config.get('Var', 'losspc'))
+  mingain = float(config.get('Var', 'mingain'))
  if modo == 4:
   losspc = float(config.get('Var', 'losspc'))  
 
@@ -373,8 +376,8 @@ while True:                        # MAIN LOOP
      gainsm = gainsm + actualgain
      gaincn = gaincn + 1
      gainav = gainsm / gaincn
-     if gainav < 0.1:
-       gainav = 0.1
+     if gainav < mingain:
+       gainav = mingain
 		 
     if actualgain < 0:
      losssm = losssm + actualgain
