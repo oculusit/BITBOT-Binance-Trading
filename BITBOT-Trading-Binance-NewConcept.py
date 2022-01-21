@@ -219,7 +219,8 @@ def LeggiConfig(modo):
   debugge = int(config.get('Var', 'debug'))
   gainpc = float(config.get('Var', 'gainpc'))
   losspc = float(config.get('Var', 'losspc'))
-  
+ if modo == 4:
+  losspc = float(config.get('Var', 'losspc'))  
 
  
 LeggiConfig(1)
@@ -398,6 +399,7 @@ while True:                        # MAIN LOOP
       print(f"Max {sfiat} reached.")
      else:
       compra()
+      LeggiConfig(4)
 
         
     print(f"- GAIN AVERAGE: {gainav} %\n- LOSS AVERAGE: {lossav} %\n- GAIN LIMIT  : {gainpc} %\n- LOSS LIMIT  : {losspc} %")      
