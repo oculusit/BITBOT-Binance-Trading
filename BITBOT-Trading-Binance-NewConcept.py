@@ -373,7 +373,7 @@ while True:                        # MAIN LOOP
      gaincn = gaincn + 1
      gainav = gainsm / gaincn
      if gainav < 0.1:
-		 gainav = 0.1
+       gainav = 0.1
 		 
     if actualgain < 0:
      losssm = losssm + actualgain
