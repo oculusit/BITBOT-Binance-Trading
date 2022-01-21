@@ -43,6 +43,9 @@ The content is:
 	ferma = 0
 	maxnonvendo = 0
 	debug = 0
+	gainpc = 0.5
+	losspc = -0.8
+	mingain = 0.1
 
 In the *[binance]* block you have to place the API (api) and the Secret (sek) passphrase that you can find, or create, in your *Binance API Section*.
 The *testneturl* can be blank if you operate on the official *Trading API* or you can fill with the testnet URL ***https://testnet.binance.vision/api***.
