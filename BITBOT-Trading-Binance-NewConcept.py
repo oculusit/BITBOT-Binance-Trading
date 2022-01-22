@@ -157,13 +157,13 @@ def vendi():
   
   log.write("SELL;" + dt_string + ";" + str(q) + ";" + str(attuale) + ";" + str(q * attuale) + ";" + str(venduto) + ";" + str(guadagno) + ";" + str(guadagnototale) + "\n")
   log.close
-  sav = open(symbol + ".sav", "a")
+  sav = open(symbol + ".sav", "w")
   sav.write("[saving]\n")
-  sav.write("guadagno = " + str(guadagno) + "\n")
-  sav.write("guadagnototale = " + str(guadagnototale) + "\n")
-  sav.write("totalebitacquistati = " + str(totalebitacquistati) + "\n")
-  sav.write("comprato = " + str(comprato) + "\n")
-  sav.write("media = " + str(media) + "\n")
+  sav.write("guadagno = 0\n")
+  sav.write("guadagnototale = 0\n")
+  sav.write("totalebitacquistati = 0\n")
+  sav.write("comprato = 0\n")
+  sav.write("media = 0\n")
   sav.close
   print("%.4f" %(r), end='')
   print("%")
@@ -212,7 +212,7 @@ def compra():
   numeroacquisti = numeroacquisti + 1
   totalebitacquistati = totalebitacquistati + bitcoin
   prezzomedio = prezzomedio + attuale
-  sav = open(symbol + ".sav", "a")
+  sav = open(symbol + ".sav", "w")
   sav.write("[saving]\n")
   sav.write("guadagno = " + str(guadagno) + "\n")
   sav.write("guadagnototale = " + str(guadagnototale) + "\n")
