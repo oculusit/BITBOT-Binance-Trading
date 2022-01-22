@@ -110,7 +110,7 @@ def buy(q):
 
 
 def vendi():
-  global dt_string, venduto, totalebitacquistati, attuale, guadagno, comprato, guadagnototale, totalebitacquistati, numerobitacquistati, prezzomedio, media, up, down, compro, comprato, numeroacquisti, valoreattuale, losspc, gainpc
+  global dt_string, venduto, totalebitacquistati, attuale, guadagno, comprato, guadagnototale, totalebitacquistati, numerobitacquistati, prezzomedio, media, up, down, compro, comprato, numeroacquisti, valoreattuale, losspc, gainpc, media
   print(colore.rosso + "\nS E L L I N G\n" + colore.reset)
 
   q = float(round(totalebitacquistati,6))
@@ -137,6 +137,14 @@ def vendi():
   
   log.write("SELL;" + dt_string + ";" + str(q) + ";" + str(attuale) + ";" + str(q * attuale) + ";" + str(venduto) + ";" + str(guadagno) + ";" + str(guadagnototale) + "\n")
   log.close
+  sav = open(symbol + ".sav", "a")
+  sav.write("[saving]\n")
+  sav.write("guadagno = " + str(guadagno) + "\n")
+  sav.write("guadagnototale = " + str(guadagnototale) + "\n")
+  sav.write("totalebitacquistati = " + str(totalebitacquistati) + "\n")
+  sav.write("comprato = " + str(comprato) + "\n")
+  sav.write("media = " + str(media) + "\n")
+  sav.close
   print("%.4f" %(r), end='')
   print("%")
   print(f"\nResetting counters")
@@ -155,7 +163,7 @@ def vendi():
   return True
 
 def compra():
-  global dt_string, bitcoin, fiat, attuale, comprato, temporanea, numeroacquisti, totalebitacquistati, prezzomedio, up, down, guadagnototale, valoreattuale
+  global dt_string, bitcoin, fiat, attuale, comprato, temporanea, numeroacquisti, totalebitacquistati, prezzomedio, up, down, guadagnototale, valoreattuale, guadagno, media
   print(colore.verde + "\nB U Y\n" + colore.reset)
   
   bitcoin = fiat / attuale
@@ -184,6 +192,14 @@ def compra():
   numeroacquisti = numeroacquisti + 1
   totalebitacquistati = totalebitacquistati + bitcoin
   prezzomedio = prezzomedio + attuale
+  sav = open(symbol + ".sav", "a")
+  sav.write("[saving]\n")
+  sav.write("guadagno = " + str(guadagno) + "\n")
+  sav.write("guadagnototale = " + str(guadagnototale) + "\n")
+  sav.write("totalebitacquistati = " + str(totalebitacquistati) + "\n")
+  sav.write("comprato = " + str(comprato) + "\n")
+  sav.write("media = " + str(media) + "\n")
+  sav.close
   log = open(symbol + ".log","a")
   log.write("BUY;" + dt_string + ";" + str(bitcoin) + ";" + str(attuale) + ";" + str(bitcoin * attuale) + ";" + str(comprato) + ";" + str(valoreattuale) + ";0\n")
   log.close
@@ -193,6 +209,17 @@ def compra():
   down = 0
   return True
   
+def LeggiSaving():
+ global guadagno, guadagnototale, totalebitacquistati, comprato, media, symbol
+ config = configparser.ConfigParser()
+ config.read_file(open(r'' + symbol + ".sav"))
+ guadagno = float(config.get('saving', 'guadagno')
+ guadagnototale = float(config.get('saving', 'guadagnototale')
+ totalebitacquistati = float(config.get('saving', 'totalebitacquistati')
+ comprato = float(config.get('saving', 'comprato')
+ media = float(config.get('saving', 'media')
+ return True
+ 
 def LeggiConfig(modo):
  global api, sek, fiat, maxfiat, limite, pausa, ferma, nonvendo, configfile, testneturl, gainpc, losspc, debugge, maxnonvendo
  config = configparser.ConfigParser()
@@ -227,6 +254,14 @@ def LeggiConfig(modo):
 
  
 LeggiConfig(1)
+try:
+ LeggiSaving()
+ print(colore.lightcyan + "Restoring previous situation" + colore.reset)
+ if debugge == 1:
+  print(f"LG: {guadagno} - TG: {guadagnototale} - ")
+except:
+  print(colore.lightcyan + "No restoring file found" + colore.reset)
+	
 
 ######## TESTNET ######################################################
 # To use the real BINANCE API TRADING change testnet to zero

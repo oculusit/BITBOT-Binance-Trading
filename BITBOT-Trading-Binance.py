@@ -256,7 +256,7 @@ print("BB     BB II     TT      BB     BB OO     OO    TT")
 print("BB    BB  II     TT      BB    BB   OO   OO     TT")
 print("BBBBBBB   II     TT      BBBBBBB     OOOOO      TT          C R Y P T O - A U T O T R A D E R ")
 print("                                                                       by Oculus.it" + colore.reset)
-print("")
+print("B U G G E D      B U G G E D     B U G G E D     B U G G E D")
 
 
 numeroacquisti = 0                # How many buying to calcolate the average
