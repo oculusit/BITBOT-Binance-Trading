@@ -27,7 +27,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.8.3 Binance Trading ** TEST NEW CONCEPT **"
+rel = "0.8.4 Binance Trading ** TEST NEW CONCEPT **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -38,7 +38,27 @@ symbol  = scrypto + sfiat
 configfile = "/etc/bitbot/"+symbol+".config"
 #######################################################################
 
-
+######## DEFINING COLOURS #############################################
+class colore:
+  verde = '\033[92m'
+  rosso = '\033[91m'
+  giall = '\033[93m'
+  reset = '\033[0m'
+  black='\033[30m'
+  red='\033[31m'
+  green='\033[32m'
+  orange='\033[33m'
+  blue='\033[34m'
+  purple='\033[35m'
+  cyan='\033[36m'
+  lightgrey='\033[37m'
+  darkgrey='\033[90m'
+  lightred='\033[91m'
+  lightgreen='\033[92m'
+  yellow='\033[93m'
+  lightblue='\033[94m'
+  pink='\033[95m'
+  lightcyan='\033[96m'
 
 def on_press(key):
   tasto = key
@@ -213,11 +233,11 @@ def LeggiSaving():
  global guadagno, guadagnototale, totalebitacquistati, comprato, media, symbol
  config = configparser.ConfigParser()
  config.read_file(open(r'' + symbol + ".sav"))
- guadagno = float(config.get('saving', 'guadagno')
- guadagnototale = float(config.get('saving', 'guadagnototale')
- totalebitacquistati = float(config.get('saving', 'totalebitacquistati')
- comprato = float(config.get('saving', 'comprato')
- media = float(config.get('saving', 'media')
+ guadagno = float(config.get('saving', 'guadagno'))
+ guadagnototale = float(config.get('saving', 'guadagnototale'))
+ totalebitacquistati = float(config.get('saving', 'totalebitacquistati'))
+ comprato = float(config.get('saving', 'comprato'))
+ media = float(config.get('saving', 'media'))
  return True
  
 def LeggiConfig(modo):
@@ -294,27 +314,7 @@ except:
  print("ERROR: Cannot connect to Binance APIs phase 2. Check your internet connection and your keys activation.")
  quit()
 
-######## DEFINING COLOURS #############################################
-class colore:
-  verde = '\033[92m'
-  rosso = '\033[91m'
-  giall = '\033[93m'
-  reset = '\033[0m'
-  black='\033[30m'
-  red='\033[31m'
-  green='\033[32m'
-  orange='\033[33m'
-  blue='\033[34m'
-  purple='\033[35m'
-  cyan='\033[36m'
-  lightgrey='\033[37m'
-  darkgrey='\033[90m'
-  lightred='\033[91m'
-  lightgreen='\033[92m'
-  yellow='\033[93m'
-  lightblue='\033[94m'
-  pink='\033[95m'
-  lightcyan='\033[96m'
+
  
 
 ######## STARTING THE BITBOT TRADING PROGRAM ##########################
