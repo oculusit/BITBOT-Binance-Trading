@@ -182,8 +182,8 @@ def LeggiConfig(modo):
   pausa = int(config.get('Var', 'pause'))
   maxnonvendo = int(config.get('Var', 'maxsell'))
   debug = int(config.get('Var', 'debug'))
-  gainpc = int(config.get('Var', 'gainpc'))
-  losspc = int(config.get('Var', 'losspc'))
+  gainpc = float(config.get('Var', 'gainpc'))
+  losspc = float(config.get('Var', 'losspc'))
 
  if modo == 2:
   fiat = int(config.get('Var', 'fiat'))
@@ -200,8 +200,8 @@ def LeggiConfig(modo):
   pausa = int(config.get('Var', 'pause'))
   maxnonvendo = int(config.get('Var', 'maxsell'))
   debug = int(config.get('Var', 'debug'))
-  gainpc = int(config.get('Var', 'gainpc'))
-  losspc = int(config.get('Var', 'losspc'))
+  gainpc = float(config.get('Var', 'gainpc'))
+  losspc = float(config.get('Var', 'losspc'))
   
 rel = "0.8 binance trading test"
 
@@ -281,7 +281,8 @@ nonvendo = 0                      # Numero di tentativi falliti nella vendita pe
 maxnonvendo = 3                   # Numero massimo di tentativi falliti prima di abbassare il numero LIMITE che non deve scendere sotto a: 1
 ferma = 0                         # Ferma il BOT TRADING alla prima vendita disponibile 1=STOP 0=NON STOP
 debug = 0						  # Enable (1) or disable (0) debug messages
-
+gainpc = 0.5
+losspc = -0.8
 
 print(colore.giall + "Rel " + rel + " - "+ symbol + " by Oculus.it\n\n" + colore.reset)
 
