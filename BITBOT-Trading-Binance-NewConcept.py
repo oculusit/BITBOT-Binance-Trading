@@ -257,8 +257,8 @@ LeggiConfig(1)
 try:
  LeggiSaving()
  print(colore.lightcyan + "Restoring previous situation" + colore.reset)
- if debugge == 1:
-  print(f"LG: {guadagno} - TG: {guadagnototale} - ")
+ #if debugge == 1:
+ print(f"LG: {guadagno} - TG: {guadagnototale} - TOTAL CRYPTO BOUGHT: {totalebitacquistati} \nTOTAL VALUE BOUGHT: {comprato} - AVERAGE: {media}")
 except:
   print(colore.lightcyan + "No restoring file found" + colore.reset)
 	
