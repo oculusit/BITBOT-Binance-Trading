@@ -274,14 +274,6 @@ def LeggiConfig(modo):
 
  
 LeggiConfig(1)
-try:
- LeggiSaving()
- print(colore.lightcyan + "Restoring previous situation" + colore.reset)
- #if debugge == 1:
- print(f"LG: {guadagno} - TG: {guadagnototale} - TOTAL CRYPTO BOUGHT: {totalebitacquistati} \nTOTAL VALUE BOUGHT: {comprato} - AVERAGE: {media}")
-except:
-  print(colore.lightcyan + "No restoring file found" + colore.reset)
-	
 
 ######## TESTNET ######################################################
 # To use the real BINANCE API TRADING change testnet to zero
@@ -380,6 +372,14 @@ gainav = gainpc
 lossav = losspc
 
 print(colore.giall + "Rel " + rel + " - "+ symbol + " by Oculus.it\n\n" + colore.reset)
+
+try:
+ LeggiSaving()
+ print(colore.lightcyan + "Restoring previous situation" + colore.reset)
+ #if debugge == 1:
+ print(f"LG: {guadagno} - TG: {guadagnototale} - TOTAL CRYPTO BOUGHT: {totalebitacquistati} \nTOTAL VALUE BOUGHT: {comprato} - AVERAGE: {media}")
+except:
+  print(colore.lightcyan + "No restoring file found" + colore.reset)
 
 #with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
 #  print("Premi M per MENU")
