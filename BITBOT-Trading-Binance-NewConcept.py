@@ -321,15 +321,6 @@ print("`-------'  `---'   `---'   `-------'  `-------'   `---'    ")
 print("            C R Y P T O - A U T O T R A D E R              ")
 print("                       by Oculus.it                        ")
 print(colore.reset + "\n")
-
-#print(colore.verde + "\n\nBBBBBBB   II  TTTTTTTT   BBBBBBB     OOOOO   TTTTTTTT")
-#print("BB    BB  II     TT      BB    BB   OO   OO     TT")
-#print("BBBBBBB   II     TT      BBBBBBB   OO     OO    TT")
-#print("BB    BB  II     TT      BB    BB  OO     OO    TT")
-#print("BB     BB II     TT      BB     BB OO     OO    TT")
-#print("BB    BB  II     TT      BB    BB   OO   OO     TT")
-#print("BBBBBBB   II     TT      BBBBBBB     OOOOO      TT          C R Y P T O - A U T O T R A D E R ")
-#print("                                                                       by Oculus.it" + colore.reset)
 print("")
 
 ######## DEFINING VARIABLES ###########################################
@@ -451,6 +442,8 @@ while True:                        # MAIN LOOP
      else:
       compra()
       LeggiConfig(4)
+      if lossav < losspc:
+       lossav = lossav - losspc
 
         
     print(f"- GAIN AVERAGE: {gainav} %\n- LOSS AVERAGE: {lossav} %\n- GAIN LIMIT  : {gainpc} %\n- LOSS LIMIT  : {losspc} %")      
