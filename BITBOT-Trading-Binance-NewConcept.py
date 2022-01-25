@@ -178,7 +178,7 @@ def vendi():
   comprato = 0
   if ferma == 1:
    time.sleep(1)	  
-   quit()
+   quit(1)
    
   return True
 
