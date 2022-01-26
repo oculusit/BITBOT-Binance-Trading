@@ -27,7 +27,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.8.18 Binance Trading ** TEST NEW CONCEPT **"
+rel = "0.8.19 Binance Trading ** TEST NEW CONCEPT **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -437,7 +437,7 @@ while True:                        # MAIN LOOP
       print(colore.rosso, end='')
      if actualgain == 0:
       print(colore.giall, end='')
-     if actualgain > 0
+     if actualgain > 0:
       print(colore.verde, end='')
      
      print(f"{actualgain} % {colore.giall}")
