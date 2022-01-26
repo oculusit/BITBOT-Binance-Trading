@@ -27,7 +27,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.8.6 Binance Trading ** TEST NEW CONCEPT **"
+rel = "0.8.7 Binance Trading ** TEST NEW CONCEPT **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -164,6 +164,10 @@ def vendi():
   sav.write("totalebitacquistati = 0\n")
   sav.write("comprato = 0\n")
   sav.write("media = 0\n")
+  sav.write("gainav = 0\n")
+  sav.write("lossav = 0\n")  
+  sav.write("gainpc = 0\n")
+  sav.write("losspc = 0\n")  
   sav.close
   print("%.4f" %(r), end='')
   print("%")
@@ -219,6 +223,10 @@ def compra():
   sav.write("totalebitacquistati = " + str(totalebitacquistati) + "\n")
   sav.write("comprato = " + str(comprato) + "\n")
   sav.write("media = " + str(media) + "\n")
+  sav.write("gainav = " + str(gainav) + "\n")
+  sav.write("lossav = " + str(lossav) + "\n")  
+  sav.write("gainpc = " + str(gainpc) + "\n")
+  sav.write("losspc = " + str(losspc) + "\n")  
   sav.close
   log = open(symbol + ".log","a")
   log.write("BUY;" + dt_string + ";" + str(bitcoin) + ";" + str(attuale) + ";" + str(bitcoin * attuale) + ";" + str(comprato) + ";" + str(valoreattuale) + ";0\n")
@@ -230,7 +238,7 @@ def compra():
   return True
   
 def LeggiSaving():
- global guadagno, guadagnototale, totalebitacquistati, comprato, media, symbol
+ global guadagno, guadagnototale, totalebitacquistati, comprato, media, symbol, gainav, lossav, gainpc, losspc
  config = configparser.ConfigParser()
  config.read_file(open(r'' + symbol + ".sav"))
  guadagno = float(config.get('saving', 'guadagno'))
@@ -238,6 +246,10 @@ def LeggiSaving():
  totalebitacquistati = float(config.get('saving', 'totalebitacquistati'))
  comprato = float(config.get('saving', 'comprato'))
  media = float(config.get('saving', 'media'))
+ gainav = float(config.get('saving', 'gainav'))
+ lossav = float(config.get('saving', 'lossav'))
+ gainpc = float(config.get('saving', 'gainpc'))
+ losspc = float(config.get('saving', 'losspc'))
  return True
  
 def LeggiConfig(modo):
@@ -444,6 +456,7 @@ while True:                        # MAIN LOOP
       LeggiConfig(4)
       if lossav < losspc:               # If LossAverage is < than Loss%Limit the Loss%Limit is decreased to avoid continuous buying
        losspc = lossav - losspc
+       print(colore.lightgrey + "Loss % is decreased to avoid continuous buying to " + str(losspc) + "%" + colore.reset)
 
         
     print(f"- GAIN AVERAGE: {gainav} %\n- LOSS AVERAGE: {lossav} %\n- GAIN LIMIT  : {gainpc} %\n- LOSS LIMIT  : {losspc} %")      
