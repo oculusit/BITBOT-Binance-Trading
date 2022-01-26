@@ -27,7 +27,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.8.20 Binance Trading ** TEST NEW CONCEPT **"
+rel = "0.8.21 Binance Trading ** TEST NEW CONCEPT **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -250,7 +250,7 @@ def compra():
   return True
   
 def LeggiSaving():
- global guadagno, guadagnototale, totalebitacquistati, comprato, media, symbol, gainav, lossav, gainpc, losspc, gaincn, losscn, gainsm, losssm
+ global guadagno, guadagnototale, totalebitacquistati, comprato, media, symbol, gainav, lossav, gainpc, losspc, gaincn, losscn, gainsm, losssm, prezzomedio, numeroacquisti
  config = configparser.ConfigParser()
  config.read_file(open(r'' + symbol + ".sav"))
  guadagno = float(config.get('saving', 'guadagno'))
@@ -400,6 +400,7 @@ try:
  print(colore.lightcyan + "Restoring previous situation" + colore.reset)
  #if debugge == 1:
  print(f"LG: {guadagno} - TG: {guadagnototale} - TOTAL CRYPTO BOUGHT: {totalebitacquistati} \nTOTAL VALUE BOUGHT: {comprato} - AVERAGE: {media}")
+ print(f"AVERAGE SUM: {prezzomedio} - NUMBER OF BUYS: {numeroacquisti}")
  print(f"GAINAV: {gainav} - LOSSAV: {lossav} - GAINPC: {gainpc} - LOSSPC: {losspc}")
  print(f"GAINCN: {gaincn} - LOSSCN: {losscn} - GAINSM: {gainsm} - LOSSSM: {losssm}")
 except:
