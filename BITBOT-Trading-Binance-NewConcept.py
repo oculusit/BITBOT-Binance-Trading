@@ -433,7 +433,7 @@ while True:                        # MAIN LOOP
     if comprato > 0:                                      # if there are crypto bought then...
      actualgain = ((valoreattuale*100)/comprato) - 100
      print(f"{colore.giall}- ACTUAL +G/-L: ", end='')
-     if actualgain > 0:
+     if actualgain < 0:
       print(colore.rosso, end='')
      if actualgain == 0:
       print(colore.giall, end='')
@@ -487,7 +487,7 @@ while True:                        # MAIN LOOP
 
         
     print("- GAIN AVERAGE: ", end='')
-    if gainav > 0:
+    if gainav < 0:
      print(colore.rosso, end='')
     if gainav == 0:
      print(colore.giall, end='')
