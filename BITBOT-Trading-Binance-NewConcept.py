@@ -400,6 +400,8 @@ gaincn = 0                        # Gain Counter
 losscn = 0                        # Loss Counter
 actualgain = 0                    # Actual gain
 mingain = 0.1					  # Minimum gain percentage
+telegramtoken = ''
+telegramchatid = ''
 
 ######## READ CONFIGURATION MODE 3 AND SET GAIN AND LOSS AVERAGES #####
 LeggiConfig(3)
