@@ -27,7 +27,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.8.23 Binance Trading ** TEST NEW CONCEPT **"
+rel = "0.9.001 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -59,6 +59,13 @@ class colore:
   lightblue='\033[94m'
   pink='\033[95m'
   lightcyan='\033[96m'
+
+def notify(bot_message):
+ bot_token = '5294510374:AAFqn3vedrAlVFW1V8wC_Zl939vlIMO_2yE'
+ bot_chatID = '8544744'
+ send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
+ response = requests.get(send_text)
+ return response.json()
 
 def on_press(key):
   tasto = key
@@ -148,6 +155,9 @@ def vendi():
   log.write("EXPECT;" + dt_string + ";Crypto Qty: " + str(q) + ";Actual Crypto Value: " + str(attuale) + ";Total: " + str(q * attuale) + ";Gain %: " + str(gainpc) +";Loss %: " + str(losspc) +";0\n") 
   venduto = totalebitacquistati * attuale
   print(f"Selled at {sfiat} {attuale} and gained {venduto}")
+  telegram_message = "BITBOT - " + dt_string + " - Selled " + str(q) + " " + scrypto + " at actual value of " + str(attuale) + " " + sfiat + "\n\n- Actual Gain: " + str(guadagno) + "\n- Total Gain: " + str(guadagnototale)
+  notify(telegram_message)
+  
   guadagno = venduto - comprato
   guadagnototale = guadagnototale + guadagno
   print(f"Actual Gain: {sfiat} {guadagno}  Total Gain: {sfiat} {guadagnototale}   -  ", end='')
@@ -282,6 +292,8 @@ def LeggiConfig(modo):
   maxnonvendo = int(config.get('Var', 'maxsell'))
   debugge = int(config.get('Var', 'debug'))
   mingain = float(config.get('Var', 'mingain'))
+  telegramtoken = config.get('telegram', 'token')
+  telegramchatid = config.get('telegram', 'chatid')
  if modo == 2:
   fiat = int(config.get('Var', 'fiat'))
   ferma = int(config.get('Var', 'stop'))
