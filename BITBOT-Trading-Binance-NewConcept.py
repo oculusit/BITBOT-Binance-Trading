@@ -27,7 +27,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.8.16 Binance Trading ** TEST NEW CONCEPT **"
+rel = "0.8.17 Binance Trading ** TEST NEW CONCEPT **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
