@@ -27,7 +27,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.8.8 Binance Trading ** TEST NEW CONCEPT **"
+rel = "0.8.9 Binance Trading ** TEST NEW CONCEPT **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -167,7 +167,11 @@ def vendi():
   sav.write("gainav = 0\n")
   sav.write("lossav = 0\n")  
   sav.write("gainpc = 0\n")
-  sav.write("losspc = 0\n")  
+  sav.write("losspc = 0\n")
+  sav.write("gaincn = 0\n")
+  sav.write("losscn = 0\n")  
+  sav.write("gainsm = 0\n")
+  sav.write("losssm = 0\n")
   sav.close
   print("%.4f" %(r), end='')
   print("%")
@@ -226,7 +230,11 @@ def compra():
   sav.write("gainav = " + str(gainav) + "\n")
   sav.write("lossav = " + str(lossav) + "\n")  
   sav.write("gainpc = " + str(gainpc) + "\n")
-  sav.write("losspc = " + str(losspc) + "\n")  
+  sav.write("losspc = " + str(losspc) + "\n")
+  sav.write("gaincn = " + str(gaincn) + "\n")
+  sav.write("losscn = " + str(losscn) + "\n")  
+  sav.write("gainsm = " + str(gainsm) + "\n")
+  sav.write("losssm = " + str(losssm) + "\n")
   sav.close
   log = open(symbol + ".log","a")
   log.write("BUY;" + dt_string + ";" + str(bitcoin) + ";" + str(attuale) + ";" + str(bitcoin * attuale) + ";" + str(comprato) + ";" + str(valoreattuale) + ";0\n")
@@ -238,7 +246,7 @@ def compra():
   return True
   
 def LeggiSaving():
- global guadagno, guadagnototale, totalebitacquistati, comprato, media, symbol, gainav, lossav, gainpc, losspc
+ global guadagno, guadagnototale, totalebitacquistati, comprato, media, symbol, gainav, lossav, gainpc, losspc, gaincn, losscn, gainsm, losssm
  config = configparser.ConfigParser()
  config.read_file(open(r'' + symbol + ".sav"))
  guadagno = float(config.get('saving', 'guadagno'))
@@ -250,6 +258,11 @@ def LeggiSaving():
  lossav = float(config.get('saving', 'lossav'))
  gainpc = float(config.get('saving', 'gainpc'))
  losspc = float(config.get('saving', 'losspc'))
+ gaincn = float(config.get('saving', 'gaincn'))
+ losscn = float(config.get('saving', 'losscn'))
+ gainsm = float(config.get('saving', 'gainsm'))
+ losssm = float(config.get('saving', 'losssm'))
+
  return True
  
 def LeggiConfig(modo):
