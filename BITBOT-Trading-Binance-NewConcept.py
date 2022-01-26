@@ -480,11 +480,11 @@ while True:                        # MAIN LOOP
         
     print("- GAIN AVERAGE: ", end='')
     if gainav > 0:
-     print(colore.rosso)
+     print(colore.rosso, end='')
     if gainav == 0:
-     print(colore.giall)
+     print(colore.giall, end='')
     else:
-     print(colore.verde)
+     print(colore.verde, end='')
 
     print(f"{gainav}%" + colore.giall)
     print(f"- LOSS AVERAGE: " + colore.reset + f"{lossav}%" + colore.giall + "\n- GAIN LIMIT  : " + colore.reset + f"{gainpc}%" + colore.giall + "\n- LOSS LIMIT  : " + colore.reset + f"{losspc}%")
