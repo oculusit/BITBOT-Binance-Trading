@@ -27,7 +27,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.9.001 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
+rel = "0.9.002 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -61,8 +61,9 @@ class colore:
   lightcyan='\033[96m'
 
 def notify(bot_message):
- bot_token = '5294510374:AAFqn3vedrAlVFW1V8wC_Zl939vlIMO_2yE'
- bot_chatID = '8544744'
+ global telegramtoken, telegramchatid
+ bot_token = telegramtoken
+ bot_chatID = telegramchatid
  send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
  response = requests.get(send_text)
  return response.json()
