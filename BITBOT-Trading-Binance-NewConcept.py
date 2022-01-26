@@ -481,7 +481,7 @@ while True:                        # MAIN LOOP
     print(f"- GAIN AVERAGE: ")
     if gainav > 0:
      print(colore.rosso)
-    if gainav = 0:
+    if gainav == 0:
      print(colore.giall)
     else:
      print(colore.verde)
