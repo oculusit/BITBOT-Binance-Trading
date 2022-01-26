@@ -442,8 +442,8 @@ while True:                        # MAIN LOOP
      else:
       compra()
       LeggiConfig(4)
-      if lossav < losspc:
-       lossav = lossav - losspc
+      if lossav < losspc:               # If LossAverage is < than Loss%Limit the Loss%Limit is decreased to avoid continuous buying
+       losspc = lossav - losspc
 
         
     print(f"- GAIN AVERAGE: {gainav} %\n- LOSS AVERAGE: {lossav} %\n- GAIN LIMIT  : {gainpc} %\n- LOSS LIMIT  : {losspc} %")      
