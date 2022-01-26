@@ -27,7 +27,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.8.10 Binance Trading ** TEST NEW CONCEPT **"
+rel = "0.8.11 Binance Trading ** TEST NEW CONCEPT **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -455,17 +455,21 @@ while True:                        # MAIN LOOP
     if actualgain > gainpc:
       vendi()
       compra()
+      print(colore.lightred)
       gainav = gainsm / gaincn
       print(f"==========> Changing GAIN % to {gainav}")
       lossav = losssm / losscn
       print(f"==========> Changing LOSS % to {lossav}")
+      print(colore.reset)
     else:
       if debugge == 1:
         print(f"actualgain {actualgain} - gainpc {gainpc}")
 
     if actualgain < losspc:
      if comprato + fiat > maxfiat:
-      print(f"Max {sfiat} reached.")
+      print(colore.lightred)
+      print(f"- Max {sfiat} reached.")
+      print(colore.reset)
      else:
       compra()
       LeggiConfig(4)
@@ -474,7 +478,15 @@ while True:                        # MAIN LOOP
        print(colore.lightgrey + "Loss % is decreased to avoid continuous buying to " + str(losspc) + "%" + colore.reset)
 
         
-    print(f"- GAIN AVERAGE: {gainav} %\n- LOSS AVERAGE: {lossav} %\n- GAIN LIMIT  : {gainpc} %\n- LOSS LIMIT  : {losspc} %")      
+    print(f"- GAIN AVERAGE: ")
+    if gainav > 0:
+     print(colore.rosso)
+    if gainav = 0:
+     print(colore.giall)
+    else:
+     print(colore.verde)
+
+    print(f"{gainav}%\n- LOSS AVERAGE: {lossav}%\n- GAIN LIMIT  : {gainpc}%\n- LOSS LIMIT  : {losspc}%")      
       
       
     # Stampo a video le variazioni attuali  
