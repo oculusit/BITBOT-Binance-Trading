@@ -395,6 +395,7 @@ try:
  #if debugge == 1:
  print(f"LG: {guadagno} - TG: {guadagnototale} - TOTAL CRYPTO BOUGHT: {totalebitacquistati} \nTOTAL VALUE BOUGHT: {comprato} - AVERAGE: {media}")
  print(f"GAINAV: {gainav} - LOSSAV: {lossav} - GAINPC: {gainpc} - LOSSPC: {losspc}")
+ pirnt(f"GAINCN: {gaincn} - LOSSCN: {losscn} - GAINSM: {gainsm} - LOSSSM: {losssm}")
 except:
   print(colore.lightcyan + "No restoring file found" + colore.reset)
 
