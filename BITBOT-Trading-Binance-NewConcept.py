@@ -27,7 +27,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.8.21 Binance Trading ** TEST NEW CONCEPT **"
+rel = "0.8.22 Binance Trading ** TEST NEW CONCEPT **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -398,11 +398,11 @@ print(colore.giall + "Rel " + rel + " - "+ symbol + " by Oculus.it\n\n" + colore
 try:
  LeggiSaving()
  print(colore.lightcyan + "Restoring previous situation" + colore.reset)
- #if debugge == 1:
- print(f"LG: {guadagno} - TG: {guadagnototale} - TOTAL CRYPTO BOUGHT: {totalebitacquistati} \nTOTAL VALUE BOUGHT: {comprato} - AVERAGE: {media}")
- print(f"AVERAGE SUM: {prezzomedio} - NUMBER OF BUYS: {numeroacquisti}")
- print(f"GAINAV: {gainav} - LOSSAV: {lossav} - GAINPC: {gainpc} - LOSSPC: {losspc}")
- print(f"GAINCN: {gaincn} - LOSSCN: {losscn} - GAINSM: {gainsm} - LOSSSM: {losssm}")
+ if debugge == 1:
+  print(f"LG: {guadagno} - TG: {guadagnototale} - TOTAL CRYPTO BOUGHT: {totalebitacquistati} \nTOTAL VALUE BOUGHT: {comprato} - AVERAGE: {media}")
+  print(f"AVERAGE SUM: {prezzomedio} - NUMBER OF BUYS: {numeroacquisti}")
+  print(f"GAINAV: {gainav} - LOSSAV: {lossav} - GAINPC: {gainpc} - LOSSPC: {losspc}")
+  print(f"GAINCN: {gaincn} - LOSSCN: {losscn} - GAINSM: {gainsm} - LOSSSM: {losssm}")
 except:
   print(colore.lightcyan + "No restoring file found" + colore.reset)
 
@@ -493,10 +493,10 @@ while True:                        # MAIN LOOP
        print(colore.lightgrey + "Loss % is decreased to avoid continuous buying to " + str(losspc) + "%" + colore.reset)
 
         
-    print(f"- GAIN AVERAGE: {colore.verde}{gainav}%" + colore.giall)
-    print(f"- LOSS AVERAGE: {colore.rosso}{lossav}%" + colore.giall)
-    print(f"- GAIN LIMIT  : {colore.verde}{gainpc}%" + colore.giall)
-    print(f"- LOSS LIMIT  : {colore.rosso}{losspc}%" + colore.reset)
+    print(f"{colore.giall}- GAIN AVERAGE: {colore.verde}{gainav}%")
+    print(f"{colore.giall}- LOSS AVERAGE: {colore.rosso}{lossav}%")
+    print(f"{colore.giall}- GAIN LIMIT  : {colore.verde}{gainpc}%")
+    print(f"{colore.giall}- LOSS LIMIT  : {colore.rosso}{losspc}%" + colore.reset)
       
       
     # Stampo a video le variazioni attuali  
