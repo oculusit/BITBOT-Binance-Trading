@@ -27,7 +27,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.8.19 Binance Trading ** TEST NEW CONCEPT **"
+rel = "0.8.20 Binance Trading ** TEST NEW CONCEPT **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -164,6 +164,8 @@ def vendi():
   sav.write("totalebitacquistati = 0\n")
   sav.write("comprato = 0\n")
   sav.write("media = 0\n")
+  sav.write("prezzomedio = 0\n")
+  sav.write("numeroacquisti = 0\n")
   sav.write("gainav = 0\n")
   sav.write("lossav = 0\n")  
   sav.write("gainpc = 0\n")
@@ -227,6 +229,8 @@ def compra():
   sav.write("totalebitacquistati = " + str(totalebitacquistati) + "\n")
   sav.write("comprato = " + str(comprato) + "\n")
   sav.write("media = " + str(media) + "\n")
+  sav.write("prezzomedio = " + str(prezzomedio) + "\n")
+  sav.write("numeroacquisti = " + str(numeroacquisti) + "\n")
   sav.write("gainav = " + str(gainav) + "\n")
   sav.write("lossav = " + str(lossav) + "\n")  
   sav.write("gainpc = " + str(gainpc) + "\n")
@@ -254,6 +258,8 @@ def LeggiSaving():
  totalebitacquistati = float(config.get('saving', 'totalebitacquistati'))
  comprato = float(config.get('saving', 'comprato'))
  media = float(config.get('saving', 'media'))
+ prezzomedio = float(config.get('saving', 'prezzomedio'))
+ numeroacquisti = int(config.get('saving', 'numeroacquisti'))
  gainav = float(config.get('saving', 'gainav'))
  lossav = float(config.get('saving', 'lossav'))
  gainpc = float(config.get('saving', 'gainpc'))
