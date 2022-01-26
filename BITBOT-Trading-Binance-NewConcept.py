@@ -486,16 +486,10 @@ while True:                        # MAIN LOOP
        print(colore.lightgrey + "Loss % is decreased to avoid continuous buying to " + str(losspc) + "%" + colore.reset)
 
         
-    print("- GAIN AVERAGE: ", end='')
-    if gainav < 0:
-     print(colore.rosso, end='')
-    if gainav == 0:
-     print(colore.giall, end='')
-    else:
-     print(colore.verde, end='')
-
-    print(f"{gainav}%" + colore.giall)
-    print(f"- LOSS AVERAGE: " + colore.reset + f"{lossav}%" + colore.giall + "\n- GAIN LIMIT  : " + colore.reset + f"{gainpc}%" + colore.giall + "\n- LOSS LIMIT  : " + colore.reset + f"{losspc}%")
+    print(f"- GAIN AVERAGE: {colore.verde}{gainav}%" + colore.giall)
+    print(f"- LOSS AVERAGE: {colore.rosso}{lossav}%" + colore.giall)
+    print(f"- GAIN LIMIT  : {colore.verde}{gainpc}%" + colore.giall)
+    print(f"- LOSS LIMIT  : {colore.rosso}{losspc}%" + colore.reset)
       
       
     # Stampo a video le variazioni attuali  
