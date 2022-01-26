@@ -27,7 +27,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.8.22 Binance Trading ** TEST NEW CONCEPT **"
+rel = "0.8.23 Binance Trading ** TEST NEW CONCEPT **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -521,7 +521,7 @@ while True:                        # MAIN LOOP
 
     
     if debugge == 1:
-      print(f"DEBUG: UP {up} - DOWN {down} - LIMIT {limite}    |    GAINAV {gainav} - LOSSAV {lossav}")
+      print(f"DEBUG: UP {up} - DOWN {down} - LIMIT {limite} - GAINAV {gainav} - LOSSAV {lossav}")
     
     if up > limite and gainav > 0:	
       gainpc = gainav
