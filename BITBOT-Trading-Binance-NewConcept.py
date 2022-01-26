@@ -27,7 +27,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.8.15 Binance Trading ** TEST NEW CONCEPT **"
+rel = "0.8.16 Binance Trading ** TEST NEW CONCEPT **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -433,9 +433,9 @@ while True:                        # MAIN LOOP
     if comprato > 0:                                      # if there are crypto bought then...
      actualgain = ((valoreattuale*100)/comprato) - 100
      print(f"{colore.giall}- ACTUAL +G/-L: ", end='')
-     if gainav > 0:
+     if actualgain > 0:
       print(colore.rosso, end='')
-     if gainav == 0:
+     if actualgain == 0:
       print(colore.giall, end='')
      else:
       print(colore.verde, end='')
