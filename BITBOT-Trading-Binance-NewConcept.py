@@ -27,7 +27,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.8.11 Binance Trading ** TEST NEW CONCEPT **"
+rel = "0.8.12 Binance Trading ** TEST NEW CONCEPT **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -478,7 +478,7 @@ while True:                        # MAIN LOOP
        print(colore.lightgrey + "Loss % is decreased to avoid continuous buying to " + str(losspc) + "%" + colore.reset)
 
         
-    print(f"- GAIN AVERAGE: ")
+    print(f"- GAIN AVERAGE: ", end='')
     if gainav > 0:
      print(colore.rosso)
     if gainav == 0:
@@ -486,7 +486,8 @@ while True:                        # MAIN LOOP
     else:
      print(colore.verde)
 
-    print(f"{gainav}%\n- LOSS AVERAGE: {lossav}%\n- GAIN LIMIT  : {gainpc}%\n- LOSS LIMIT  : {losspc}%")      
+    print(f"{gainav}%" + colore.giall)
+    print(f"- LOSS AVERAGE: " + colore.reset + "{lossav}%" + colore.giall + "\n- GAIN LIMIT  : " + colore.reset + "{gainpc}%" + colore.giall + "\n- LOSS LIMIT  : " + colore.reset + "{losspc}%")
       
       
     # Stampo a video le variazioni attuali  
