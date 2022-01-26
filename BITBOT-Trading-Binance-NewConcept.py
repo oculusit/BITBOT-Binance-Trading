@@ -27,7 +27,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.8.7 Binance Trading ** TEST NEW CONCEPT **"
+rel = "0.8.8 Binance Trading ** TEST NEW CONCEPT **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -381,6 +381,7 @@ try:
  print(colore.lightcyan + "Restoring previous situation" + colore.reset)
  #if debugge == 1:
  print(f"LG: {guadagno} - TG: {guadagnototale} - TOTAL CRYPTO BOUGHT: {totalebitacquistati} \nTOTAL VALUE BOUGHT: {comprato} - AVERAGE: {media}")
+ print(f"GAINAV: {gainav} - LOSSAV: {lossav} - GAINPC: {gainpc} - LOSSPC: {losspc}")
 except:
   print(colore.lightcyan + "No restoring file found" + colore.reset)
 
