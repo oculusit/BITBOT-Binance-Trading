@@ -27,7 +27,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.9.005 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
+rel = "0.9.006 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -220,12 +220,16 @@ def compra():
    if esito == "Errore":
     print("Error during buying. Please perform a manual check!!")
    else:
-    attuale = float(esito["fills"][0]["price"])
-    bitcoin = float(esito["fills"][0]["qty"])
-    if bitcoin * attuale < fiat:
+    try:
+     attuale = float(esito["fills"][0]["price"])
+     bitcoin = float(esito["fills"][0]["qty"])
+     if bitcoin * attuale < fiat:
       print("Now buying %.8f at price of %.2f and the total is %.2f but is less than %.2f" %(bitcoin, attuale, bitcoin * attuale, fiat))
       if debugge == 1:
-       print(esito)
+       print(colore.rosso + "DEBUG: " + esito + colore.reset)
+    except:
+     print(colore.lightred + "-----> TRANSACTION ERROR <-----" + colore.reset)
+     print(colore.rosso + esito + colore.reset)
   else:                                                                  # Altrimenti se la simulazione FOSSE ATTIVA
    print("Simulation not available at the moment!")
    
