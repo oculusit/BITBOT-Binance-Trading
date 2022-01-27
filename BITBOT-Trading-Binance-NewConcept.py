@@ -27,7 +27,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.9.008 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
+rel = "0.9.009 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -65,6 +65,7 @@ def notify(bot_message):
  bot_token = telegramtoken
  bot_chatID = telegramchatid
  send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
+ print(send_text + "\n" + telegramtoken)
  try:
   response = requests.get(send_text)
   print(colore.verde + "-----> Telegram Notify Sended <-----" + colore.reset)
@@ -325,6 +326,8 @@ def LeggiConfig(modo):
   gainpc = float(config.get('Var', 'gainpc'))
   losspc = float(config.get('Var', 'losspc'))
   mingain = float(config.get('Var', 'mingain'))
+  telegramtoken = config.get('telegram', 'token')
+  telegramchatid = config.get('telegram', 'chatid')
  if modo == 4:
   losspc = float(config.get('Var', 'losspc'))  
 
@@ -419,7 +422,8 @@ telegramchatid = ''
 LeggiConfig(3)
 gainav = gainpc
 lossav = losspc
-
+test = notify("BOT STARTED")
+print(test)
 print(colore.giall + "Rel " + rel + " - "+ symbol + " by Oculus.it\n\n" + colore.reset)
 
 try:
