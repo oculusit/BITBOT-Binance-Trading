@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.9.019 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
+rel = "0.9.020 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -540,6 +540,7 @@ while True:                        # MAIN LOOP
       lossav = losssm / losscn
       print(f"==========> Changing LOSS % to {lossav}")
       print(colore.reset)
+      ScriviSaving()
     else:
       if debugge == 1:
         print(f"actualgain {actualgain} - gainpc {gainpc}")
@@ -556,6 +557,7 @@ while True:                        # MAIN LOOP
       # If LossAverage is < than Loss%Limit the Loss%Limit is decreased to avoid continuous buying
       losspc = lossav + losspc
       print(f"{colore.lightred}==========> Changing LOSS % to {losspc} {colore.reset}")
+      ScriviSaving()
 
         
     print(f"{colore.giall}- GAIN AVERAGE: {colore.verde}{gainav}%")
@@ -591,12 +593,14 @@ while True:                        # MAIN LOOP
     if up > limite and gainav > 0:	
       gainpc = gainav
       print(f"{colore.lightgreen}==========> Changing GAIN % to {gainav} {colore.reset}")
+      ScriviSaving()
       up = 0
       down = 0
       
     if down > limite and lossav < 0:
       losspc = lossav
       print(f"{colore.lightred}==========> Changing LOSS % to {lossav} {colore.reset}")
+      ScriviSaving()
       down = 0
       up = 0
     
