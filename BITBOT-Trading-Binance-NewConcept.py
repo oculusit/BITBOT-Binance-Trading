@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.9.018 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
+rel = "0.9.019 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -232,8 +232,9 @@ def compra():
   
   bitcoin = fiat / attuale
   q = float(round(bitcoin,6))
-  print("Values before buying: ", end='')
-  Saldo()
+  if debugge == 1:
+   print("Values before buying: ", end='')
+   Saldo()
   if simulate == 0:                                                      # Se NON è attiva la sola simulazione
    esito = buy(q)
    if esito == "Errore":
@@ -251,9 +252,10 @@ def compra():
      print(colore.rosso + esito + colore.reset)
   else:                                                                  # Altrimenti se la simulazione FOSSE ATTIVA
    print("Simulation not available at the moment!")
-   
-  print("Values after buying:  ", end='')   
-  Saldo()
+  
+  if debugge == 1: 
+   print("Values after buying:  ", end='')   
+   Saldo()
   comprato = (bitcoin * attuale) + comprato
   temporanea = bitcoin * attuale
   valoreattuale = comprato
@@ -262,7 +264,18 @@ def compra():
   prezzomedio = prezzomedio + attuale
   telegram_message = "BITBOT " + location + " - " + dt_string + " - Buyed " + str(q) + " " + scrypto + " at actual value of " + str(attuale) + " " + sfiat
   notify(telegram_message)
+  ScriviSaving()
+  log = open(symbol + ".log","a")
+  log.write("BUY;" + dt_string + ";" + str(bitcoin) + ";" + str(attuale) + ";" + str(bitcoin * attuale) + ";" + str(comprato) + ";" + str(valoreattuale) + ";0\n")
+  log.close
+  print(f"{colore.reset}", end='')
+  print("\nB - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL CRYPTO VALUE: %.2f  " %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, attuale))
+  up = 0
+  down = 0
+  return True
 
+def ScriviSaving():
+  global guadagno, guadagnototale, totalebitacquistati, comprato, media, prezzomedio, numeroacquisti, gainav, lossav, gainpc, losspc, gaincn, losscn, gainsm, losssm
   sav = open(symbol + ".sav", "w")
   sav.write("[saving]\n")
   sav.write("guadagno = " + str(guadagno) + "\n")
@@ -281,14 +294,6 @@ def compra():
   sav.write("gainsm = " + str(gainsm) + "\n")
   sav.write("losssm = " + str(losssm) + "\n")
   sav.close
-  log = open(symbol + ".log","a")
-  log.write("BUY;" + dt_string + ";" + str(bitcoin) + ";" + str(attuale) + ";" + str(bitcoin * attuale) + ";" + str(comprato) + ";" + str(valoreattuale) + ";0\n")
-  log.close
-  print(f"{colore.reset}", end='')
-  print("\nB - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL CRYPTO VALUE: %.2f  " %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, attuale))
-  up = 0
-  down = 0
-  return True
   
 def LeggiSaving():
  global guadagno, guadagnototale, totalebitacquistati, comprato, media, symbol, gainav, lossav, gainpc, losspc, gaincn, losscn, gainsm, losssm, prezzomedio, numeroacquisti
@@ -333,6 +338,7 @@ def LeggiConfig(modo):
   pausa = int(config.get('Var', 'pause'))
   debugge = int(config.get('Var', 'debug'))
   mingain = float(config.get('Var', 'mingain'))
+  telegramnotify = int(config.get('telegram', 'notify'))
  if modo == 3:
   fiat = int(config.get('Var', 'fiat'))
   ferma = int(config.get('Var', 'stop'))
