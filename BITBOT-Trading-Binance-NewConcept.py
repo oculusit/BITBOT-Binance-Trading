@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.9.016 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
+rel = "0.9.017 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -541,12 +541,10 @@ while True:                        # MAIN LOOP
      else:
       compra()
       LeggiConfig(4)
-      #### DA CONTROLLARE CHE FUNZIONI ####
+
       # If LossAverage is < than Loss%Limit the Loss%Limit is decreased to avoid continuous buying
-      
-      print(f"actualgain: {actualgain} - losspc: {losspc} - lossav: {lossav}")
-      losspc = lossav + losspc   #prima era un -
-      print(colore.lightgrey + "Loss % is decreased to avoid continuous buying to " + str(losspc) + "%" + colore.reset)
+      losspc = lossav + losspc
+      print(f"{colore.lightred}==========> Changing LOSS % to {losspc} {colore.reset}"
 
         
     print(f"{colore.giall}- GAIN AVERAGE: {colore.verde}{gainav}%")
