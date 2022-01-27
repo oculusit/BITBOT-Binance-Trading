@@ -20,6 +20,7 @@ import configparser
 import requests
 import time
 import json
+import os
 #import sys
 #from pynput import keyboard
 from datetime import datetime
@@ -27,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.9.010 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
+rel = "0.9.012 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -174,24 +175,29 @@ def vendi():
   
   log.write("SELL;" + dt_string + ";" + str(q) + ";" + str(attuale) + ";" + str(q * attuale) + ";" + str(venduto) + ";" + str(guadagno) + ";" + str(guadagnototale) + "\n")
   log.close
-  sav = open(symbol + ".sav", "w")
-  sav.write("[saving]\n")
-  sav.write("guadagno = 0\n")
-  sav.write("guadagnototale = 0\n")
-  sav.write("totalebitacquistati = 0\n")
-  sav.write("comprato = 0\n")
-  sav.write("media = 0\n")
-  sav.write("prezzomedio = 0\n")
-  sav.write("numeroacquisti = 0\n")
-  sav.write("gainav = 0\n")
-  sav.write("lossav = 0\n")  
-  sav.write("gainpc = 0\n")
-  sav.write("losspc = 0\n")
-  sav.write("gaincn = 0\n")
-  sav.write("losscn = 0\n")  
-  sav.write("gainsm = 0\n")
-  sav.write("losssm = 0\n")
-  sav.close
+  if os.path.exists(symbol + ".sav"):
+   os.remove(symbol + ".sav")
+  else:
+   print("The file " + symbol + ".sav does not exist") 
+   
+  #sav = open(symbol + ".sav", "w")
+  #sav.write("[saving]\n")
+  #sav.write("guadagno = 0\n")
+  #sav.write("guadagnototale = 0\n")
+  #sav.write("totalebitacquistati = 0\n")
+  #sav.write("comprato = 0\n")
+  #sav.write("media = 0\n")
+  #sav.write("prezzomedio = 0\n")
+  #sav.write("numeroacquisti = 0\n")
+  #sav.write("gainav = 0\n")
+  #sav.write("lossav = 0\n")  
+  #sav.write("gainpc = 0\n")
+  #sav.write("losspc = 0\n")
+  #sav.write("gaincn = 0\n")
+  #sav.write("losscn = 0\n")  
+  #sav.write("gainsm = 0\n")
+  #sav.write("losssm = 0\n")
+  #sav.close
   print("%.4f" %(r), end='')
   print("%")
   print(f"\nResetting counters")
@@ -332,6 +338,43 @@ def LeggiConfig(modo):
  if modo == 4:
   losspc = float(config.get('Var', 'losspc'))  
 
+def variables():
+ ######## DEFINING VARIABLES ###########################################
+ numeroacquisti = 0                # How many buying to calcolate the average
+ totalebitacquistati = 0           # Total crypto bought
+ prezzomedio = 0                   # Crypto average value
+ comprato = 0                      #
+ guadagnototale = 0                # Total gained
+ guadagno = 0                      # Actual gain
+ compro = 0                        #
+ fiat = 500                        # Amount of Stable Coin to buy
+ maxfiat = 2500                    # Max Stable Coins to buy
+ maxloop = 1000000                 # Number of checks
+ limite = 3                        # Limit of ups or downs to sell or buy
+ up = 0                            # Current ups
+ down = 0                          # Current downs
+ pausa = 120                       # Pause between price checks
+ precedente = 0                    # Previous
+ attuale = 0                       # Actual
+ number = 0                        #
+ media = 0                         # Average
+ nonvendo = 0                      # Numero di tentativi falliti nella vendita per media troppo bassa
+ maxnonvendo = 3                   # Numero massimo di tentativi falliti prima di abbassare il numero LIMITE che non deve scendere sotto a: 1
+ ferma = 0                         # Ferma il BOT TRADING alla prima vendita disponibile 1=STOP 0=NON STOP
+ debugge = 0						              # Eable (1) or disable (0) debug messages
+ gainpc = 0                        # Gain %
+ losspc = 0                        # Loss %
+ gainsm = 0                        # Gain Sum for Average computing
+ losssm = 0                        # Loss Sum for Average computing
+ gainav = 0                        # Gain Average
+ lossav = 0                        # Loss Average
+ gaincn = 0                        # Gain Counter
+ losscn = 0                        # Loss Counter
+ actualgain = 0                    # Actual gain
+ mingain = 0.1					  # Minimum gain percentage
+ telegramtoken = ''
+ telegramchatid = ''
+
  
 LeggiConfig(1)
 
@@ -383,41 +426,7 @@ print("                       by Oculus.it                        ")
 print(colore.reset + "\n")
 print("")
 
-######## DEFINING VARIABLES ###########################################
-numeroacquisti = 0                # How many buying to calcolate the average
-totalebitacquistati = 0           # Total crypto bought
-prezzomedio = 0                   # Crypto average value
-comprato = 0                      #
-guadagnototale = 0                # Total gained
-guadagno = 0                      # Actual gain
-compro = 0                        #
-fiat = 500                        # Amount of Stable Coin to buy
-maxfiat = 2500                    # Max Stable Coins to buy
-maxloop = 1000000                 # Number of checks
-limite = 3                        # Limit of ups or downs to sell or buy
-up = 0                            # Current ups
-down = 0                          # Current downs
-pausa = 120                       # Pause between price checks
-precedente = 0                    # Previous
-attuale = 0                       # Actual
-number = 0                        #
-media = 0                         # Average
-nonvendo = 0                      # Numero di tentativi falliti nella vendita per media troppo bassa
-maxnonvendo = 3                   # Numero massimo di tentativi falliti prima di abbassare il numero LIMITE che non deve scendere sotto a: 1
-ferma = 0                         # Ferma il BOT TRADING alla prima vendita disponibile 1=STOP 0=NON STOP
-debugge = 0						              # Eable (1) or disable (0) debug messages
-gainpc = 0                        # Gain %
-losspc = 0                        # Loss %
-gainsm = 0                        # Gain Sum for Average computing
-losssm = 0                        # Loss Sum for Average computing
-gainav = 0                        # Gain Average
-lossav = 0                        # Loss Average
-gaincn = 0                        # Gain Counter
-losscn = 0                        # Loss Counter
-actualgain = 0                    # Actual gain
-mingain = 0.1					  # Minimum gain percentage
-telegramtoken = ''
-telegramchatid = ''
+variables()
 
 ######## READ CONFIGURATION MODE 3 AND SET GAIN AND LOSS AVERAGES #####
 LeggiConfig(3)
@@ -522,8 +531,9 @@ while True:                        # MAIN LOOP
       LeggiConfig(4)
       #### DA CONTROLLARE CHE FUNZIONI ####
       # If LossAverage is < than Loss%Limit the Loss%Limit is decreased to avoid continuous buying
-      losspc = lossav - losspc
+      
       print(f"actualgain: {actualgain} - losspc: {losspc} - lossav: {lossav}")
+      losspc = lossav - losspc
       print(colore.lightgrey + "Loss % is decreased to avoid continuous buying to " + str(losspc) + "%" + colore.reset)
 
         
