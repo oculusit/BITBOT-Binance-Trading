@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.9.023 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
+rel = "0.9.024 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -522,9 +522,9 @@ while True:                        # MAIN LOOP
       compra()
       print(colore.lightred)
       gainav = gainsm / gaincn
-      print(f"==========> Changing GAIN % to {gainav}")
+      print(f"==========> Changing GAIN AVERAGE % to {gainav}")
       lossav = losssm / losscn
-      print(f"==========> Changing LOSS % to {lossav}")
+      print(f"==========> Changing LOSS AVERAGE % to {lossav}")
       print(colore.reset)
       ScriviSaving()
     else:
