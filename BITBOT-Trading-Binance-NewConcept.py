@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.9.017 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
+rel = "0.9.018 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -62,19 +62,22 @@ class colore:
   lightcyan='\033[96m'
 
 def notify(bot_message):
- global telegramtoken, telegramchatid
+ global telegramtoken, telegramchatid, telegramnotify
  bot_token = telegramtoken
  bot_chatID = telegramchatid
  send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
  #print(send_text + "\n" + telegramtoken)
- try:
-  response = requests.get(send_text)
-  if debugge == 1:
-   print(colore.verde + "-----> Telegram Notify Sended <-----" + colore.reset)
- except:
-  if debugge == 1:
-   print(colore.rosso + "-----> Telegram Notify Error <-----" + colore.reset)
- return response.json()
+ if telegramnotify == 1:
+  try:
+   response = requests.get(send_text)
+   if debugge == 1:
+    print(colore.verde + "-----> Telegram Notify Sended <-----" + colore.reset)
+  except:
+   if debugge == 1:
+    print(colore.rosso + "-----> Telegram Notify Error <-----" + colore.reset)
+  return response.json()
+ else:
+  return True
 
 def on_press(key):
   tasto = key
@@ -310,7 +313,7 @@ def LeggiSaving():
  return True
  
 def LeggiConfig(modo):
- global api, sek, fiat, maxfiat, limite, pausa, ferma, nonvendo, configfile, testneturl, gainpc, losspc, debugge, maxnonvendo, telegramtoken, telegramchatid, location
+ global api, sek, fiat, maxfiat, limite, pausa, ferma, nonvendo, configfile, testneturl, gainpc, losspc, debugge, maxnonvendo, telegramtoken, telegramchatid, location, telegramnotify
  config = configparser.ConfigParser()
  config.read_file(open(r''+configfile))
  if modo == 1:
@@ -322,6 +325,7 @@ def LeggiConfig(modo):
   mingain = float(config.get('Var', 'mingain'))
   telegramtoken = config.get('telegram', 'token')
   telegramchatid = config.get('telegram', 'chatid')
+  telegramnotify = int(config.get('telegram', 'notify'))
  if modo == 2:
   fiat = int(config.get('Var', 'fiat'))
   ferma = int(config.get('Var', 'stop'))
@@ -343,6 +347,7 @@ def LeggiConfig(modo):
   telegramtoken = config.get('telegram', 'token')
   telegramchatid = config.get('telegram', 'chatid')
   location = config.get('Var', 'location')
+  telegramnotify = int(config.get('telegram', 'notify'))
  if modo == 4:
   losspc = float(config.get('Var', 'losspc'))  
 
