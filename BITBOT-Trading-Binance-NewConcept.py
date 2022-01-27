@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.9.012 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
+rel = "0.9.013 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -166,7 +166,7 @@ def vendi():
   guadagno = venduto - comprato
   guadagnototale = guadagnototale + guadagno
   print(f"Actual Gain: {sfiat} {guadagno}  Total Gain: {sfiat} {guadagnototale}   -  ", end='')
-  telegram_message = "BITBOT - " + dt_string + " - Selled " + str(q) + " " + scrypto + " at actual value of " + str(attuale) + " " + sfiat + "\n\n- Actual Gain: " + str(guadagno) + "\n- Total Gain: " + str(guadagnototale)
+  telegram_message = "BITBOT " + location + " - " + dt_string + " - Selled " + str(q) + " " + scrypto + " at actual value of " + str(attuale) + " " + sfiat + "\n\n- Actual Gain: " + str(guadagno) + "\n- Total Gain: " + str(guadagnototale)
   notify(telegram_message)
 
   c = 100
@@ -211,7 +211,7 @@ def vendi():
   comprato = 0
   if ferma == 1:
    time.sleep(1)
-   notify("BITBOT - " + dt_string + " - STOPPED NOW by configuration settings.")
+   notify("BITBOT " + location + " - " + dt_string + " - STOPPED NOW by configuration settings.")
    quit(1)
    
   return True
@@ -250,7 +250,7 @@ def compra():
   numeroacquisti = numeroacquisti + 1
   totalebitacquistati = totalebitacquistati + bitcoin
   prezzomedio = prezzomedio + attuale
-  telegram_message = "BITBOT - " + dt_string + " - Buyed " + str(q) + " " + scrypto + " at actual value of " + str(attuale) + " " + sfiat
+  telegram_message = "BITBOT " + location + " - " + dt_string + " - Buyed " + str(q) + " " + scrypto + " at actual value of " + str(attuale) + " " + sfiat
   notify(telegram_message)
 
   sav = open(symbol + ".sav", "w")
@@ -303,7 +303,7 @@ def LeggiSaving():
  return True
  
 def LeggiConfig(modo):
- global api, sek, fiat, maxfiat, limite, pausa, ferma, nonvendo, configfile, testneturl, gainpc, losspc, debugge, maxnonvendo, telegramtoken, telegramchatid
+ global api, sek, fiat, maxfiat, limite, pausa, ferma, nonvendo, configfile, testneturl, gainpc, losspc, debugge, maxnonvendo, telegramtoken, telegramchatid, location
  config = configparser.ConfigParser()
  config.read_file(open(r''+configfile))
  if modo == 1:
@@ -335,10 +335,14 @@ def LeggiConfig(modo):
   mingain = float(config.get('Var', 'mingain'))
   telegramtoken = config.get('telegram', 'token')
   telegramchatid = config.get('telegram', 'chatid')
+  location = config.get('Var', 'location')
  if modo == 4:
   losspc = float(config.get('Var', 'losspc'))  
 
 def variables():
+ global numeroacquisti, totalebitacquistati, prezzomedio, comprato, guadagnototale, guadagno, compro, fiat, maxfiat, maxloop, limite, up, down
+ global pausa, precedente, attuale, number, media, nonvendo, maxnonvendo, ferma, debugge, gainpc, losspc, gainsm, losssm, gainav, lossav
+ global gaincn, losscn, actualgain, mingain, telegramtoken, telegramchatid, location
  ######## DEFINING VARIABLES ###########################################
  numeroacquisti = 0                # How many buying to calcolate the average
  totalebitacquistati = 0           # Total crypto bought
@@ -374,6 +378,7 @@ def variables():
  mingain = 0.1					  # Minimum gain percentage
  telegramtoken = ''
  telegramchatid = ''
+ location = ''
 
  
 LeggiConfig(1)
@@ -432,7 +437,7 @@ variables()
 LeggiConfig(3)
 gainav = gainpc
 lossav = losspc
-test = notify("BOT STARTED")
+test = notify("BOT STARTED - Located in " + location)
 #print(test)
 print(colore.giall + "Rel " + rel + " - "+ symbol + " by Oculus.it\n\n" + colore.reset)
 
