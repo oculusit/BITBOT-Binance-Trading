@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.9.013 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
+rel = "0.9.014 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -69,9 +69,11 @@ def notify(bot_message):
  #print(send_text + "\n" + telegramtoken)
  try:
   response = requests.get(send_text)
-  print(colore.verde + "-----> Telegram Notify Sended <-----" + colore.reset)
+  if debugge == 1:
+   print(colore.verde + "-----> Telegram Notify Sended <-----" + colore.reset)
  except:
-  print(colore.rosso + "-----> Telegram Notify Error <-----" + colore.reset)
+  if debugge == 1:
+   print(colore.rosso + "-----> Telegram Notify Error <-----" + colore.reset)
  return response.json()
 
 def on_press(key):
