@@ -549,7 +549,7 @@ while True:                        # MAIN LOOP
 
       # If LossAverage is < than Loss%Limit the Loss%Limit is decreased to avoid continuous buying
       losspc = lossav + losspc
-      print(f"{colore.lightred}==========> Changing LOSS % to {losspc} {colore.reset}"
+      print(f"{colore.lightred}==========> Changing LOSS % to {losspc} {colore.reset}")
 
         
     print(f"{colore.giall}- GAIN AVERAGE: {colore.verde}{gainav}%")
