@@ -27,7 +27,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.9.009 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
+rel = "0.9.010 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -161,12 +161,13 @@ def vendi():
   log.write("EXPECT;" + dt_string + ";Crypto Qty: " + str(q) + ";Actual Crypto Value: " + str(attuale) + ";Total: " + str(q * attuale) + ";Gain %: " + str(gainpc) +";Loss %: " + str(losspc) +";0\n") 
   venduto = totalebitacquistati * attuale
   print(f"Selled at {sfiat} {attuale} and gained {venduto}")
-  telegram_message = "BITBOT - " + dt_string + " - Selled " + str(q) + " " + scrypto + " at actual value of " + str(attuale) + " " + sfiat + "\n\n- Actual Gain: " + str(guadagno) + "\n- Total Gain: " + str(guadagnototale)
-  notify(telegram_message)
   
   guadagno = venduto - comprato
   guadagnototale = guadagnototale + guadagno
   print(f"Actual Gain: {sfiat} {guadagno}  Total Gain: {sfiat} {guadagnototale}   -  ", end='')
+  telegram_message = "BITBOT - " + dt_string + " - Selled " + str(q) + " " + scrypto + " at actual value of " + str(attuale) + " " + sfiat + "\n\n- Actual Gain: " + str(guadagno) + "\n- Total Gain: " + str(guadagnototale)
+  notify(telegram_message)
+
   c = 100
   x = lambda a, b: (a * c / b) - c
   r = x(venduto, comprato)
