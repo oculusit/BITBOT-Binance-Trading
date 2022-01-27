@@ -65,7 +65,7 @@ def notify(bot_message):
  bot_token = telegramtoken
  bot_chatID = telegramchatid
  send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
- print(send_text + "\n" + telegramtoken)
+ #print(send_text + "\n" + telegramtoken)
  try:
   response = requests.get(send_text)
   print(colore.verde + "-----> Telegram Notify Sended <-----" + colore.reset)
@@ -423,7 +423,7 @@ LeggiConfig(3)
 gainav = gainpc
 lossav = losspc
 test = notify("BOT STARTED")
-print(test)
+#print(test)
 print(colore.giall + "Rel " + rel + " - "+ symbol + " by Oculus.it\n\n" + colore.reset)
 
 try:
