@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.9.021 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
+rel = "0.9.022 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -256,6 +256,7 @@ def compra():
   if debugge == 1: 
    print("Values after buying:  ", end='')   
    Saldo()
+   
   comprato = (bitcoin * attuale) + comprato
   temporanea = bitcoin * attuale
   valoreattuale = comprato
@@ -275,7 +276,7 @@ def compra():
   return True
 
 def ScriviSaving():
-  global guadagno, guadagnototale, totalebitacquistati, comprato, media, prezzomedio, numeroacquisti, gainav, lossav, gainpc, losspc, gaincn, losscn, gainsm, losssm
+  global guadagno, guadagnototale, totalebitacquistati, comprato, media, prezzomedio, numeroacquisti, gainav, lossav, gainpc, losspc, gaincn, losscn, gainsm, losssm, symbol, debugge
   sav = open(symbol + ".sav", "w")
   sav.write("[saving]\n")
   sav.write("guadagno = " + str(guadagno) + "\n")
