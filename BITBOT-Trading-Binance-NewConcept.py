@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.9.014 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
+rel = "0.9.015 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -146,7 +146,7 @@ def buy(q):
 
 
 def vendi():
-  global dt_string, venduto, totalebitacquistati, attuale, guadagno, comprato, guadagnototale, totalebitacquistati, numerobitacquistati, prezzomedio, media, up, down, compro, comprato, numeroacquisti, valoreattuale, losspc, gainpc, media
+  global dt_string, venduto, totalebitacquistati, attuale, guadagno, comprato, guadagnototale, totalebitacquistati, numerobitacquistati, prezzomedio, media, up, down, compro, comprato, numeroacquisti, valoreattuale, losspc, gainpc, media, location
   print(colore.rosso + "\nS E L L I N G\n" + colore.reset)
 
   q = float(round(totalebitacquistati,6))
@@ -155,7 +155,12 @@ def vendi():
    if q == "Errore":
     print("Error during selling. Please, perform a manual check!!")
    else:
-    attuale = float(esito["fills"][0]["price"])
+    try:
+     attuale = float(esito["fills"][0]["price"])
+    except:
+     print(colore.lightred + "Error selling " + str(q) + " " + scrypto + ". Please check it!! A notification was sent to telegram account" + colore.reset)
+     notify("BITBOT " + location + " - Error selling " + str(q) + " " + scrypto + ". Please check it!! Script will be ended now.")
+     quit(1)
   else:
     print("Simulation not available at the moment!")
     
