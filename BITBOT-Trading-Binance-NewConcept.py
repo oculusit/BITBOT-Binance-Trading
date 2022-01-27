@@ -27,7 +27,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.9.006 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
+rel = "0.9.007 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -202,7 +202,8 @@ def vendi():
   compro = 0
   comprato = 0
   if ferma == 1:
-   time.sleep(1)	  
+   time.sleep(1)
+   notify("BITBOT - " + dt_string + " - STOPPED NOW by configuration settings.")
    quit(1)
    
   return True

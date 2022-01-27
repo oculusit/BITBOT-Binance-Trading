@@ -1,5 +1,7 @@
 # ***BITBOT - Trading BOT Binance API Powered***
 
+# *** ACTUALLY IN PRODUCTION - README NOT YET UPDATED ***
+
 This is a *pre-release* actually in **TESTING RELEASE**. This is an unstable release.
 Use only with TESTING BINANCE API. 
 Do not use with your real crypto. 
