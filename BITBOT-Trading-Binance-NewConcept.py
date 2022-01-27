@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.9.020 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
+rel = "0.9.021 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -294,6 +294,9 @@ def ScriviSaving():
   sav.write("gainsm = " + str(gainsm) + "\n")
   sav.write("losssm = " + str(losssm) + "\n")
   sav.close
+  if debugge == 1:
+   print(f"{colore.rosso}DEBUG: Saving file correctly written{colore.reset}")
+  return True
   
 def LeggiSaving():
  global guadagno, guadagnototale, totalebitacquistati, comprato, media, symbol, gainav, lossav, gainpc, losspc, gaincn, losscn, gainsm, losssm, prezzomedio, numeroacquisti
