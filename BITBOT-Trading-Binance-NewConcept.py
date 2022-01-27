@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.9.022 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
+rel = "0.9.023 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -189,25 +189,7 @@ def vendi():
    os.remove(symbol + ".sav")
   else:
    print("The file " + symbol + ".sav does not exist") 
-   
-  #sav = open(symbol + ".sav", "w")
-  #sav.write("[saving]\n")
-  #sav.write("guadagno = 0\n")
-  #sav.write("guadagnototale = 0\n")
-  #sav.write("totalebitacquistati = 0\n")
-  #sav.write("comprato = 0\n")
-  #sav.write("media = 0\n")
-  #sav.write("prezzomedio = 0\n")
-  #sav.write("numeroacquisti = 0\n")
-  #sav.write("gainav = 0\n")
-  #sav.write("lossav = 0\n")  
-  #sav.write("gainpc = 0\n")
-  #sav.write("losspc = 0\n")
-  #sav.write("gaincn = 0\n")
-  #sav.write("losscn = 0\n")  
-  #sav.write("gainsm = 0\n")
-  #sav.write("losssm = 0\n")
-  #sav.close
+
   print("%.4f" %(r), end='')
   print("%")
   print(f"\nResetting counters")
@@ -397,10 +379,10 @@ def variables():
  gaincn = 0                        # Gain Counter
  losscn = 0                        # Loss Counter
  actualgain = 0                    # Actual gain
- mingain = 0.1					  # Minimum gain percentage
- telegramtoken = ''
- telegramchatid = ''
- location = ''
+ mingain = 0.1                     # Minimum gain percentage
+ telegramtoken = ''                # Token BOT Telegram 
+ telegramchatid = ''               # ChatID BOT Telegram
+ location = ''                     # Where is phisically the PC
 
  
 LeggiConfig(1)
