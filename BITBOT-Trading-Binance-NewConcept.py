@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.9.027 Binance Trading ** TELEGRAM INTEGRATION **"
+rel = "0.9.028 Binance Trading ** TELEGRAM INTEGRATION **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -245,7 +245,7 @@ def compra():
   numeroacquisti = numeroacquisti + 1
   totalebitacquistati = totalebitacquistati + bitcoin
   prezzomedio = prezzomedio + attuale
-  telegram_message = "BITBOT " + location + " - " + dt_string + "\n\nBOUGHT\n" + str(q) + " " + scrypto + " at actual value of " + str(attuale) + " " + sfiat + "\n- Total " + scrypto + " Bought " + str(totalebitacquistati) + "\n- Total " + sfiat + " Bought " + str(comprato) + "\n- Actual " + scrypto + " value " + str(attuale)
+  telegram_message = "BITBOT " + location + " - " + dt_string + "\n\nBOUGHT\n" + str(q) + " " + scrypto + " at actual value of " + str(attuale) + " " + sfiat + "\n\n- Total " + scrypto + " Bought " + str(totalebitacquistati) + "\n- Total " + sfiat + " Bought " + str(comprato) + "\n- Actual " + scrypto + " value " + str(attuale)
   notify(telegram_message)
   ScriviSaving()
   log = open(symbol + ".log","a")
