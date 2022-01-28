@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.9.024 Binance Trading ** TEST NEW CONCEPT & TELEGRAM INTEGRATION **"
+rel = "0.9.025 Binance Trading ** TELEGRAM INTEGRATION **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -171,12 +171,12 @@ def vendi():
   log = open(symbol + ".log","a")
   log.write("EXPECT;" + dt_string + ";Crypto Qty: " + str(q) + ";Actual Crypto Value: " + str(attuale) + ";Total: " + str(q * attuale) + ";Gain %: " + str(gainpc) +";Loss %: " + str(losspc) +";0\n") 
   venduto = totalebitacquistati * attuale
-  print(f"Selled at {sfiat} {attuale} and gained {venduto}")
+  print(f"Sold at {sfiat} {attuale} and gained {venduto}")
   
   guadagno = venduto - comprato
   guadagnototale = guadagnototale + guadagno
   print(f"Actual Gain: {sfiat} {guadagno}  Total Gain: {sfiat} {guadagnototale}   -  ", end='')
-  telegram_message = "BITBOT " + location + " - " + dt_string + " - Selled " + str(q) + " " + scrypto + " at actual value of " + str(attuale) + " " + sfiat + "\n\n- Actual Gain: " + str(guadagno) + "\n- Total Gain: " + str(guadagnototale)
+  telegram_message = "BITBOT " + location + " - " + dt_string + "\n\nSOLD\n" + str(q) + " " + scrypto + " at actual value of " + str(attuale) + " " + sfiat + "\n\n- Actual Gain: " + str(guadagno) + "\n- Total Gain: " + str(guadagnototale)
   notify(telegram_message)
 
   c = 100
@@ -245,7 +245,7 @@ def compra():
   numeroacquisti = numeroacquisti + 1
   totalebitacquistati = totalebitacquistati + bitcoin
   prezzomedio = prezzomedio + attuale
-  telegram_message = "BITBOT " + location + " - " + dt_string + " - Buyed " + str(q) + " " + scrypto + " at actual value of " + str(attuale) + " " + sfiat
+  telegram_message = "BITBOT " + location + " - " + dt_string + "\n\nBOUGHT\n" + str(q) + " " + scrypto + " at actual value of " + str(attuale) + " " + sfiat + "\nTotal " + scrypto + " Bought " + str(totalebitacquistati) + "\nTotal " + sfiat + " Bought " + str(comprato) + "\nActual " + scrypto + " value " + str(attuale)
   notify(telegram_message)
   ScriviSaving()
   log = open(symbol + ".log","a")
@@ -497,7 +497,7 @@ while True:                        # MAIN LOOP
      if actualgain > 0:
       print(colore.verde, end='')
      
-     print(f"{actualgain} % {colore.giall}")
+     print(f"{actualgain}% {colore.giall}")
     else:
      actualgain = 0
      compra()
