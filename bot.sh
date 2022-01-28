@@ -6,6 +6,8 @@ do
   then
    echo "Ended by AUTO STOP FUNCTION"
    break
+  else
+   echo "Ended by Error!! Errorlevel $?"
   fi
 done
-echo "Ended by ERROR!!"
+
