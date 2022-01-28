@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.9.025 Binance Trading ** TELEGRAM INTEGRATION **"
+rel = "0.9.026 Binance Trading ** TELEGRAM INTEGRATION **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -578,14 +578,14 @@ while True:                        # MAIN LOOP
     
     if up > limite and gainav > 0:	
       gainpc = gainav
-      print(f"{colore.lightgreen}==========> Changing GAIN % to {gainav} {colore.reset}")
+      print(f"{colore.lightgreen}==========> Changing GAIN LIMIT % to {gainav} {colore.reset}")
       ScriviSaving()
       up = 0
       down = 0
       
     if down > limite and lossav < 0:
       losspc = lossav
-      print(f"{colore.lightred}==========> Changing LOSS % to {lossav} {colore.reset}")
+      print(f"{colore.lightred}==========> Changing LOSS LIMIT % to {lossav} {colore.reset}")
       ScriviSaving()
       down = 0
       up = 0
