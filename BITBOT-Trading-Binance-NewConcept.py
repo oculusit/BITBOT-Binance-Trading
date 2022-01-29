@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.9.028 Binance Trading ** TELEGRAM INTEGRATION **"
+rel = "0.10.001 Binance Trading ** TELEGRAM INTEGRATION **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -150,6 +150,7 @@ def buy(q):
 
 def vendi():
   global dt_string, venduto, totalebitacquistati, attuale, guadagno, comprato, guadagnototale, totalebitacquistati, numerobitacquistati, prezzomedio, media, up, down, compro, comprato, numeroacquisti, valoreattuale, losspc, gainpc, media, location
+  global comm_total, comm_sell, comm_last
   print(colore.rosso + "\nS E L L I N G\n" + colore.reset)
 
   q = float(round(totalebitacquistati,6))
@@ -175,8 +176,13 @@ def vendi():
   
   guadagno = venduto - comprato
   guadagnototale = guadagnototale + guadagno
+  
+  # Calculating commissions in Stable
+  comm_last = (guadagno * comm_sell) / 100
+  comm_total = comm_total + comm_last
+  
   print(f"Actual Gain: {sfiat} {guadagno}  Total Gain: {sfiat} {guadagnototale}   -  ", end='')
-  telegram_message = "BITBOT " + location + " - " + dt_string + "\n\nSOLD\n" + str(q) + " " + scrypto + " at actual value of " + str(attuale) + " " + sfiat + "\n\n- Actual Gain: " + str(guadagno) + "\n- Total Gain: " + str(guadagnototale)
+  telegram_message = "BITBOT " + location + " - " + dt_string + "\n\nSOLD\n" + str(q) + " " + scrypto + " at actual value of " + str(attuale) + " " + sfiat + "\n\n- Actual Gain: " + str(guadagno) + "\n- Total Gain: " + str(guadagnototale) + "\n- Actual Commission: " + str(comm_last) + "\n- Total Commissions: " + str(comm_total)
   notify(telegram_message)
 
   c = 100
@@ -210,6 +216,7 @@ def vendi():
 
 def compra():
   global dt_string, bitcoin, fiat, attuale, comprato, temporanea, numeroacquisti, totalebitacquistati, prezzomedio, up, down, guadagnototale, valoreattuale, guadagno, media
+  global comm_total, comm_buy, comm_last
   print(colore.verde + "\nB U Y\n" + colore.reset)
   
   bitcoin = fiat / attuale
@@ -238,14 +245,18 @@ def compra():
   if debugge == 1: 
    print("Values after buying:  ", end='')   
    Saldo()
-   
+  
+  # Calculating commissions in Stable Coin
+  comm_last = (fiat * comm_buy) / 100 
+  comm_total = comm_total + comm_last
+  
   comprato = (bitcoin * attuale) + comprato
   temporanea = bitcoin * attuale
   valoreattuale = comprato
   numeroacquisti = numeroacquisti + 1
   totalebitacquistati = totalebitacquistati + bitcoin
   prezzomedio = prezzomedio + attuale
-  telegram_message = "BITBOT " + location + " - " + dt_string + "\n\nBOUGHT\n" + str(q) + " " + scrypto + " at actual value of " + str(attuale) + " " + sfiat + "\n\n- Total " + scrypto + " Bought " + str(totalebitacquistati) + "\n- Total " + sfiat + " Bought " + str(comprato) + "\n- Actual " + scrypto + " value " + str(attuale)
+  telegram_message = "BITBOT " + location + " - " + dt_string + "\n\nBOUGHT\n" + str(q) + " " + scrypto + " at actual value of " + str(attuale) + " " + sfiat + "\n\n- Total " + scrypto + " Bought " + str(totalebitacquistati) + "\n- Total " + sfiat + " Bought " + str(comprato) + "\n- Actual " + scrypto + " value " + str(attuale) + "\n- Actual Commission: " + str(comm_last) + "\n- Total Commissions: " + str(comm_total)
   notify(telegram_message)
   ScriviSaving()
   log = open(symbol + ".log","a")
@@ -276,6 +287,8 @@ def ScriviSaving():
   sav.write("losscn = " + str(losscn) + "\n")  
   sav.write("gainsm = " + str(gainsm) + "\n")
   sav.write("losssm = " + str(losssm) + "\n")
+  sav.write("comm_last = " + str(comm_last) + "\n")
+  sav.write("comm_total = " + str(comm_total) + "\n")
   sav.close
   if debugge == 1:
    print(f"{colore.rosso}DEBUG: Saving file correctly written{colore.reset}")
@@ -300,7 +313,8 @@ def LeggiSaving():
  losscn = float(config.get('saving', 'losscn'))
  gainsm = float(config.get('saving', 'gainsm'))
  losssm = float(config.get('saving', 'losssm'))
-
+ comm_last = float(config.get('saving', 'comm_last'))
+ comm_total = float(config.get('saving', 'comm_total'))
  return True
  
 def LeggiConfig(modo):
@@ -340,6 +354,8 @@ def LeggiConfig(modo):
   telegramchatid = config.get('telegram', 'chatid')
   location = config.get('Var', 'location')
   telegramnotify = int(config.get('telegram', 'notify'))
+  comm_buy = float(config.get('binance', 'comm_buy'))
+  comm_sell = float(config.get('binance', 'comm_sell'))
  if modo == 4:
   losspc = float(config.get('Var', 'losspc'))  
 
@@ -347,6 +363,7 @@ def variables():
  global numeroacquisti, totalebitacquistati, prezzomedio, comprato, guadagnototale, guadagno, compro, fiat, maxfiat, maxloop, limite, up, down
  global pausa, precedente, attuale, number, media, nonvendo, maxnonvendo, ferma, debugge, gainpc, losspc, gainsm, losssm, gainav, lossav
  global gaincn, losscn, actualgain, mingain, telegramtoken, telegramchatid, location
+ global comm_buy, comm_sell, comm_total, comm_last
  ######## DEFINING VARIABLES ###########################################
  numeroacquisti = 0                # How many buying to calcolate the average
  totalebitacquistati = 0           # Total crypto bought
@@ -379,10 +396,14 @@ def variables():
  gaincn = 0                        # Gain Counter
  losscn = 0                        # Loss Counter
  actualgain = 0                    # Actual gain
- mingain = 0.1                     # Minimum gain percentage
+ mingain = 0.3                     # Minimum gain percentage
  telegramtoken = ''                # Token BOT Telegram 
  telegramchatid = ''               # ChatID BOT Telegram
  location = ''                     # Where is phisically the PC
+ comm_buy = 0.1                    # Buy Commissions
+ comm_sell = 0.1                   # Sell Commissions
+ comm_last = 0                     # Last commission payed
+ comm_total = 0                    # Total commissions payed from last beginning trading start
 
  
 LeggiConfig(1)
@@ -522,6 +543,9 @@ while True:                        # MAIN LOOP
       compra()
       print(colore.lightred)
       gainav = gainsm / gaincn
+      if gainav < mingain:
+       gainav = mingain
+       
       print(f"==========> Changing GAIN AVERAGE % to {gainav}")
       lossav = losssm / losscn
       print(f"==========> Changing LOSS AVERAGE % to {lossav}")
@@ -555,7 +579,7 @@ while True:                        # MAIN LOOP
     # Stampo a video le variazioni attuali  
     if precedente == attuale:                      # I valori delle crypto sono uguali
       print(f"{colore.giall}", end='')
-      print("\n= - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL VALUE: %.2f  ACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media))
+      print("\n= - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL VALUE: %.2f  ACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f\nLAST COMMISSION: %.2f - TOTAL COMMISSIONS: %.2f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media, comm_last, comm_total))
 
     if precedente < attuale:                       # Se attualmente la crypto è maggiore del precedente
       up = up + 1
@@ -563,14 +587,14 @@ while True:                        # MAIN LOOP
         down = 0 
 
       print(f"{colore.verde}", end='')             
-      print("\n^ - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL VALUE: %.2f  ACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media))
+      print("\n^ - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL VALUE: %.2f  ACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f\nLAST COMMISSION: %.2f - TOTAL COMMISSIONS: %.2f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media, comm_last, comm_total))
     
     if precedente > attuale:                       # Se attualmente la crypto è minore del precedente
       down = down + 1
       if down == 2:
         up = 0
       print(f"{colore.rosso}", end='')
-      print("\nv - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL VALUE: %.2f  ACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media))
+      print("\nv - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL VALUE: %.2f  ACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f\nLAST COMMISSION: %.2f - TOTAL COMMISSIONS: %.2f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media, comm_last, comm_total))
 
     
     if debugge == 1:
