@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.10.008 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
+rel = "0.10.009 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -468,7 +468,7 @@ variables()
 LeggiConfig(3)
 gainav = gainpc
 lossav = losspc
-test = notify("BOT STARTED - Located in " + location)
+test = notify("BOT STARTED - " + dt_string + "\nBot located in " + location)
 #print(test)
 print(colore.giall + "Rel " + rel + " - "+ symbol + " by Oculus.it\n\n" + colore.reset)
 
