@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.10.007 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
+rel = "0.10.008 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -182,7 +182,7 @@ def vendi():
   comm_total = comm_total + comm_last
   
   print(f"Actual Gain: {sfiat} {guadagno}  Total Gain: {sfiat} {guadagnototale}   -  ", end='')
-  telegram_message = "BITBOT " + location + " - " + dt_string + "\n\nSOLD\n" + str(q) + " " + scrypto + " at actual value of " + str(attuale) + " " + sfiat + "\n\n- Actual Gain: " + str(guadagno) + "\n- Total Gain: " + str(guadagnototale) + "\n- Actual Commission: " + str(comm_last) + "\n- Total Commissions: " + str(comm_total)
+  telegram_message = "BITBOT " + location + " - " + dt_string + "\n\nSOLD\n" + str(q) + " " + scrypto + " at actual value of " + str(attuale) + " " + sfiat + "\nAverage: " + str(media) + " " + sfiat + "\n\n- Actual Gain: " + str(guadagno) + "\n- Total Gain: " + str(guadagnototale) + "\n- Actual Commission: " + str(comm_last) + "\n- Total Commissions: " + str(comm_total)
   notify(telegram_message)
 
   c = 100
@@ -256,7 +256,7 @@ def compra():
   numeroacquisti = numeroacquisti + 1
   totalebitacquistati = totalebitacquistati + bitcoin
   prezzomedio = prezzomedio + attuale
-  telegram_message = "BITBOT " + location + " - " + dt_string + "\n\nBOUGHT\n" + str(q) + " " + scrypto + " at actual value of " + str(attuale) + " " + sfiat + "\n\n- Total " + scrypto + " Bought " + str(totalebitacquistati) + "\n- Total " + sfiat + " Bought " + str(comprato) + "\n- Actual " + scrypto + " value " + str(attuale) + "\n- Actual Commission: " + str(comm_last) + "\n- Total Commissions: " + str(comm_total)
+  telegram_message = "BITBOT " + location + " - " + dt_string + "\n\nBOUGHT\n" + str(q) + " " + scrypto + " at actual value of " + str(attuale) + " " + sfiat + "\nAverage: " + str(media) + " " + sfiat +  "\n\n- Total " + scrypto + " Bought " + str(totalebitacquistati) + "\n- Total " + sfiat + " Bought " + str(comprato) + "\n- Actual " + scrypto + " value " + str(attuale) + "\n- Actual Commission: " + str(comm_last) + "\n- Total Commissions: " + str(comm_total)
   notify(telegram_message)
   ScriviSaving()
   log = open(symbol + ".log","a")
