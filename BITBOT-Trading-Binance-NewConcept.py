@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.10.005 Binance Trading ** TELEGRAM INTEGRATION **"
+rel = "0.10.006 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -178,7 +178,7 @@ def vendi():
   guadagnototale = guadagnototale + guadagno
   
   # Calculating commissions in Stable
-  comm_last = (guadagno * comm_sell) / 100
+  comm_last = ((q * attuale) * comm_sell) / 100
   comm_total = comm_total + comm_last
   
   print(f"Actual Gain: {sfiat} {guadagno}  Total Gain: {sfiat} {guadagnototale}   -  ", end='')
