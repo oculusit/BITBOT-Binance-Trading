@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.10.006 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
+rel = "0.10.007 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -586,7 +586,7 @@ while True:                        # MAIN LOOP
     # Stampo a video le variazioni attuali  
     if precedente == attuale:                      # I valori delle crypto sono uguali
       print(f"{colore.giall}", end='')
-      print("\n= - %s - UP: %.0f  DOWN: %.0f\nLAST GAIN: %.2f  TOTAL GAIN: %.2f\nTOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL VALUE: %.2f  ACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f\nLAST COMMISSION: %.4f - TOTAL COMMISSIONS: %.4f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media, comm_last, comm_total))
+      print("\n= - %s - UP: %.0f  DOWN: %.0f\nLAST GAIN: %.2f  TOTAL GAIN: %.2f\nTOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL VALUE: %.2f\nACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f\nLAST COMMISSION: %.4f - TOTAL COMMISSIONS: %.4f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media, comm_last, comm_total))
 
     if precedente < attuale:                       # Se attualmente la crypto è maggiore del precedente
       up = up + 1
@@ -594,14 +594,14 @@ while True:                        # MAIN LOOP
         down = 0 
 
       print(f"{colore.verde}", end='')             
-      print("\n^ - %s - UP: %.0f  DOWN: %.0f\nLAST GAIN: %.2f  TOTAL GAIN: %.2f\nTOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL VALUE: %.2f  ACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f\nLAST COMMISSION: %.4f - TOTAL COMMISSIONS: %.4f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media, comm_last, comm_total))
+      print("\n^ - %s - UP: %.0f  DOWN: %.0f\nLAST GAIN: %.2f  TOTAL GAIN: %.2f\nTOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL VALUE: %.2f\nACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f\nLAST COMMISSION: %.4f - TOTAL COMMISSIONS: %.4f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media, comm_last, comm_total))
     
     if precedente > attuale:                       # Se attualmente la crypto è minore del precedente
       down = down + 1
       if down == 2:
         up = 0
       print(f"{colore.rosso}", end='')
-      print("\nv - %s - UP: %.0f  DOWN: %.0f\nLAST GAIN: %.2f  TOTAL GAIN: %.2f\nTOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL VALUE: %.2f  ACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f\nLAST COMMISSION: %.4f - TOTAL COMMISSIONS: %.4f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media, comm_last, comm_total))
+      print("\nv - %s - UP: %.0f  DOWN: %.0f\nLAST GAIN: %.2f  TOTAL GAIN: %.2f\nTOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL VALUE: %.2f\nACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f\nLAST COMMISSION: %.4f - TOTAL COMMISSIONS: %.4f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media, comm_last, comm_total))
 
     
     if debugge == 1:
