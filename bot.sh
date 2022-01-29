@@ -2,9 +2,10 @@
 while :
 do
   ./BITBOT-Trading-Binance-NewConcept.py
+  echo "Errorlevel $?"
   if [ $? -eq 1 ]
   then
-   echo "Ended by AUTO STOP FUNCTION"
+   echo "Ended by AUTO STOP FUNCTION - Errorlevel $?"
    break
   else
    echo "Ended by Error!! Errorlevel $?"

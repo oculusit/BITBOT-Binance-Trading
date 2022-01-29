@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.10.001 Binance Trading ** TELEGRAM INTEGRATION **"
+rel = "0.10.003 Binance Trading ** TELEGRAM INTEGRATION **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -270,6 +270,7 @@ def compra():
 
 def ScriviSaving():
   global guadagno, guadagnototale, totalebitacquistati, comprato, media, prezzomedio, numeroacquisti, gainav, lossav, gainpc, losspc, gaincn, losscn, gainsm, losssm, symbol, debugge
+  global comm_last, comm_total
   sav = open(symbol + ".sav", "w")
   sav.write("[saving]\n")
   sav.write("guadagno = " + str(guadagno) + "\n")
@@ -296,6 +297,7 @@ def ScriviSaving():
   
 def LeggiSaving():
  global guadagno, guadagnototale, totalebitacquistati, comprato, media, symbol, gainav, lossav, gainpc, losspc, gaincn, losscn, gainsm, losssm, prezzomedio, numeroacquisti
+ global comm_last, comm_total
  config = configparser.ConfigParser()
  config.read_file(open(r'' + symbol + ".sav"))
  guadagno = float(config.get('saving', 'guadagno'))
@@ -474,6 +476,7 @@ try:
   print(f"AVERAGE SUM: {prezzomedio} - NUMBER OF BUYS: {numeroacquisti}")
   print(f"GAINAV: {gainav} - LOSSAV: {lossav} - GAINPC: {gainpc} - LOSSPC: {losspc}")
   print(f"GAINCN: {gaincn} - LOSSCN: {losscn} - GAINSM: {gainsm} - LOSSSM: {losssm}")
+  print(f"LAST COMMISSION: {comm_last} - TOTAL COMMISSIONS: {comm_total}")
 except:
   print(colore.lightcyan + "No restoring file found" + colore.reset)
 
@@ -579,7 +582,7 @@ while True:                        # MAIN LOOP
     # Stampo a video le variazioni attuali  
     if precedente == attuale:                      # I valori delle crypto sono uguali
       print(f"{colore.giall}", end='')
-      print("\n= - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL VALUE: %.2f  ACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f\nLAST COMMISSION: %.2f - TOTAL COMMISSIONS: %.2f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media, comm_last, comm_total))
+      print("\n= - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL VALUE: %.2f  ACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f\nLAST COMMISSION: %.4f - TOTAL COMMISSIONS: %.4f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media, comm_last, comm_total))
 
     if precedente < attuale:                       # Se attualmente la crypto è maggiore del precedente
       up = up + 1
@@ -587,14 +590,14 @@ while True:                        # MAIN LOOP
         down = 0 
 
       print(f"{colore.verde}", end='')             
-      print("\n^ - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL VALUE: %.2f  ACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f\nLAST COMMISSION: %.2f - TOTAL COMMISSIONS: %.2f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media, comm_last, comm_total))
+      print("\n^ - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL VALUE: %.2f  ACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f\nLAST COMMISSION: %.4f - TOTAL COMMISSIONS: %.4f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media, comm_last, comm_total))
     
     if precedente > attuale:                       # Se attualmente la crypto è minore del precedente
       down = down + 1
       if down == 2:
         up = 0
       print(f"{colore.rosso}", end='')
-      print("\nv - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL VALUE: %.2f  ACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f\nLAST COMMISSION: %.2f - TOTAL COMMISSIONS: %.2f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media, comm_last, comm_total))
+      print("\nv - %s - UP: %.0f  DOWN: %.0f  LG: %.2f  TG: %.2f  TOTAL CRYPTO BOUGHT: %.8f  \nTOTAL VALUE BOUGHT: %.2f  ACTUAL VALUE: %.2f  ACTUAL CRYPTO VALUE: %.2f  AVERAGE: %.2f\nLAST COMMISSION: %.4f - TOTAL COMMISSIONS: %.4f" %(dt_string, up, down, guadagno, guadagnototale, totalebitacquistati, comprato, valoreattuale, attuale, media, comm_last, comm_total))
 
     
     if debugge == 1:
