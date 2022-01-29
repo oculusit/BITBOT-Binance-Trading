@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.10.003 Binance Trading ** TELEGRAM INTEGRATION **"
+rel = "0.10.004 Binance Trading ** TELEGRAM INTEGRATION **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -270,7 +270,7 @@ def compra():
 
 def ScriviSaving():
   global guadagno, guadagnototale, totalebitacquistati, comprato, media, prezzomedio, numeroacquisti, gainav, lossav, gainpc, losspc, gaincn, losscn, gainsm, losssm, symbol, debugge
-  global comm_last, comm_total
+  global comm_last, comm_total, up, down
   sav = open(symbol + ".sav", "w")
   sav.write("[saving]\n")
   sav.write("guadagno = " + str(guadagno) + "\n")
@@ -290,6 +290,8 @@ def ScriviSaving():
   sav.write("losssm = " + str(losssm) + "\n")
   sav.write("comm_last = " + str(comm_last) + "\n")
   sav.write("comm_total = " + str(comm_total) + "\n")
+  sav.write("up = " + str(up) + "\n")
+  sav.write("down = " + str(down) + "\n")
   sav.close
   if debugge == 1:
    print(f"{colore.rosso}DEBUG: Saving file correctly written{colore.reset}")
@@ -297,7 +299,7 @@ def ScriviSaving():
   
 def LeggiSaving():
  global guadagno, guadagnototale, totalebitacquistati, comprato, media, symbol, gainav, lossav, gainpc, losspc, gaincn, losscn, gainsm, losssm, prezzomedio, numeroacquisti
- global comm_last, comm_total
+ global comm_last, comm_total, up, down
  config = configparser.ConfigParser()
  config.read_file(open(r'' + symbol + ".sav"))
  guadagno = float(config.get('saving', 'guadagno'))
@@ -317,6 +319,8 @@ def LeggiSaving():
  losssm = float(config.get('saving', 'losssm'))
  comm_last = float(config.get('saving', 'comm_last'))
  comm_total = float(config.get('saving', 'comm_total'))
+ up = int(config.get('saving', 'up'))
+ down = int(config.get('saving', 'down'))
  return True
  
 def LeggiConfig(modo):
