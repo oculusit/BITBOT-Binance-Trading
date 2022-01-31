@@ -133,6 +133,10 @@ bot = telebot.TeleBot(telegramtoken)
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
-	bot.reply_to(message, "Howdy, how are you doing?")
+	bot.reply_to(message, "Hi! Welcome to BITBOT Telegram configurator!")
 	
 bot.infinity_polling()
+
+while True:
+	print(".", end='')
+	time.sleep(1)
