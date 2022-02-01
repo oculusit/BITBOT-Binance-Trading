@@ -128,11 +128,48 @@ def LeggiConfig(modo):
  if modo == 4:
   losspc = float(config.get('Var', 'losspc'))
 
+def Ora():
+ now = datetime.now()    
+ dt_string = now.strftime("%d-%m-%Y %H:%M:%S")
+ return dt_string
+ 
+def Saldo():
+ global sfiat, scrypto
+ # get balance for a specific asset only (BTC)
+ ora = Ora()
+ balancemessage = "BITBOT - " + ora + " - Actual Balance\n\n"
+ balancemessage = balancemessage + "USDT AVAILABLE: " + str(client.get_asset_balance(asset=sfiat)['free']) + "\n"
+ balancemessage = balancemessage + " - " + scrypto + " AVAILABLE: " + str(client.get_asset_balance(asset=scrypto)['free']) + "\n"
+ balancemessage = balancemessage + " - BNB  AVAILABLE: " + str(client.get_asset_balance(asset="BNB")['free']))
+ return balancemessage
+ 
 LeggiConfig(3)
+##### CONNECT TO TELEGRAM
 bot = telebot.TeleBot(telegramtoken)
+
+######## CONNECT TO BINANCE ###########################################
+try:
+ client = Client(api, sek)
+ if testnet == 1:
+  client.API_URL = testneturl 
+except:
+ print("ERROR: Cannot connect to Binance APIs phase 1. Check your internet connection and your keys activation.")
+ quit()
+
+######## CONNECT TO THE ACCOUNT #######################################
+try:
+ client.get_account()
+except:
+ print("ERROR: Cannot connect to Binance APIs phase 2. Check your internet connection and your keys activation.")
+ quit()
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
 	bot.reply_to(message, "Hi! Welcome to BITBOT Telegram configurator!")
 	
+@bot.message_handler(commands=['balance', 'saldo'])
+def send_welcome(message):
+	balancemessage = Saldo()
+	bot.reply_to(message, balancemessage)
+
 bot.infinity_polling()
