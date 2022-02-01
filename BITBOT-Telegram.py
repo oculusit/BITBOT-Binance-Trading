@@ -27,7 +27,7 @@ import telebot
 from datetime import datetime
 
 ######## RELEASE VERSION ##############################################
-rel = "0.0.001 - ** TELEGRAM CHAT BOT **"
+rel = "0.0.002 - ** BITBOT TELEGRAM CHAT BOT **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
