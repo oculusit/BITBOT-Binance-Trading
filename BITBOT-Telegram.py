@@ -140,9 +140,10 @@ def Saldo():
  balancemessage = "BITBOT - " + ora + " - Actual Balance\n\n"
  balancemessage = balancemessage + "USDT AVAILABLE: " + str(client.get_asset_balance(asset=sfiat)['free']) + "\n"
  balancemessage = balancemessage + " - " + scrypto + " AVAILABLE: " + str(client.get_asset_balance(asset=scrypto)['free']) + "\n"
- balancemessage = balancemessage + " - BNB  AVAILABLE: " + str(client.get_asset_balance(asset="BNB")['free']))
+ balancemessage = balancemessage + " - BNB  AVAILABLE: " + str(client.get_asset_balance(asset="BNB")['free'])
  return balancemessage
- 
+
+LeggiConfig(1)
 LeggiConfig(3)
 ##### CONNECT TO TELEGRAM
 bot = telebot.TeleBot(telegramtoken)
