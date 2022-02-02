@@ -221,13 +221,13 @@ def send_situation(message):
 	situazione = LeggiSaving()
 	bot.reply_to(message, situazione)
 	
-@bot.message_handler(commands=['set'])
-def send_set(message):
-	message = message.replace("/set ", "")
-	print("You want to set the following variable: >" + message + "<")
-	if message.startswith("USDT") == True:
-		message.replace("USDT ", "")
-		print("Setting USDT to: " + message)
+#@bot.message_handler(commands=['set'])
+#def send_set(message):
+#	message = message.replace("/set ", "")
+#	print("You want to set the following variable: >" + message + "<")
+#	if message.startswith("USDT") == True:
+#		message.replace("USDT ", "")
+#		print("Setting USDT to: " + message)
 		
 
 
