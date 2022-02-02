@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.10.013 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
+rel = "0.10.014 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -324,7 +324,7 @@ def LeggiSaving():
  return True
  
 def LeggiConfig(modo):
- global api, sek, fiat, maxfiat, limite, pausa, ferma, nonvendo, configfile, testneturl, gainpc, losspc, debugge, maxnonvendo, telegramtoken, telegramchatid, location, telegramnotify
+ global api, sek, fiat, maxfiat, limite, pausa, ferma, nonvendo, configfile, testneturl, gainpc, losspc, debugge, maxnonvendo, telegramtoken, telegramchatid, location, telegramnotify, mingain
  config = configparser.ConfigParser()
  config.read_file(open(r''+configfile))
  if modo == 1:
@@ -402,7 +402,7 @@ def variables():
  gaincn = 0                        # Gain Counter
  losscn = 0                        # Loss Counter
  actualgain = 0                    # Actual gain
- mingain = 0.3                     # Minimum gain percentage
+ mingain = 0.5                     # Minimum gain percentage
  telegramtoken = ''                # Token BOT Telegram 
  telegramchatid = ''               # ChatID BOT Telegram
  location = ''                     # Where is phisically the PC
