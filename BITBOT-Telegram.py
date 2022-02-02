@@ -2,7 +2,7 @@
 ######## FIRST THING TO DO ############################################
 # Modify the previous line with your own python settings
 #######################################################################
-# BITBOT - Open Source Crypto Bot Trading Binance Api Based
+# BITBOT - Open Source Telegram Support for Crypto Bot Trading Binance
 # Software Released as GPL 3
 #
 # If you want to contribute please contact me at oculus@oculus.it 
@@ -148,7 +148,7 @@ def Saldo():
  # get balance for a specific asset only (BTC)
  ora = Ora()
  balancemessage = "BITBOT - " + ora + " - Actual Balance\n\n"
- balancemessage = balancemessage + "USDT AVAILABLE: " + str(client.get_asset_balance(asset=sfiat)['free']) + "\n"
+ balancemessage = balancemessage + "- USDT AVAILABLE: " + str(client.get_asset_balance(asset=sfiat)['free']) + "\n"
  balancemessage = balancemessage + " - " + scrypto + " AVAILABLE: " + str(client.get_asset_balance(asset=scrypto)['free']) + "\n"
  balancemessage = balancemessage + " - BNB  AVAILABLE: " + str(client.get_asset_balance(asset="BNB")['free'])
  return balancemessage
