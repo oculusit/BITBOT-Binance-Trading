@@ -28,7 +28,7 @@ from datetime import datetime
 from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 ######## RELEASE VERSION ##############################################
-rel = "0.0.005 - ** BITBOT TELEGRAM CHAT BOT **"
+rel = "0.0.006 - ** BITBOT TELEGRAM CHAT BOT **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -225,6 +225,10 @@ def send_situation(message):
 def send_set(message):
 	message = message.replace("/set ", "")
 	print("You want to set the following variable: >" + message + "<")
+	if message.startswith("USDT") == True:
+		message.replace("USDT ", "")
+		print("Setting USDT to: " + message)
+		
 
 
 bot.infinity_polling()
