@@ -27,7 +27,7 @@ import telebot
 from datetime import datetime
 
 ######## RELEASE VERSION ##############################################
-rel = "0.0.002 - ** BITBOT TELEGRAM CHAT BOT **"
+rel = "0.0.003 - ** BITBOT TELEGRAM CHAT BOT **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -84,7 +84,16 @@ def LeggiSaving():
  comm_total = float(config.get('saving', 'comm_total'))
  up = int(config.get('saving', 'up'))
  down = int(config.get('saving', 'down'))
- return True
+ ora = Ora()
+ replymessage = "BITBOT - " + ora + "\nLatest situation"
+ replymessage = replymessage + "\n\n- Last Gain: " + str(guadagno)
+ replymessage = replymessage + "\n- Total Gain: " + str(guadagnototale)
+ replymessage = replymessage + "\n- Total Crypto Bought: " + str(totalebitacquistati)
+ replymessage = replymessage + "\n- Bought: " + str(comprato)
+ replymessage = replymessage + "\n- Average: " + str(media)
+ replymessage = replymessage + "\n- Last Commissions: " + str(comm_last)
+ replymessage = replymessage + "\n- Total Commissions: " + str(comm_total)
+ return replymessage
  
 def LeggiConfig(modo):
  global api, sek, fiat, maxfiat, limite, pausa, ferma, nonvendo, configfile, testneturl, gainpc, losspc, debugge, maxnonvendo, telegramtoken, telegramchatid, location, telegramnotify
@@ -164,13 +173,30 @@ except:
  print("ERROR: Cannot connect to Binance APIs phase 2. Check your internet connection and your keys activation.")
  quit()
 
-@bot.message_handler(commands=['start', 'help'])
+@bot.message_handler(commands=['start', 'via'])
 def send_welcome(message):
 	bot.reply_to(message, "Hi! Welcome to BITBOT Telegram configurator!")
+
+@bot.message_handler(commands=['help', 'aiuto'])
+def send_help(message):
+	ora = Ora()
+	aiuto = "BITBOT - " + ora + " - HELP ON LINE"
+	aiuto = aiuto + "\n\nCOMMANDS AVAILABLE:"
+	aiuto = aiuto + "\n- /start - Welcome message"
+	aiuto = aiuto + "\n- /balance - Acutual crypto, stable and BNB balance"
+	aiuto = aiuto + "\n- /latest - Latest saved values"
+	aiuto = aiuto + "\n\n\nMore commands will be implemented soon!"
+	bot.reply_to(message, aiuto)
 	
 @bot.message_handler(commands=['balance', 'saldo'])
 def send_welcome(message):
 	balancemessage = Saldo()
 	bot.reply_to(message, balancemessage)
+	
+@bot.message_handler(commands=['latest', 'last situation', 'ultimo salvataggio'])
+def send_situation(message):
+	situazione = LeggiSaving()
+	bot.reply_to(message, situazione)
+
 
 bot.infinity_polling()
