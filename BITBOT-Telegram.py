@@ -216,10 +216,15 @@ def send_welcome(message):
 	balancemessage = Saldo()
 	bot.reply_to(message, balancemessage)
 	
-@bot.message_handler(commands=['latest', 'last situation', 'ultimo salvataggio'])
+@bot.message_handler(commands=['latest', 'last-situation', 'ultimo-salvataggio'])
 def send_situation(message):
 	situazione = LeggiSaving()
 	bot.reply_to(message, situazione)
+	
+@bot.message_handler(commands=['set'])
+def send_set(message):
+	message = message.replace("/set ", "")
+	print("You want to set the following variable: >" + message + "<")
 
 
 bot.infinity_polling()
