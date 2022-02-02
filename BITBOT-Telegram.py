@@ -28,7 +28,7 @@ from datetime import datetime
 from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 ######## RELEASE VERSION ##############################################
-rel = "0.0.004 - ** BITBOT TELEGRAM CHAT BOT **"
+rel = "0.0.005 - ** BITBOT TELEGRAM CHAT BOT **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -155,6 +155,22 @@ def Saldo():
 
 LeggiConfig(1)
 LeggiConfig(3)
+
+print(colore.verde)
+print("  _______   _______   ___       _______   _______   _______   _______   ___ ___       _______    _______   _______ ")
+print(" |       | |   _   | |   |     |   _   | |   _   | |   _   \ |   _   | |   Y   |     |   _   \  |   _   | |       |")
+print(" |.|   | | |.  1___| |.  |     |.  1___| |.  |___| |.  l   / |.  1   | |.      |     |.  1   /  |.  |   | |.|   | |")
+print(" `-|.  |-' |.  __)_  |.  |___  |.  __)_  |.  |   | |.  _   1 |.  _   | |. \_/  |     |.  _   \  |.  |   | `-|.  |-'")
+print("   |:  |   |:  1   | |:  1   | |:  1   | |:  1   | |:  |   | |:  |   | |:  |   |     |:  1    \ |:  1   |   |:  |  ")
+print("   |::.|   |::.. . | |::.. . | |::.. . | |::.. . | |::.|:. | |::.|:. | |::.|:. |     |::.. .  / |::.. . |   |::.|  ")
+print("   `---'   `-------' `-------' `-------' `-------' `--- ---' `--- ---' `--- ---'     `-------'  `-------'   `---'  ")
+print("                    C R Y P T O - A U T O T R A D E R - T E L E G R A M B O T   S U P P O R T                      ")
+print("                                                  by Oculus.it                                                     ")
+print(colore.reset + "\n")
+print("")
+
+                                                                                                                   
+
 
 if testneturl == "":
  testnet = 0

@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.10.012 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
+rel = "0.10.013 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -222,7 +222,7 @@ def compra():
   bitcoin = fiat / attuale
   q = float(round(bitcoin,6))
   if debugge == 1:
-   print("Values before buying: ", end='')
+   print("DEBUG: Values before buying: ", end='')
    Saldo()
   if simulate == 0:                                                      # Se NON è attiva la sola simulazione
    esito = buy(q)
@@ -243,7 +243,7 @@ def compra():
    print("Simulation not available at the moment!")
   
   if debugge == 1: 
-   print("Values after buying:  ", end='')   
+   print("DEBUG: Values after buying:  ", end='')   
    Saldo()
   
   # Calculating commissions in Stable Coin
@@ -479,6 +479,7 @@ try:
  LeggiSaving()
  print(colore.lightcyan + "Restoring previous situation" + colore.reset)
  if debugge == 1:
+  print("DEBUG:")
   print(f"LG: {guadagno} - TG: {guadagnototale} - TOTAL CRYPTO BOUGHT: {totalebitacquistati} \nTOTAL VALUE BOUGHT: {comprato} - AVERAGE: {media}")
   print(f"AVERAGE SUM: {prezzomedio} - NUMBER OF BUYS: {numeroacquisti}")
   print(f"GAINAV: {gainav} - LOSSAV: {lossav} - GAINPC: {gainpc} - LOSSPC: {losspc}")
@@ -547,7 +548,7 @@ while True:                        # MAIN LOOP
      lossav = losssm / losscn      
 
     if debugge == 1:
-      print("Controllo se posso vendere:")
+      print("DEBUG: Controllo se posso vendere:")
     if actualgain > gainpc:
       vendi()
       compra()
@@ -563,7 +564,7 @@ while True:                        # MAIN LOOP
       ScriviSaving()
     else:
       if debugge == 1:
-        print(f"actualgain {actualgain} - gainpc {gainpc}")
+        print(f"DEBUG: actualgain {actualgain} - gainpc {gainpc}")
 
     if actualgain < losspc:
      if comprato + fiat > maxfiat:
