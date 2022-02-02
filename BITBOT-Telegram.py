@@ -25,9 +25,10 @@ import telebot
 #import sys
 #from pynput import keyboard
 from datetime import datetime
+from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 ######## RELEASE VERSION ##############################################
-rel = "0.0.003 - ** BITBOT TELEGRAM CHAT BOT **"
+rel = "0.0.004 - ** BITBOT TELEGRAM CHAT BOT **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -154,6 +155,12 @@ def Saldo():
 
 LeggiConfig(1)
 LeggiConfig(3)
+
+if testneturl == "":
+ testnet = 0
+else:
+ testnet = 1
+ 
 ##### CONNECT TO TELEGRAM
 bot = telebot.TeleBot(telegramtoken)
 
