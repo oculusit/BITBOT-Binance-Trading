@@ -176,7 +176,7 @@ print("   |::.|   |::.. . | |::.. . | |::.. . | |::.. . | |::.|:. | |::.|:. | |:
 print("   `---'   `-------' `-------' `-------' `-------' `--- ---' `--- ---' `--- ---'     `-------'  `-------'   `---'  ")
 print("                    C R Y P T O - A U T O T R A D E R - T E L E G R A M B O T   S U P P O R T                      ")
 print("                                                  by Oculus.it                                                     ")
-print(colore.giallo + "\n  Release " + rel + colore.reset)
+print(colore.giall + "\n  Release " + rel + colore.reset)
 print("")
 
                                                                                                                    
