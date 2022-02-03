@@ -228,7 +228,9 @@ def send_welcome(message):
 	bot.reply_to(message, balancemessage)
 	
 @bot.message_handler(commands=['crypto'. 'cripto'])
-	cryptomessage = Valore()
+	actuale = Valore()
+	cryptomessage = "BITBOT " +  ora + " - INSTANT CRYPTO VALUE " + symbol + "\n\n"
+	cryptomessage = cryptomessage + "- " + str(actuale)
 	bot.reply_to(message, cryptomessage)
 	
 @bot.message_handler(commands=['latest', 'last-situation', 'ultimo-salvataggio'])
