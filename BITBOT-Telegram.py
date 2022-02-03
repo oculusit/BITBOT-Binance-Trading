@@ -28,7 +28,7 @@ from datetime import datetime
 from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 ######## RELEASE VERSION ##############################################
-rel = "0.0.010 - ** BITBOT TELEGRAM CHAT BOT **"
+rel = "0.0.011 - ** BITBOT TELEGRAM CHAT BOT **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -209,7 +209,7 @@ except:
 @bot.message_handler(commands=['start', 'via'])
 def send_welcome(message):
 	ora = Ora()
-	print(ora + "Welcome message sended\n\n")
+	print(ora + " - Welcome message sended\n\n")
 	bot.reply_to(message, "Hi! Welcome to BITBOT Telegram configurator!\n\nUse /help command to khow commands available!")
 
 @bot.message_handler(commands=['help', 'aiuto'])
@@ -222,14 +222,14 @@ def send_help(message):
 	aiuto = aiuto + "\n- /latest - Latest saved values"
 	aiuto = aiuto + "\n- /crypto - Actual crypto value"
 	aiuto = aiuto + "\n\n\nMore commands will be implemented soon!"
-	print(ora + "Help message sended\n" + aiuto + "\n\n")
+	print(ora + " - Help message sended\n" + aiuto + "\n\n")
 	bot.reply_to(message, aiuto)
 	
 @bot.message_handler(commands=['balance', 'saldo'])
 def send_welcome(message):
 	balancemessage = Saldo()
 	ora = Ora()
-	print(ora + "Balance message sended\n" + balancemessage + "\n\n")
+	print(ora + " - Balance message sended\n" + balancemessage + "\n\n")
 	bot.reply_to(message, balancemessage)
 	
 @bot.message_handler(commands=['crypto', 'cripto'])
@@ -238,14 +238,14 @@ def send_crypto(message):
 	actuale = Valore()
 	cryptomessage = "BITBOT " +  ora + " - INSTANT CRYPTO VALUE " + symbol + "\n\n"
 	cryptomessage = cryptomessage + "- " + str(actuale) + " " + sfiat
-	print(ora + "Crypto message sended\n" + cryptomessage + "\n\n")
+	print(ora + " - Crypto message sended\n" + cryptomessage + "\n\n")
 	bot.reply_to(message, cryptomessage)
 	
 @bot.message_handler(commands=['latest', 'last-situation', 'ultimo-salvataggio'])
 def send_situation(message):
 	ora = Ora()
 	situazione = LeggiSaving()
-	print(ora + "Latest message sended\n" + situazione + "\n\n")
+	print(ora + " - Latest message sended\n" + situazione + "\n\n")
 	bot.reply_to(message, situazione)
 	
 #@bot.message_handler(commands=['set'])
