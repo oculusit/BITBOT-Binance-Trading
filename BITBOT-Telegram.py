@@ -28,7 +28,7 @@ from datetime import datetime
 from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 ######## RELEASE VERSION ##############################################
-rel = "0.0.006 - ** BITBOT TELEGRAM CHAT BOT **"
+rel = "0.0.007 - ** BITBOT TELEGRAM CHAT BOT **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -138,6 +138,16 @@ def LeggiConfig(modo):
  if modo == 4:
   losspc = float(config.get('Var', 'losspc'))
 
+def Valore():
+	global symbol
+	try:
+		response = client.get_symbol_ticker(symbol=symbol)
+		attuale = float(response['price'])
+		return attuale
+	except:
+		attuale = "Connection Error!"
+		return attuale
+
 def Ora():
  now = datetime.now()    
  dt_string = now.strftime("%d-%m-%Y %H:%M:%S")
@@ -208,6 +218,7 @@ def send_help(message):
 	aiuto = aiuto + "\n- /start - Welcome message"
 	aiuto = aiuto + "\n- /balance - Acutual crypto, stable and BNB balance"
 	aiuto = aiuto + "\n- /latest - Latest saved values"
+	aiuto = aiuto + "\n- /crypto - Actual crypto value"
 	aiuto = aiuto + "\n\n\nMore commands will be implemented soon!"
 	bot.reply_to(message, aiuto)
 	
@@ -215,6 +226,10 @@ def send_help(message):
 def send_welcome(message):
 	balancemessage = Saldo()
 	bot.reply_to(message, balancemessage)
+	
+@bot.message_handler(commands=['crypto'. 'cripto'])
+	cryptomessage = Valore()
+	bot.reply_to(message, cryptomessage)
 	
 @bot.message_handler(commands=['latest', 'last-situation', 'ultimo-salvataggio'])
 def send_situation(message):
@@ -229,6 +244,4 @@ def send_situation(message):
 #		message.replace("USDT ", "")
 #		print("Setting USDT to: " + message)
 		
-
-
 bot.infinity_polling()
