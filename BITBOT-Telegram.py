@@ -28,7 +28,7 @@ from datetime import datetime
 from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 ######## RELEASE VERSION ##############################################
-rel = "0.0.008 - ** BITBOT TELEGRAM CHAT BOT **"
+rel = "0.0.009 - ** BITBOT TELEGRAM CHAT BOT **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -176,7 +176,7 @@ print("   |::.|   |::.. . | |::.. . | |::.. . | |::.. . | |::.|:. | |::.|:. | |:
 print("   `---'   `-------' `-------' `-------' `-------' `--- ---' `--- ---' `--- ---'     `-------'  `-------'   `---'  ")
 print("                    C R Y P T O - A U T O T R A D E R - T E L E G R A M B O T   S U P P O R T                      ")
 print("                                                  by Oculus.it                                                     ")
-print(colore.reset + "\n")
+print(colore.reset + "\n" + rel)
 print("")
 
                                                                                                                    
@@ -208,6 +208,8 @@ except:
 
 @bot.message_handler(commands=['start', 'via'])
 def send_welcome(message):
+	ora = Ora()
+	print(ora + "Welcome message sended\n\n")
 	bot.reply_to(message, "Hi! Welcome to BITBOT Telegram configurator!\n\nUse /help command to khow commands available!")
 
 @bot.message_handler(commands=['help', 'aiuto'])
@@ -220,6 +222,7 @@ def send_help(message):
 	aiuto = aiuto + "\n- /latest - Latest saved values"
 	aiuto = aiuto + "\n- /crypto - Actual crypto value"
 	aiuto = aiuto + "\n\n\nMore commands will be implemented soon!"
+	print(ora + "Help message sended\n" + aiuto + "\n\n")
 	bot.reply_to(message, aiuto)
 	
 @bot.message_handler(commands=['balance', 'saldo'])
