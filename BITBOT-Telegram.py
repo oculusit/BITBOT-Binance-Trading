@@ -28,7 +28,7 @@ from datetime import datetime
 from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 ######## RELEASE VERSION ##############################################
-rel = "0.0.009 - ** BITBOT TELEGRAM CHAT BOT **"
+rel = "0.0.010 - ** BITBOT TELEGRAM CHAT BOT **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -176,7 +176,7 @@ print("   |::.|   |::.. . | |::.. . | |::.. . | |::.. . | |::.|:. | |::.|:. | |:
 print("   `---'   `-------' `-------' `-------' `-------' `--- ---' `--- ---' `--- ---'     `-------'  `-------'   `---'  ")
 print("                    C R Y P T O - A U T O T R A D E R - T E L E G R A M B O T   S U P P O R T                      ")
 print("                                                  by Oculus.it                                                     ")
-print(colore.reset + "\n" + rel)
+print(colore.giallo + "\n  Release " + rel + colore.reset)
 print("")
 
                                                                                                                    
