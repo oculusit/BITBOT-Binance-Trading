@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.10.014 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
+rel = "0.10.015 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -156,7 +156,7 @@ def vendi():
   q = float(round(totalebitacquistati,6))
   if simulate == 0:
    esito = sell(q)
-   if q == "Errore":
+   if esito == "Errore":
     print("Error during selling. Please, perform a manual check!!")
    else:
     try:
@@ -178,7 +178,7 @@ def vendi():
   guadagnototale = guadagnototale + guadagno
   
   # Calculating commissions in Stable
-  comm_last = ((q * attuale) * comm_sell) / 100
+  comm_last = (venduto * comm_sell) / 100
   comm_total = comm_total + comm_last
   
   print(f"Actual Gain: {sfiat} {guadagno}  Total Gain: {sfiat} {guadagnototale}   -  ", end='')
