@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.10.015 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
+rel = "0.10.016 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -625,6 +625,7 @@ while True:                        # MAIN LOOP
       down = 0
       up = 0
     
+    ScriviSaving()
     print(colore.pink + "--------------------==========#######################==========--------------------\n" + colore.reset)
     # Pause, increase counter and swap the previous crypto value with the actual one    
     time.sleep(pausa)
