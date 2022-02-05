@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.10.016 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
+rel = "0.10.017 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -234,8 +234,8 @@ def compra():
      bitcoin = float(esito["fills"][0]["qty"])
      if bitcoin * attuale < fiat:
       print("Now buying %.8f at price of %.2f and the total is %.2f but is less than %.2f" %(bitcoin, attuale, bitcoin * attuale, fiat))
-      if debugge == 1:
-       print(colore.rosso + "DEBUG: " + esito + colore.reset)
+      if debugge == 1:                                                   # Check if now the new str(esito) is OK!
+       print(colore.rosso + "DEBUG: " + str(esito) + colore.reset)
     except:
      print(colore.lightred + "-----> TRANSACTION ERROR <-----" + colore.reset)
      print(colore.rosso + esito + colore.reset)
