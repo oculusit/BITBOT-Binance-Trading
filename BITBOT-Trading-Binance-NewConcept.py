@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.10.017 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
+rel = "0.10.018 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -554,8 +554,8 @@ while True:                        # MAIN LOOP
       compra()
       print(colore.lightred)
       gainav = gainsm / gaincn
-      if gainav < mingain:
-       gainav = mingain
+      #if gainav < mingain:
+      # gainav = mingain
        
       print(f"==========> Changing GAIN AVERAGE % to {gainav}")
       lossav = losssm / losscn
@@ -613,6 +613,8 @@ while True:                        # MAIN LOOP
     
     if up > limite and gainav > 0:	
       gainpc = gainav
+      if gainpc < mingain:
+        gainpc = mingain
       print(f"{colore.lightgreen}==========> Changing GAIN LIMIT % to {gainav} {colore.reset}")
       ScriviSaving()
       up = 0
