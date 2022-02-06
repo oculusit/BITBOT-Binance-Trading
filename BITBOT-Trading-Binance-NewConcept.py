@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.10.018 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
+rel = "0.10.019 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -164,7 +164,7 @@ def vendi():
     except:
      print(colore.lightred + "Error selling " + str(q) + " " + scrypto + ". Please check it!! A notification was sent to telegram account" + colore.reset)
      notify("BITBOT " + location + " - Error selling " + str(q) + " " + scrypto + ". Please check it!! Script will be ended now.")
-     quit(1)
+     quit(2)
   else:
     print("Simulation not available at the moment!")
     
@@ -210,7 +210,7 @@ def vendi():
   if ferma == 1:
    time.sleep(1)
    notify("BITBOT " + location + " - " + dt_string + " - STOPPED NOW by configuration settings.")
-   quit(1)
+   quit(2)
    
   return True
 
