@@ -27,7 +27,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.10.022 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
+rel = "0.10.023 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -369,7 +369,7 @@ def LeggiConfig(modo):
 def variables():
  global numeroacquisti, totalebitacquistati, prezzomedio, comprato, guadagnototale, guadagno, compro, fiat, maxfiat, maxloop, limite, up, down
  global pausa, precedente, attuale, number, media, nonvendo, maxnonvendo, ferma, debugge, gainpc, losspc, gainsm, losssm, gainav, lossav
- global gaincn, losscn, actualgain, mingain, telegramtoken, telegramchatid, location
+ global gaincn, losscn, actualgain, mingain, telegramtoken, telegramchatid, location, upalert_pc, dwalert_pc
  numeroacquisti = 0                # How many buying to calcolate the average
  totalebitacquistati = 0           # Total crypto bought
  prezzomedio = 0                   # Crypto average value
