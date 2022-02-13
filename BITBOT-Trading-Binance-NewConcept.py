@@ -280,7 +280,7 @@ def ScriviSaving():
   sav.write("media = " + str(media) + "\n")
   sav.write("prezzomedio = " + str(prezzomedio) + "\n")
   sav.write("numeroacquisti = " + str(numeroacquisti) + "\n")
-  sav.write("gainav = " + str(gaConnectioninav) + "\n")
+  sav.write("gainav = " + str(gainav) + "\n")
   sav.write("lossav = " + str(lossav) + "\n")  
   sav.write("gainpc = " + str(gainpc) + "\n")
   sav.write("losspc = " + str(losspc) + "\n")
