@@ -639,7 +639,7 @@ while True:                        # MAIN LOOP
     print(colore.pink + "--------------------==========#######################==========--------------------\n" + colore.reset)
     # Pause, increase counter and swap the previous crypto value with the actual one    
     if ferma == 2:
-     quit(1)
+     quit(2)
      
     time.sleep(pausa)
     number = number + 1
