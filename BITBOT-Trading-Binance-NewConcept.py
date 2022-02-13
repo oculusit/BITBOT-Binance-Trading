@@ -1,4 +1,3 @@
-#!/usr/local/bin/python3.10
 ######## FIRST THING TO DO ############################################
 # Modify the previous line with your own python settings
 #######################################################################
@@ -535,9 +534,9 @@ while True:                        # MAIN LOOP
      
      print(f"{actualgain}% {colore.giall}")
      if actualgain >= upalert_pc:
-      notify("BITBOT - " + dt_string  + "UP ALERT!!\n\nActually " + scrypto + " is gaining " + str(actualgain) + "%")
+      notify("BITBOT - " + location + " - " + dt_string  + "\n\nUP ALERT!!\n\nActually " + scrypto + " is gaining " + str(actualgain) + "%")
      if actualgain <= dwalert_pc:
-      notify("BITBOT - " + dt_string + "DOWN ALERT!!!\n\nActually " + scrypto + " is losing " + str(actualgain) + "%")
+      notify("BITBOT - " + location + " - " + dt_string + "\n\nDOWN ALERT!!!\n\nActually " + scrypto + " is losing " + str(actualgain) + "%")
     else:
      actualgain = 0
      compra()
