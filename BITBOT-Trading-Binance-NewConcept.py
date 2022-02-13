@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.10.021 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
+rel = "0.10.022 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -280,7 +280,7 @@ def ScriviSaving():
   sav.write("media = " + str(media) + "\n")
   sav.write("prezzomedio = " + str(prezzomedio) + "\n")
   sav.write("numeroacquisti = " + str(numeroacquisti) + "\n")
-  sav.write("gainav = " + str(gainav) + "\n")
+  sav.write("gainav = " + str(gaConnectioninav) + "\n")
   sav.write("lossav = " + str(lossav) + "\n")  
   sav.write("gainpc = " + str(gainpc) + "\n")
   sav.write("losspc = " + str(losspc) + "\n")
@@ -371,8 +371,6 @@ def variables():
  global numeroacquisti, totalebitacquistati, prezzomedio, comprato, guadagnototale, guadagno, compro, fiat, maxfiat, maxloop, limite, up, down
  global pausa, precedente, attuale, number, media, nonvendo, maxnonvendo, ferma, debugge, gainpc, losspc, gainsm, losssm, gainav, lossav
  global gaincn, losscn, actualgain, mingain, telegramtoken, telegramchatid, location
- global comm_buy, comm_sell, comm_total, comm_last
- ######## DEFINING VARIABLES ###########################################
  numeroacquisti = 0                # How many buying to calcolate the average
  totalebitacquistati = 0           # Total crypto bought
  prezzomedio = 0                   # Crypto average value
@@ -537,9 +535,9 @@ while True:                        # MAIN LOOP
      
      print(f"{actualgain}% {colore.giall}")
      if actualgain >= upalert_pc:
-      notify("BITBOT - " + ora  + "UP ALERT!!\n\nActually " + scrypto + " is gaining " + str(actualgain) + "%")
+      notify("BITBOT - " + dt_string  + "UP ALERT!!\n\nActually " + scrypto + " is gaining " + str(actualgain) + "%")
      if actualgain <= dwalert_pc:
-      notify("BITBOT - " + ora + "DOWN ALERT!!!\n\nActually " + scrypto + " is losing " + str(actualgain) + "%")
+      notify("BITBOT - " + dt_string + "DOWN ALERT!!!\n\nActually " + scrypto + " is losing " + str(actualgain) + "%")
     else:
      actualgain = 0
      compra()
@@ -640,7 +638,7 @@ while True:                        # MAIN LOOP
     ScriviSaving()
     print(colore.pink + "--------------------==========#######################==========--------------------\n" + colore.reset)
     # Pause, increase counter and swap the previous crypto value with the actual one    
-    if stop == 2:
+    if ferma == 2:
      quit(1)
      
     time.sleep(pausa)
