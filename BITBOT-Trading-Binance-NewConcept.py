@@ -1,3 +1,4 @@
+#!/usr/local/bin/python3.10
 ######## FIRST THING TO DO ############################################
 # Modify the previous line with your own python settings
 #######################################################################
