@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.10.020 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
+rel = "0.10.021 Binance Trading ** TELEGRAM INTEGRATION * Commissions Calculation **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -536,9 +536,9 @@ while True:                        # MAIN LOOP
       print(colore.verde, end='')
      
      print(f"{actualgain}% {colore.giall}")
-     if actualgain => upalert_pc:
+     if actualgain >= upalert_pc:
       notify("BITBOT - " + ora  + "UP ALERT!!\n\nActually " + scrypto + " is gaining " + str(actualgain) + "%")
-     if actualgain =< dwalert_pc:
+     if actualgain <= dwalert_pc:
       notify("BITBOT - " + ora + "DOWN ALERT!!!\n\nActually " + scrypto + " is losing " + str(actualgain) + "%")
     else:
      actualgain = 0
