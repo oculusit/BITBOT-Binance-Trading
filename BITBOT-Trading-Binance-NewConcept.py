@@ -371,6 +371,7 @@ def variables():
  global numeroacquisti, totalebitacquistati, prezzomedio, comprato, guadagnototale, guadagno, compro, fiat, maxfiat, maxloop, limite, up, down
  global pausa, precedente, attuale, number, media, nonvendo, maxnonvendo, ferma, debugge, gainpc, losspc, gainsm, losssm, gainav, lossav
  global gaincn, losscn, actualgain, mingain, telegramtoken, telegramchatid, location, upalert_pc, dwalert_pc
+ global comm_last
  numeroacquisti = 0                # How many buying to calcolate the average
  totalebitacquistati = 0           # Total crypto bought
  prezzomedio = 0                   # Crypto average value
