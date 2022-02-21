@@ -28,7 +28,7 @@ from datetime import datetime
 from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 ######## RELEASE VERSION ##############################################
-rel = "0.0.011 - ** BITBOT TELEGRAM CHAT BOT **"
+rel = "0.0.012 - ** BITBOT TELEGRAM CHAT BOT **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -259,10 +259,10 @@ def send_set(message):
 	numero_arg = len(a)
 	print("Trovati " + str(numero_arg) + " argomenti!")
 	
-	print(a[0] + a[1])
 	if a[0].lower == "stop":
 		print("Setting STOP to " + a[1])
 	print(a)
+	
 	bot.reply_to(message, a)
 	
 #	message = message.replace("/set ", "")
