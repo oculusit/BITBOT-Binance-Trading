@@ -21,7 +21,7 @@ import requests
 import time
 import json
 import os
-import telebot
+from telebot import telebot
 #import sys
 #from pynput import keyboard
 from datetime import datetime
@@ -98,6 +98,7 @@ def LeggiSaving():
  
 def LeggiConfig(modo):
  global api, sek, fiat, maxfiat, limite, pausa, ferma, nonvendo, configfile, testneturl, gainpc, losspc, debugge, maxnonvendo, telegramtoken, telegramchatid, location, telegramnotify
+ 
  config = configparser.ConfigParser()
  config.read_file(open(r''+configfile))
  if modo == 1:
@@ -137,7 +138,11 @@ def LeggiConfig(modo):
   comm_sell = float(config.get('binance', 'comm_sell'))
  if modo == 4:
   losspc = float(config.get('Var', 'losspc'))
-
+  
+def extract_arg(arg):
+    return arg.split()[1:]
+    
+    
 def Valore():
 	global symbol
 	try:
@@ -250,7 +255,13 @@ def send_situation(message):
 	
 @bot.message_handler(commands=['set'])
 def send_set(message):
-	a = bot.util.extract_arguments(message.text)
+	a = extract_arg(message.text)
+	numero_arg = len(a)
+	print("Trovati " + str(numero_arg) + " argomenti!")
+	
+	print(a[0] + a[1])
+	if a[0].lower == "stop":
+		print("Setting STOP to " + a[1])
 	print(a)
 	bot.reply_to(message, a)
 	
