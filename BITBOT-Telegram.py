@@ -248,8 +248,12 @@ def send_situation(message):
 	print(ora + " - Latest message sended\n" + situazione + "\n\n")
 	bot.reply_to(message, situazione)
 	
-#@bot.message_handler(commands=['set'])
-#def send_set(message):
+@bot.message_handler(commands=['set'])
+def send_set(message):
+	a = bot.util.extract_arguments(message.text)
+	print(a)
+	bot.reply_to(message, a)
+	
 #	message = message.replace("/set ", "")
 #	print("You want to set the following variable: >" + message + "<")
 #	if message.startswith("USDT") == True:
