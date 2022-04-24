@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.10.030 Binance Trading ** TELEGRAM INTEGRATION AND ALERTS * Commissions Calculation **"
+rel = "0.10.031 Binance Trading ** TELEGRAM INTEGRATION AND ALERTS * Commissions Calculation **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -564,7 +564,7 @@ while True:                        # MAIN LOOP
       print("DEBUG: Controllo se posso vendere:")
     if actualgain > gainpc:
       vendi()
-      compra()
+      # compra()
       print(colore.lightred)
       gainav = gainsm / gaincn
       #if gainav < mingain:
