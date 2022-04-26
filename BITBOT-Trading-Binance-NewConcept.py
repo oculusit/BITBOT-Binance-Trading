@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.10.031 Binance Trading ** TELEGRAM INTEGRATION AND ALERTS * Commissions Calculation **"
+rel = "0.10.032 Binance Trading ** TELEGRAM INTEGRATION AND ALERTS * Commissions Calculation **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -413,6 +413,7 @@ def variables():
  comm_total = 0                    # Total commissions payed from last beginning trading start
  upalert_pc = 4                    # Percentage for sending an alert of extra gain
  dwalert_pc = -4                    # Percentage for sending a down alert
+ aspettaribasso = False						 # Aspetta che il prezzo scenda prima di comprare
 
  
 LeggiConfig(1)
@@ -545,7 +546,10 @@ while True:                        # MAIN LOOP
       print("Set Down Alert % to " + str(dwalert_pc))
     else:
      actualgain = 0
-     compra()
+     if aspettaribasso:
+			 print("Awaiting for a lower price")
+		 else:
+       compra()
           
 
     if actualgain > 0:
@@ -564,6 +568,7 @@ while True:                        # MAIN LOOP
       print("DEBUG: Controllo se posso vendere:")
     if actualgain > gainpc:
       vendi()
+      aspettaribasso = True
       # compra()
       print(colore.lightred)
       gainav = gainsm / gaincn
