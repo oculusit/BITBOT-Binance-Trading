@@ -2,7 +2,7 @@
 while :
 do
   echo "Verifying new releases from GITHUB..."
-  wget https://raw.githubusercontent.com/oculusit/BITBOT-Binance-Trading/main/BITBOT-Trading-Binance-NewConcept.py -O BITBOT.py
+  wget https://raw.githubusercontent.com/oculusit/BITBOT-Binance-Trading/main/BITBOT-Trading-Binance-NewConcept.py --no-cache -O BITBOT.py
   chmod 755 BITBOT.py
   ./BITBOT.py
   echo "Errorlevel $?"
@@ -10,7 +10,7 @@ do
   then
    echo "Ended by AUTO STOP FUNCTION - Errorlevel $?"
    echo "Verifying new releases of BASH from GITHUB..."
-   wget https://raw.githubusercontent.com/oculusit/BITBOT-Binance-Trading/main/bot.sh -O bot.sh
+   wget https://raw.githubusercontent.com/oculusit/BITBOT-Binance-Trading/main/bot.sh --no-cache -O bot.sh
    chmod 755 bot.sh
    break
   else
