@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.10.034 Binance Trading ** TELEGRAM INTEGRATION AND ALERTS * Commissions Calculation **"
+rel = "0.10.035 Binance Trading ** TELEGRAM INTEGRATION AND ALERTS * Commissions Calculation **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -270,7 +270,7 @@ def compra():
 
 def ScriviSaving():
   global guadagno, guadagnototale, totalebitacquistati, comprato, media, prezzomedio, numeroacquisti, gainav, lossav, gainpc, losspc, gaincn, losscn, gainsm, losssm, symbol, debugge
-  global comm_last, comm_total, up, down
+  global comm_last, comm_total, up, down, aspetta, aspettaribasso
   sav = open(symbol + ".sav", "w")
   sav.write("[saving]\n")
   sav.write("guadagno = " + str(guadagno) + "\n")
@@ -305,7 +305,7 @@ def ScriviSaving():
   
 def LeggiSaving():
  global guadagno, guadagnototale, totalebitacquistati, comprato, media, symbol, gainav, lossav, gainpc, losspc, gaincn, losscn, gainsm, losssm, prezzomedio, numeroacquisti
- global comm_last, comm_total, up, down
+ global comm_last, comm_total, up, down, aspetta, aspettaribasso
  config = configparser.ConfigParser()
  config.read_file(open(r'' + symbol + ".sav"))
  guadagno = float(config.get('saving', 'guadagno'))
