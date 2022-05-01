@@ -292,6 +292,7 @@ def ScriviSaving():
   sav.write("comm_total = " + str(comm_total) + "\n")
   sav.write("up = " + str(up) + "\n")
   sav.write("down = " + str(down) + "\n")
+  sav.write("aspettaribasso = " + aspettaribasso + "\n")
   sav.close
   if debugge == 1:
    print(f"{colore.rosso}DEBUG: Saving file correctly written{colore.reset}")
@@ -321,6 +322,7 @@ def LeggiSaving():
  comm_total = float(config.get('saving', 'comm_total'))
  up = int(config.get('saving', 'up'))
  down = int(config.get('saving', 'down'))
+ aspettaribasso = config.get('saving', 'aspettaribasso')
  return True
  
 def LeggiConfig(modo):
@@ -371,7 +373,7 @@ def variables():
  global numeroacquisti, totalebitacquistati, prezzomedio, comprato, guadagnototale, guadagno, compro, fiat, maxfiat, maxloop, limite, up, down
  global pausa, precedente, attuale, number, media, nonvendo, maxnonvendo, ferma, debugge, gainpc, losspc, gainsm, losssm, gainav, lossav
  global gaincn, losscn, actualgain, mingain, telegramtoken, telegramchatid, location, upalert_pc, dwalert_pc
- global comm_last, comm_buy, comm_sell, comm_total
+ global comm_last, comm_buy, comm_sell, comm_total, aspettaribasso
  numeroacquisti = 0                # How many buying to calcolate the average
  totalebitacquistati = 0           # Total crypto bought
  prezzomedio = 0                   # Crypto average value
@@ -547,9 +549,13 @@ while True:                        # MAIN LOOP
     else:
      actualgain = 0
      if aspettaribasso:
-			 print("Awaiting for a lower price")
-		 else:
+       print("Awaiting for a lower price")
+     else:
        compra()
+       aspettaribasso = false
+       prezzomedio = attuale
+       numeroacquisti = 1
+       ScriviSaving()
           
 
     if actualgain > 0:
@@ -568,6 +574,7 @@ while True:                        # MAIN LOOP
       print("DEBUG: Controllo se posso vendere:")
     if actualgain > gainpc:
       vendi()
+      prezzomedio = attuale
       aspettaribasso = True
       # compra()
       print(colore.lightred)
