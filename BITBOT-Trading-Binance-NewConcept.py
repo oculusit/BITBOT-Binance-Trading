@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.10.033 Binance Trading ** TELEGRAM INTEGRATION AND ALERTS * Commissions Calculation **"
+rel = "0.10.034 Binance Trading ** TELEGRAM INTEGRATION AND ALERTS * Commissions Calculation **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
@@ -383,7 +383,7 @@ def variables():
  global numeroacquisti, totalebitacquistati, prezzomedio, comprato, guadagnototale, guadagno, compro, fiat, maxfiat, maxloop, limite, up, down
  global pausa, precedente, attuale, number, media, nonvendo, maxnonvendo, ferma, debugge, gainpc, losspc, gainsm, losssm, gainav, lossav
  global gaincn, losscn, actualgain, mingain, telegramtoken, telegramchatid, location, upalert_pc, dwalert_pc
- global comm_last, comm_buy, comm_sell, comm_total, aspettaribasso
+ global comm_last, comm_buy, comm_sell, comm_total, aspettaribasso, aspetta
  numeroacquisti = 0                # How many buying to calcolate the average
  totalebitacquistati = 0           # Total crypto bought
  prezzomedio = 0                   # Crypto average value
@@ -426,6 +426,7 @@ def variables():
  upalert_pc = 4                    # Percentage for sending an alert of extra gain
  dwalert_pc = -4                    # Percentage for sending a down alert
  aspettaribasso = False						 # Aspetta che il prezzo scenda prima di comprare
+ aspetta = "0"					   # Variabile di comodo per leggi e scrivi saving
 
  
 LeggiConfig(1)
