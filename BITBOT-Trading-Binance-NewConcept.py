@@ -292,7 +292,11 @@ def ScriviSaving():
   sav.write("comm_total = " + str(comm_total) + "\n")
   sav.write("up = " + str(up) + "\n")
   sav.write("down = " + str(down) + "\n")
-  sav.write("aspettaribasso = " + aspettaribasso + "\n")
+  if aspettaribasso:
+	  aspetta = "1"
+  else:
+	  asoetta = "0"
+  sav.write("aspettaribasso = " + aspetta + "\n")
   sav.close
   if debugge == 1:
    print(f"{colore.rosso}DEBUG: Saving file correctly written{colore.reset}")
@@ -322,7 +326,12 @@ def LeggiSaving():
  comm_total = float(config.get('saving', 'comm_total'))
  up = int(config.get('saving', 'up'))
  down = int(config.get('saving', 'down'))
- aspettaribasso = config.get('saving', 'aspettaribasso')
+ aspetta = config.get('saving', 'aspettaribasso')
+ if aspetta == "1":
+	 aspettaribasso = True
+ else:
+	 aspettaribasso = False
+	 
  return True
  
 def LeggiConfig(modo):
