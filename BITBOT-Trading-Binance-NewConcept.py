@@ -293,9 +293,10 @@ def ScriviSaving():
   sav.write("up = " + str(up) + "\n")
   sav.write("down = " + str(down) + "\n")
   if aspettaribasso:
-	  aspetta = "1"
+    aspetta = "1"
   else:
-	  asoetta = "0"
+    asoetta = "0"
+    
   sav.write("aspettaribasso = " + aspetta + "\n")
   sav.close
   if debugge == 1:
@@ -328,9 +329,9 @@ def LeggiSaving():
  down = int(config.get('saving', 'down'))
  aspetta = config.get('saving', 'aspettaribasso')
  if aspetta == "1":
-	 aspettaribasso = True
+   aspettaribasso = True
  else:
-	 aspettaribasso = False
+   aspettaribasso = False
 	 
  return True
  
