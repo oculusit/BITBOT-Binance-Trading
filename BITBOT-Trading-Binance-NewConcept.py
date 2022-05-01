@@ -28,7 +28,7 @@ from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 
 
 ######## RELEASE VERSION ##############################################
-rel = "0.10.032 Binance Trading ** TELEGRAM INTEGRATION AND ALERTS * Commissions Calculation **"
+rel = "0.10.033 Binance Trading ** TELEGRAM INTEGRATION AND ALERTS * Commissions Calculation **"
 
 #######################################################################
 ######## CONFIGURATION VARIABLES ######################################
